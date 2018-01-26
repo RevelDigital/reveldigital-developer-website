@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Gadgets - RevelDigital for Developers</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Gadgets";
+    var mkdocs_page_input_path = "gadgets.md";
+    var mkdocs_page_url = "/gadgets/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> RevelDigital for Developers</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../rest-api/">REST API</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../windows/">Player API for Windows</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../android/">Player API for Android</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Gadgets</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#revel-digital-gadgets">Revel Digital Gadgets</a></li>
+    
+
+    <li class="toctree-l2"><a href="#introduction">Introduction</a></li>
+    
+
+    <li class="toctree-l2"><a href="#whats-in-a-gadget">What's in a gadget</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#module-prefs">Module prefs</a></li>
+        
+            <li><a class="toctree-l3" href="#module-content">Module content</a></li>
+        
+            <li><a class="toctree-l3" href="#publishing-your-gadget">Publishing your gadget</a></li>
+        
+            <li><a class="toctree-l3" href="#adding-your-gadget-to-a-template">Adding your gadget to a template</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l2"><a href="#yeoman-generator">Yeoman generator</a></li>
+    
+
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">RevelDigital for Developers</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Gadgets</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="revel-digital-gadgets">Revel Digital Gadgets</h1>
+<h1 id="introduction">Introduction</h1>
+<p>Gadgets are a simple means of providing customizable, dynamic content to any template. The Revel Digital platform includes a number of ready-to-use
+gadgets for everything from weather conditions to social media feeds. Creating your own gadget is simple if you have some basic understanding of HTML
+and Javascript.</p>
+<p><img alt="template" src="../img/gadget-example.png" /></p>
+<h1 id="whats-in-a-gadget">What's in a gadget</h1>
+<p>A gadget is nothing more than an XML file which defines the properties of the gadget along with the HTML and Javascript for rendering the gadget content.</p>
+<p>Here's a template for a sample gadget:</p>
+<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt; 
+&lt;Module&gt; 
+&lt;ModulePrefs title=&quot;Sample Gadget&quot; description=&quot;&quot; author=&quot;&quot; background=&quot;transparent&quot;&gt;
+  &lt;UserPref name=&quot;myStringPref&quot; display_name=&quot;Example string preference&quot; datatype=&quot;string&quot; default_value=&quot;Hello World!&quot; required=&quot;true&quot; /&gt;
+  &lt;UserPref name=&quot;myEnumPref&quot; display_name=&quot;Example enum preferences&quot; datatype=&quot;enum&quot; default_value=&quot;first&quot;&gt;
+    &lt;EnumValue value=&quot;first&quot; display_value=&quot;First&quot; /&gt;
+    &lt;EnumValue value=&quot;second&quot; display_value=&quot;Second&quot; /&gt;
+  &lt;/UserPref&gt;
+  &lt;UserPref name=&quot;myStylePref&quot; display_name=&quot;Example style preferences&quot; datatype=&quot;style&quot; default_value=&quot;font-family:Verdana;color:rgb(255, 255, 255);font-size:24px;text-align:left;&quot; required=&quot;true&quot; /&gt;
+  &lt;UserPref name=&quot;myBooleanPref&quot; display_name=&quot;Example boolean preference&quot; datatype=&quot;bool&quot; default_value=&quot;true&quot; /&gt;
+  &lt;UserPref name=&quot;myColorPref&quot; display_name=&quot;color&quot; datatype=&quot;color&quot; default_value=&quot;#ff00ff&quot; /&gt;
+
+  &lt;!-- The following preferences should not be modified --&gt;
+  &lt;UserPref name=&quot;ForeColor&quot; datatype=&quot;hidden&quot; /&gt;
+  &lt;UserPref name=&quot;BackColor&quot; datatype=&quot;hidden&quot; /&gt;
+  &lt;UserPref name=&quot;rdW&quot; display_name=&quot;Width&quot; required=&quot;true&quot; default_value=&quot;280&quot; datatype=&quot;hidden&quot; /&gt;
+  &lt;UserPref name=&quot;rdH&quot; display_name=&quot;Height&quot; required=&quot;true&quot; default_value=&quot;190&quot; datatype=&quot;hidden&quot; /&gt;
+  &lt;UserPref name=&quot;rdKey&quot; display_name=&quot;Device Registration Key&quot; default_value=&quot;*|DEVICE.REGISTRATIONKEY|*&quot; datatype=&quot;hidden&quot; /&gt;
+&lt;/ModulePrefs&gt;
+&lt;Content type=&quot;html&quot;&gt;
+&lt;![CDATA[
+
+&lt;style type=&quot;text/css&quot;&gt;
+  body *
+  {
+    line-height: 1.2em; 
+    letter-spacing: 0; 
+    word-spacing: normal;
+  }
+
+  body
+  {
+    background: transparent;
+    width: __UP_rdW__px;
+    height: __UP_rdH__px;
+    overflow: hidden;
+  }
+  .my-style
+  {
+    __UP_myStylePref__;
+  }
+&lt;/style&gt;
+
+&lt;!-- Preferences can be inlined in your HTML like so --&gt;
+&lt;div class=&quot;my-style&quot; id=&quot;container&quot;&gt;__UP_myStringPref__&lt;/div&gt; 
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+
+  var prefs = new gadgets.Prefs();
+
+  // This function is called after the gadget has been initialized.
+  function onLoad() {
+
+    &lt;!-- Preferences can be accessed at runtime like so --&gt;
+    alert(prefs.getString('myStringPref'));
+  }
+
+  gadgets.util.registerOnLoadHandler(onLoad);
+
+&lt;/script&gt;
+
+]]&gt;
+&lt;/Content&gt;
+&lt;/Module&gt;
+</code></pre>
+
+<h3 id="module-prefs">Module prefs</h3>
+<p>You'll see in the sample gadget a section for module preferences called <code>&lt;ModulePrefs&gt;</code>. It's here that you'll define any customizable properties for your gadget.
+A preference is defined with a <code>&lt;UserPref&gt;</code> element and can have any of the following data types:</p>
+<ul>
+<li><code>string</code> for simple string properties</li>
+<li><code>enum</code> for defining a list of selectable options</li>
+<li><code>bool</code> for a checkbox type property</li>
+<li><code>style</code> for defining a number of CSS type styles</li>
+<li><code>hidden</code> for providing properties to the gadget which are not visible to the template designer</li>
+</ul>
+<p>These preferences are then available in the gadget content either by direct substitution:</p>
+<pre><code class="html">&lt;!-- This will substitute the myStringPref property --&gt;
+&lt;div class=&quot;my-style&quot; id=&quot;container&quot;&gt;__UP_myStringPref__&lt;/div&gt;
+</code></pre>
+
+<p>or by utilizing the gadget Javascript API method to retrieve a property value:</p>
+<pre><code class="javascript">/* Preferences can be accessed at runtime like so */
+alert(prefs.getString('myStringPref'));
+</code></pre>
+
+<h3 id="module-content">Module content</h3>
+<p>The <code>&lt;Content&gt;</code> section of the gadget is where your HTML/Javascript is contained. This is the visible portion of the gadget and can contain most any valid HTML markup.
+It's recommended to include the following script for initializing the gadget:</p>
+<pre><code class="html">&lt;script type=&quot;text/javascript&quot;&gt;
+
+  var prefs = new gadgets.Prefs();
+
+  // This function is called after the gadget has been initialized.
+  function onLoad() {
+  }
+
+  gadgets.util.registerOnLoadHandler(onLoad);
+
+&lt;/script&gt;
+</code></pre>
+
+<p>This ensures the properties will be accessible via the <code>prefs</code> object.</p>
+<h3 id="publishing-your-gadget">Publishing your gadget</h3>
+<p>Once you have your gadget XML ready to go, you'll need to make it available to the Revel Digital template editor.
+Most any web hosting provider will do, but we recommend <a href="https://pages.github.com/">Github</a> for it's simplicity.</p>
+<p>You can read more on <a href="https://pages.github.com/">Github Pages here</a>. This is a great option for simple hosting.</p>
+<h3 id="adding-your-gadget-to-a-template">Adding your gadget to a template</h3>
+<p>Now that your gadget is available on the web we can add it to your template.</p>
+<p><img alt="template" src="../img/gadget-1.png" /></p>
+<p>Add a new <strong>Gadget zone</strong> to your template, and paste the URL to your gadget XML in the Source field. Click the refresh icon to load your gadget properties in the editor.</p>
+<p>Now you can preview the template to see your work!</p>
+<h1 id="yeoman-generator">Yeoman generator</h1>
+<p>Our Yeoman generator can scaffold a template for you automatically.</p>
+<p>First, install <a href="http://yeoman.io">Yeoman</a> and <a href="https://github.com/RevelDigital/generator-reveldigital-gadget">generator-reveldigital-gadget</a> using <a href="https://www.npmjs.com/">npm</a>
+(we assume you have pre-installed <a href="https://nodejs.org/">node.js</a>).</p>
+<pre><code class="sh">npm install -g yo
+npm install -g generator-reveldigital-gadget
+</code></pre>
+
+<p>Then generate your new gadget:</p>
+<pre><code class="sh">yo reveldigital-gadget
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../android/" class="btn btn-neutral" title="Player API for Android"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../android/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
+
+</body>
+</html>

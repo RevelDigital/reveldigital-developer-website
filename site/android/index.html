@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Player API for Android - RevelDigital for Developers</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Player API for Android";
+    var mkdocs_page_input_path = "android.md";
+    var mkdocs_page_url = "/android/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> RevelDigital for Developers</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../rest-api/">REST API</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../windows/">Player API for Windows</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Player API for Android</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#revel-digital-player-api-for-android">Revel Digital Player API for Android</a></li>
+    
+
+    <li class="toctree-l2"><a href="#introduction">Introduction</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#example-script">Example script</a></li>
+        
+            <li><a class="toctree-l3" href="#snippets">Snippets</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l2"><a href="#technical-reference">Technical Reference</a></li>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../gadgets/">Gadgets</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">RevelDigital for Developers</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Player API for Android</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="revel-digital-player-api-for-android">Revel Digital Player API for Android</h1>
+<h1 id="introduction">Introduction</h1>
+<p>The Revel Digital Player API provides runtime access to the Revel Digital player software. This capability allows complete freedom to manipulate the signage, while it's playing, to
+achieve any level of functionality required.</p>
+<p>The player software is built on the <a href="https://developer.android.com/index.html">Android Platform</a> and utilizes a Javascript scripting engine for interpretation of user supplied code.
+Scripts are able to leverage the complete Android Framework.</p>
+<p>At the heart of the API is the <a href="https://reveldigital.github.io/RevelDigital.Player.Android.Doc/"><code>Controller</code></a>.
+The Controller has a reference to the currently active <a href="https://reveldigital.github.io/RevelDigital.Player.Android.Doc/"><code>Schedule</code></a> and
+<a href="https://reveldigital.github.io/RevelDigital.Player.Android.Doc/"><code>Template</code></a>.
+Each <a href="https://reveldigital.github.io/RevelDigital.Player.Android.Doc/"><code>Template</code></a> has a list of its Modules which together compose the template content.
+Each template <a href="https://reveldigital.github.io/RevelDigital.Player.Android.Doc/"><code>Module</code></a>
+has a reference to the actual control responsible for rendering its content.
+The control is accessed through the <a href="https://reveldigital.github.io/RevelDigital.Player.Android.Doc/"><code>RevelControl</code></a>
+interface and has a number of RevelDigital specific methods and properties.
+The RevelControl interface can also be treated as a reference to an <a href="https://developer.android.com/reference/android/view/View.html">Android View</a>
+for performing any Android specific operations. Similarily the <a href="https://reveldigital.github.io/RevelDigital.Player.Android.Doc/"><code>Template</code></a>
+interface can be treated as a reference to an Android <a href="https://developer.android.com/reference/android/view/ViewGroup.html">ViewGroup</a>.</p>
+<h3 id="example-script">Example script</h3>
+<p>The following example will fade out an image when a hot spot is clicked. The template looks like this:</p>
+<p><img alt="template" src="../img/script-example-1.png" /></p>
+<p>The image is named <code>Static Image 1</code> and the hot spot is named <code>Hot Spot 1</code>.
+These names are assigned at template design time and are always accessible from script directly by name.
+<strong>Spaces and other special characters in the name are always substituted with an underscore in script</strong>.</p>
+<p>To edit the script for this template, click to open the Menu in the template designer, then click RevelScript Editor. Then enter the following script:</p>
+<pre><code class="javascript">Hot_Spot_1.setOnClickListener(new View.OnClickListener() {
+    onClick(View v) {
+      Static_Image_1.animate().alpha(0);
+    }
+});
+
+</code></pre>
+
+<p>In this example an event handler was added for the <a href="https://developer.android.com/reference/android/view/View.html#setOnClickListener(android.view.View.OnClickListener)">Click event</a>.
+This in turn called alpha method of the Android animation framework to perform the fade.</p>
+<h3 id="snippets">Snippets</h3>
+<p>The script editor has a number of built-in snippets available for some of the more common scripting tasks. Only zones currently added to the template will be available in the snippet dropdown.</p>
+<p><img alt="template" src="../img/script-example-2.png" /></p>
+<p>These snippets will auto generate the script necessary to perform the function selected.</p>
+<p><strong>IMPORTANT: Make sure your platform is properly selected at the top/right of the script editor window.</strong></p>
+<h1 id="technical-reference">Technical Reference</h1>
+<p>Please refer to our technical API website for more details on actual controls, events, and methods available.</p>
+<p><strong><a href="https://reveldigital.github.io/RevelDigital.Player.Android.Doc/">https://reveldigital.github.io/RevelDigital.Player.Android.Doc/</a></strong></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../gadgets/" class="btn btn-neutral float-right" title="Gadgets">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../windows/" class="btn btn-neutral" title="Player API for Windows"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../windows/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../gadgets/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
+
+</body>
+</html>

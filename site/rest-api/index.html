@@ -1,0 +1,5478 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>REST API - RevelDigital for Developers</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "REST API";
+    var mkdocs_page_input_path = "rest-api.md";
+    var mkdocs_page_url = "/rest-api/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> RevelDigital for Developers</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">REST API</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#reveldigital-rest-api">RevelDigital REST API</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#getting-started">Getting Started</a></li>
+        
+            <li><a class="toctree-l3" href="#swagger">Swagger</a></li>
+        
+            <li><a class="toctree-l3" href="#apiaccount">/api/account</a></li>
+        
+            <li><a class="toctree-l3" href="#apidevices">/api/devices</a></li>
+        
+            <li><a class="toctree-l3" href="#apidevicesid">/api/devices/{id}</a></li>
+        
+            <li><a class="toctree-l3" href="#apidevicesgroups">/api/devices/groups</a></li>
+        
+            <li><a class="toctree-l3" href="#apidevicesgroupsid">/api/devices/groups/{id}</a></li>
+        
+            <li><a class="toctree-l3" href="#apidevicespingdata">/api/devices/pingdata</a></li>
+        
+            <li><a class="toctree-l3" href="#apidevicesregistrationkeysnap">/api/devices/{registrationkey}/snap</a></li>
+        
+            <li><a class="toctree-l3" href="#apidevicesregistrationkeypingdata">/api/devices/{registrationkey}/pingdata</a></li>
+        
+            <li><a class="toctree-l3" href="#apidevicescommands">/api/devices/commands</a></li>
+        
+            <li><a class="toctree-l3" href="#apidevicesidcommands">/api/devices/{id}/commands</a></li>
+        
+            <li><a class="toctree-l3" href="#apimedia">/api/media</a></li>
+        
+            <li><a class="toctree-l3" href="#apimediaid">/api/media/{id}</a></li>
+        
+            <li><a class="toctree-l3" href="#apimediagroups">/api/media/groups</a></li>
+        
+            <li><a class="toctree-l3" href="#apimediagroupsid">/api/media/groups/{id}</a></li>
+        
+            <li><a class="toctree-l3" href="#apimediagroup_idfile_name">/api/media/{group_id}/{file_name}</a></li>
+        
+            <li><a class="toctree-l3" href="#apimediaimport">/api/media/import</a></li>
+        
+            <li><a class="toctree-l3" href="#apiplaylists">/api/playlists</a></li>
+        
+            <li><a class="toctree-l3" href="#apiplaylistsid">/api/playlists/{id}</a></li>
+        
+            <li><a class="toctree-l3" href="#apiplaylistsgroups">/api/playlists/groups</a></li>
+        
+            <li><a class="toctree-l3" href="#apiplaylistsgroupsid">/api/playlists/groups/{id}</a></li>
+        
+            <li><a class="toctree-l3" href="#apireportadhawkimpressions-by-gender">/api/report/adhawk/impressions-by-gender</a></li>
+        
+            <li><a class="toctree-l3" href="#apireportadhawkimpressions-by-hour">/api/report/adhawk/impressions-by-hour</a></li>
+        
+            <li><a class="toctree-l3" href="#apireportadhawkimpressions-by-age">/api/report/adhawk/impressions-by-age</a></li>
+        
+            <li><a class="toctree-l3" href="#apireportadhawkdevice-detail">/api/report/adhawk/device-detail</a></li>
+        
+            <li><a class="toctree-l3" href="#apireportadhawkgender-detail">/api/report/adhawk/gender-detail</a></li>
+        
+            <li><a class="toctree-l3" href="#apireportadhawkdevice-summary">/api/report/adhawk/device-summary</a></li>
+        
+            <li><a class="toctree-l3" href="#apireportadhawkdevice-heatmap">/api/report/adhawk/device-heatmap</a></li>
+        
+            <li><a class="toctree-l3" href="#apireportadhawkdevice-geolocation">/api/report/adhawk/device-geolocation</a></li>
+        
+            <li><a class="toctree-l3" href="#apireportexportreport_name">/api/report/export/{report_name}</a></li>
+        
+            <li><a class="toctree-l3" href="#apischedules">/api/schedules</a></li>
+        
+            <li><a class="toctree-l3" href="#apischedulesid">/api/schedules/{id}</a></li>
+        
+            <li><a class="toctree-l3" href="#apischedulesgroups">/api/schedules/groups</a></li>
+        
+            <li><a class="toctree-l3" href="#apischedulesgroupsid">/api/schedules/groups/{id}</a></li>
+        
+            <li><a class="toctree-l3" href="#apitemplates">/api/templates</a></li>
+        
+            <li><a class="toctree-l3" href="#apitemplatesid">/api/templates/{id}</a></li>
+        
+            <li><a class="toctree-l3" href="#apitemplatesgroups">/api/templates/groups</a></li>
+        
+            <li><a class="toctree-l3" href="#apitemplatesgroupsid">/api/templates/groups/{id}</a></li>
+        
+            <li><a class="toctree-l3" href="#apiusers">/api/users</a></li>
+        
+            <li><a class="toctree-l3" href="#apiusersid">/api/users/{id}</a></li>
+        
+            <li><a class="toctree-l3" href="#models">Models</a></li>
+        
+            <li><a class="toctree-l3" href="#account">Account</a></li>
+        
+            <li><a class="toctree-l3" href="#device">Device</a></li>
+        
+            <li><a class="toctree-l3" href="#devicetype">DeviceType</a></li>
+        
+            <li><a class="toctree-l3" href="#location">Location</a></li>
+        
+            <li><a class="toctree-l3" href="#pingdata">PingData</a></li>
+        
+            <li><a class="toctree-l3" href="#beacon">Beacon</a></li>
+        
+            <li><a class="toctree-l3" href="#devicerequest">DeviceRequest</a></li>
+        
+            <li><a class="toctree-l3" href="#group">Group</a></li>
+        
+            <li><a class="toctree-l3" href="#grouprequest">GroupRequest</a></li>
+        
+            <li><a class="toctree-l3" href="#devicecommand">DeviceCommand</a></li>
+        
+            <li><a class="toctree-l3" href="#command">Command</a></li>
+        
+            <li><a class="toctree-l3" href="#media">Media</a></li>
+        
+            <li><a class="toctree-l3" href="#mediarequest">MediaRequest</a></li>
+        
+            <li><a class="toctree-l3" href="#playlist">Playlist</a></li>
+        
+            <li><a class="toctree-l3" href="#source">Source</a></li>
+        
+            <li><a class="toctree-l3" href="#condition">Condition</a></li>
+        
+            <li><a class="toctree-l3" href="#schedule">Schedule</a></li>
+        
+            <li><a class="toctree-l3" href="#scheduledevice">ScheduleDevice</a></li>
+        
+            <li><a class="toctree-l3" href="#template">Template</a></li>
+        
+            <li><a class="toctree-l3" href="#module">Module</a></li>
+        
+            <li><a class="toctree-l3" href="#user">User</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../windows/">Player API for Windows</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../android/">Player API for Android</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../gadgets/">Gadgets</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">RevelDigital for Developers</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>REST API</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="reveldigital-rest-api">RevelDigital REST API</h1>
+<p>Provides REST based access to your RevelDigital account. See our <a href="http://api.reveldigital.com/swagger/">Swagger Website</a> for interactive documentation.</p>
+<h3 id="getting-started">Getting Started</h3>
+<h5 id="api-endpoint">API Endpoint</h5>
+<p>All API access originates from <code>https://api.reveldigital.com</code></p>
+<h5 id="authentication">Authentication</h5>
+<p>A valid API key is required for each request.
+API keys are available in your Revel Digital account under <a href="https://as1.reveldigital.com/account/api">Account &gt; Developer API</a>.</p>
+<p>The <code>api_key</code> query string parameter shoud be included in each request.</p>
+<pre><code class="sh">$curl -i https://api.reveldigital.com/account?api_key=&lt;your key here&gt;
+</code></pre>
+
+<h5 id="data-format">Data Format</h5>
+<p>All data with the exception of media uploads is in JSON format. This includes POST body data. Request headers should include
+the following to specify JSON as the content type.</p>
+<pre><code>Content-Type: application/json
+</code></pre>
+
+<p>Timestamps are returned in ISO 8601 format:</p>
+<pre><code class="sh">YYYY-MM-DDTHH:MM:SSZ
+</code></pre>
+
+<h5 id="cross-origin-resource-sharing">Cross Origin Resource Sharing</h5>
+<p>The API supports Cross Origin Resource Sharing (CORS) for AJAX requests. You can read the <a href="https://www.w3.org/TR/cors/">CORS W3C working draft</a>,
+or <a href="https://code.google.com/archive/p/html5security/wikis/CrossOriginRequestSecurity.wiki">this intro</a> from the HTML5 Security Guide.</p>
+<h3 id="swagger">Swagger</h3>
+<p><a href="http://api.reveldigital.com/swagger/">Interactive API documentation provided by Swagger</a></p>
+<p><strong>Version:</strong> v1</p>
+<h3 id="apiaccount">/api/account</h3>
+<hr />
+<h5 id="get"><strong><em>GET</em></strong></h5>
+<p><strong>Summary:</strong> Gets account details.</p>
+<p><strong>Description:</strong> </p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>Returns account details</td>
+<td><a href="#account">Account</a></td>
+</tr>
+</tbody>
+</table>
+<h5 id="put"><strong><em>PUT</em></strong></h5>
+<p><strong>Summary:</strong> Updates an account.</p>
+<p><strong>Description:</strong> </p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>account</td>
+<td>body</td>
+<td></td>
+<td>No</td>
+<td><a href="#account">Account</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>201</td>
+<td>If account was updated successfully</td>
+</tr>
+<tr>
+<td>400</td>
+<td>If the account API key is invalid</td>
+</tr>
+</tbody>
+</table>
+<h3 id="apidevices">/api/devices</h3>
+<hr />
+<h5 id="get_1"><strong><em>GET</em></strong></h5>
+<p><strong>Summary:</strong> Gets all devices in an account.</p>
+<p><strong>Description:</strong> </p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>take</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>page</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>device_type_id</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>group_id</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>[ string ]</td>
+</tr>
+<tr>
+<td>group_name</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>[ string ]</td>
+</tr>
+<tr>
+<td>include_snap</td>
+<td>query</td>
+<td></td>
+<td>Yes</td>
+<td>boolean</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>Returns an array of devices</td>
+<td>[ <a href="#device">Device</a> ]</td>
+</tr>
+</tbody>
+</table>
+<h5 id="post"><strong><em>POST</em></strong></h5>
+<p><strong>Summary:</strong> Creates a device.</p>
+<p><strong>Description:</strong> </p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>activation_code</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>device</td>
+<td>body</td>
+<td></td>
+<td>No</td>
+<td><a href="#devicerequest">DeviceRequest</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>201</td>
+<td>Returns the newly created device</td>
+<td><a href="#device">Device</a></td>
+</tr>
+<tr>
+<td>400</td>
+<td>If the registration code is invalid</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="apidevicesid">/api/devices/{id}</h3>
+<hr />
+<h5 id="get_2"><strong><em>GET</em></strong></h5>
+<p><strong>Summary:</strong> Gets a device by ID.</p>
+<p><strong>Description:</strong> </p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>path</td>
+<td></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>Returns the device matching the ID</td>
+<td><a href="#device">Device</a></td>
+</tr>
+</tbody>
+</table>
+<h5 id="put_1"><strong><em>PUT</em></strong></h5>
+<p><strong>Summary:</strong> Updates a device.</p>
+<p><strong>Description:</strong> </p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>path</td>
+<td></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>device</td>
+<td>body</td>
+<td></td>
+<td>No</td>
+<td><a href="#devicerequest">DeviceRequest</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>201</td>
+<td>If device was updated successfully</td>
+</tr>
+<tr>
+<td>400</td>
+<td>If the device ID is invalid</td>
+</tr>
+</tbody>
+</table>
+<h5 id="delete"><strong><em>DELETE</em></strong></h5>
+<p><strong>Summary:</strong> Delete a device.</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>path</td>
+<td></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>201</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+</tbody>
+</table>
+<h3 id="apidevicesgroups">/api/devices/groups</h3>
+<hr />
+<h5 id="get_3"><strong><em>GET</em></strong></h5>
+<p><strong>Summary:</strong> Gets device groups in the account.</p>
+<p><strong>Description:</strong> </p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>take</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>page</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>integer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>Returns an array of device groups</td>
+<td>[ <a href="#group">Group</a> ]</td>
+</tr>
+</tbody>
+</table>
+<h5 id="post_1"><strong><em>POST</em></strong></h5>
+<p><strong>Summary:</strong> Create a new device group.</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>group</td>
+<td>body</td>
+<td>Device group</td>
+<td>No</td>
+<td><a href="#grouprequest">GroupRequest</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>201</td>
+<td>Returns the newly-created item</td>
+<td><a href="#group">Group</a></td>
+</tr>
+<tr>
+<td>400</td>
+<td>If the item is null</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="apidevicesgroupsid">/api/devices/groups/{id}</h3>
+<hr />
+<h5 id="put_2"><strong><em>PUT</em></strong></h5>
+<p><strong>Summary:</strong> Updates a device group.</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td>API key</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>path</td>
+<td>Group id</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>group</td>
+<td>body</td>
+<td>Device group</td>
+<td>No</td>
+<td><a href="#grouprequest">GroupRequest</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>201</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+</tbody>
+</table>
+<h5 id="delete_1"><strong><em>DELETE</em></strong></h5>
+<p><strong>Summary:</strong> Delete a device group.</p>
+<p><strong>Description:</strong> Group must be empty.</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>path</td>
+<td></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>201</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+</tbody>
+</table>
+<h3 id="apidevicespingdata">/api/devices/pingdata</h3>
+<hr />
+<h5 id="get_4"><strong><em>GET</em></strong></h5>
+<p><strong>Summary:</strong> Gets device ping data by registration key.</p>
+<p><strong>Description:</strong> </p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>Returns ping data for the device</td>
+<td><a href="#pingdata">PingData</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="apidevicesregistrationkeysnap">/api/devices/{registrationkey}/snap</h3>
+<hr />
+<h5 id="get_5"><strong><em>GET</em></strong></h5>
+<p><strong>Summary:</strong> Gets current snapshot of the device screen.</p>
+<p><strong>Description:</strong> </p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>registrationKey</td>
+<td>path</td>
+<td></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>Returns snapshot</td>
+</tr>
+</tbody>
+</table>
+<h3 id="apidevicesregistrationkeypingdata">/api/devices/{registrationkey}/pingdata</h3>
+<hr />
+<h5 id="get_6"><strong><em>GET</em></strong></h5>
+<p><strong>Summary:</strong> Gets device ping data by registration key.</p>
+<p><strong>Description:</strong> </p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>registrationKey</td>
+<td>path</td>
+<td></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>Returns ping data for the device</td>
+<td><a href="#pingdata">PingData</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="apidevicescommands">/api/devices/commands</h3>
+<hr />
+<h5 id="post_2"><strong><em>POST</em></strong></h5>
+<p><strong>Summary:</strong> Sends a collection of commands to devices.</p>
+<p><strong>Description:</strong> </p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>commandSet</td>
+<td>body</td>
+<td></td>
+<td>No</td>
+<td>[ <a href="#devicecommand">DeviceCommand</a> ]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>201</td>
+<td>Commands delivered successfully</td>
+</tr>
+</tbody>
+</table>
+<h3 id="apidevicesidcommands">/api/devices/{id}/commands</h3>
+<hr />
+<h5 id="post_3"><strong><em>POST</em></strong></h5>
+<p><strong>Summary:</strong> Sends a collection of commands to a specific device.</p>
+<p><strong>Description:</strong> </p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>path</td>
+<td></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>commands</td>
+<td>body</td>
+<td></td>
+<td>No</td>
+<td>[ <a href="#command">Command</a> ]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>201</td>
+<td>Commands delivered successfully</td>
+</tr>
+</tbody>
+</table>
+<h3 id="apimedia">/api/media</h3>
+<hr />
+<h5 id="get_7"><strong><em>GET</em></strong></h5>
+<p><strong>Summary:</strong> Gets all media in an account.</p>
+<p><strong>Description:</strong> </p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>take</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>page</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>group_id</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>[ string ]</td>
+</tr>
+<tr>
+<td>group_name</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>[ string ]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>Returns an array of media</td>
+<td>[ <a href="#media">Media</a> ]</td>
+</tr>
+</tbody>
+</table>
+<h5 id="post_4"><strong><em>POST</em></strong></h5>
+<p><strong>Summary:</strong> Uploads new media</p>
+<p><strong>Description:</strong> </p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>group_id</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>201</td>
+<td>Returns the newly created media</td>
+<td><a href="#media">Media</a></td>
+</tr>
+<tr>
+<td>400</td>
+<td>If the API key is invalid or upload was not supplied</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="apimediaid">/api/media/{id}</h3>
+<hr />
+<h5 id="get_8"><strong><em>GET</em></strong></h5>
+<p><strong>Summary:</strong> Gets media by ID.</p>
+<p><strong>Description:</strong> </p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>path</td>
+<td></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>Returns the media matching the ID</td>
+<td><a href="#media">Media</a></td>
+</tr>
+</tbody>
+</table>
+<h5 id="put_3"><strong><em>PUT</em></strong></h5>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>path</td>
+<td></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>media</td>
+<td>body</td>
+<td></td>
+<td>No</td>
+<td><a href="#mediarequest">MediaRequest</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>201</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+</tbody>
+</table>
+<h5 id="delete_2"><strong><em>DELETE</em></strong></h5>
+<p><strong>Summary:</strong> Delete a device.</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>path</td>
+<td></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>201</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+</tbody>
+</table>
+<h3 id="apimediagroups">/api/media/groups</h3>
+<hr />
+<h5 id="get_9"><strong><em>GET</em></strong></h5>
+<p><strong>Summary:</strong> Gets media groups in the account.</p>
+<p><strong>Description:</strong> </p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>take</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>page</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>integer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>Returns an array of device groups</td>
+<td>[ <a href="#group">Group</a> ]</td>
+</tr>
+</tbody>
+</table>
+<h5 id="post_5"><strong><em>POST</em></strong></h5>
+<p><strong>Summary:</strong> Create a new media group.</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>group</td>
+<td>body</td>
+<td>Media group</td>
+<td>No</td>
+<td><a href="#grouprequest">GroupRequest</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>201</td>
+<td>Returns the newly-created item</td>
+<td><a href="#group">Group</a></td>
+</tr>
+<tr>
+<td>400</td>
+<td>If the item is null</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="apimediagroupsid">/api/media/groups/{id}</h3>
+<hr />
+<h5 id="put_4"><strong><em>PUT</em></strong></h5>
+<p><strong>Summary:</strong> Updates a media group.</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td>API key</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>path</td>
+<td>Group id</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>group</td>
+<td>body</td>
+<td>Device group</td>
+<td>No</td>
+<td><a href="#grouprequest">GroupRequest</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>201</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+</tbody>
+</table>
+<h5 id="delete_3"><strong><em>DELETE</em></strong></h5>
+<p><strong>Summary:</strong> Delete a media group.</p>
+<p><strong>Description:</strong> Group must be empty.</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>path</td>
+<td></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>201</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+</tbody>
+</table>
+<h3 id="apimediagroup_idfile_name">/api/media/{group_id}/{file_name}</h3>
+<hr />
+<h5 id="post_6"><strong><em>POST</em></strong></h5>
+<p><strong>Summary:</strong> Uploads new media</p>
+<p><strong>Description:</strong> </p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>group_id</td>
+<td>path</td>
+<td></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>file_name</td>
+<td>path</td>
+<td></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>shared</td>
+<td>query</td>
+<td></td>
+<td>Yes</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td>start_date</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>end_date</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>advertiser_id</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>name</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>description</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>201</td>
+<td>Returns the newly created media</td>
+<td><a href="#media">Media</a></td>
+</tr>
+<tr>
+<td>400</td>
+<td>If the API key is invalid</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="apimediaimport">/api/media/import</h3>
+<hr />
+<h5 id="post_7"><strong><em>POST</em></strong></h5>
+<p><strong>Summary:</strong> Import a file from a URL.</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td>API key</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>url</td>
+<td>query</td>
+<td>URL of the file to import</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>group_id</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>201</td>
+<td>Returns the newly created media</td>
+<td><a href="#media">Media</a></td>
+</tr>
+<tr>
+<td>400</td>
+<td>If the API key is invalid or upload was not supplied</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="apiplaylists">/api/playlists</h3>
+<hr />
+<h5 id="get_10"><strong><em>GET</em></strong></h5>
+<p><strong>Summary:</strong> Gets all playlists in an account.</p>
+<p><strong>Description:</strong> </p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>take</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>page</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>group_id</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>[ string ]</td>
+</tr>
+<tr>
+<td>group_name</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>[ string ]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>Returns an array of playlists</td>
+<td>[ <a href="#playlist">Playlist</a> ]</td>
+</tr>
+</tbody>
+</table>
+<h3 id="apiplaylistsid">/api/playlists/{id}</h3>
+<hr />
+<h5 id="get_11"><strong><em>GET</em></strong></h5>
+<p><strong>Summary:</strong> Gets a playlist by ID.</p>
+<p><strong>Description:</strong> </p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>path</td>
+<td></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>Returns the playlist matching the ID</td>
+<td><a href="#playlist">Playlist</a></td>
+</tr>
+</tbody>
+</table>
+<h5 id="put_5"><strong><em>PUT</em></strong></h5>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>path</td>
+<td></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>playlist</td>
+<td>body</td>
+<td></td>
+<td>No</td>
+<td><a href="#playlist">Playlist</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>201</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+</tbody>
+</table>
+<h5 id="delete_4"><strong><em>DELETE</em></strong></h5>
+<p><strong>Summary:</strong> Delete a playlist.</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>path</td>
+<td></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>201</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+</tbody>
+</table>
+<h3 id="apiplaylistsgroups">/api/playlists/groups</h3>
+<hr />
+<h5 id="get_12"><strong><em>GET</em></strong></h5>
+<p><strong>Summary:</strong> Gets playlist groups in the account.</p>
+<p><strong>Description:</strong> </p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>take</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>page</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>integer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>Returns an array of playlist groups</td>
+<td>[ <a href="#group">Group</a> ]</td>
+</tr>
+</tbody>
+</table>
+<h5 id="post_8"><strong><em>POST</em></strong></h5>
+<p><strong>Summary:</strong> Create a new playlist group.</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>group</td>
+<td>body</td>
+<td>Playlist group</td>
+<td>No</td>
+<td><a href="#grouprequest">GroupRequest</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>201</td>
+<td>Returns the newly-created item</td>
+<td><a href="#group">Group</a></td>
+</tr>
+<tr>
+<td>400</td>
+<td>If the item is null</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="apiplaylistsgroupsid">/api/playlists/groups/{id}</h3>
+<hr />
+<h5 id="put_6"><strong><em>PUT</em></strong></h5>
+<p><strong>Summary:</strong> Updates a playlist group.</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td>API key</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>path</td>
+<td>Group id</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>group</td>
+<td>body</td>
+<td>Device group</td>
+<td>No</td>
+<td><a href="#grouprequest">GroupRequest</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>201</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+</tbody>
+</table>
+<h5 id="delete_5"><strong><em>DELETE</em></strong></h5>
+<p><strong>Summary:</strong> Delete a playlist group.</p>
+<p><strong>Description:</strong> Group must be empty.</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>path</td>
+<td></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>201</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+</tbody>
+</table>
+<h3 id="apireportadhawkimpressions-by-gender">/api/report/adhawk/impressions-by-gender</h3>
+<hr />
+<h5 id="get_13"><strong><em>GET</em></strong></h5>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>start</td>
+<td>query</td>
+<td></td>
+<td>Yes</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>end</td>
+<td>query</td>
+<td></td>
+<td>Yes</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>[ string ]</td>
+</tr>
+<tr>
+<td>device_id</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>[ string ]</td>
+</tr>
+<tr>
+<td>compare_start</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>compare_end</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+</tbody>
+</table>
+<h3 id="apireportadhawkimpressions-by-hour">/api/report/adhawk/impressions-by-hour</h3>
+<hr />
+<h5 id="get_14"><strong><em>GET</em></strong></h5>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>start</td>
+<td>query</td>
+<td></td>
+<td>Yes</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>end</td>
+<td>query</td>
+<td></td>
+<td>Yes</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>interval</td>
+<td>query</td>
+<td></td>
+<td>Yes</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>metric</td>
+<td>query</td>
+<td></td>
+<td>Yes</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>device_id</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>[ string ]</td>
+</tr>
+<tr>
+<td>compare_start</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>compare_end</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+</tbody>
+</table>
+<h3 id="apireportadhawkimpressions-by-age">/api/report/adhawk/impressions-by-age</h3>
+<hr />
+<h5 id="get_15"><strong><em>GET</em></strong></h5>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>start</td>
+<td>query</td>
+<td></td>
+<td>Yes</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>end</td>
+<td>query</td>
+<td></td>
+<td>Yes</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>interval</td>
+<td>query</td>
+<td></td>
+<td>Yes</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>metric</td>
+<td>query</td>
+<td></td>
+<td>Yes</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>device_id</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>[ string ]</td>
+</tr>
+<tr>
+<td>compare_start</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>compare_end</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+</tbody>
+</table>
+<h3 id="apireportadhawkdevice-detail">/api/report/adhawk/device-detail</h3>
+<hr />
+<h5 id="get_16"><strong><em>GET</em></strong></h5>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>start</td>
+<td>query</td>
+<td></td>
+<td>Yes</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>end</td>
+<td>query</td>
+<td></td>
+<td>Yes</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>interval</td>
+<td>query</td>
+<td></td>
+<td>Yes</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>metric</td>
+<td>query</td>
+<td></td>
+<td>Yes</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>device_id</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>[ string ]</td>
+</tr>
+<tr>
+<td>compare_start</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>compare_end</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+</tbody>
+</table>
+<h3 id="apireportadhawkgender-detail">/api/report/adhawk/gender-detail</h3>
+<hr />
+<h5 id="get_17"><strong><em>GET</em></strong></h5>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>start</td>
+<td>query</td>
+<td></td>
+<td>Yes</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>end</td>
+<td>query</td>
+<td></td>
+<td>Yes</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>interval</td>
+<td>query</td>
+<td></td>
+<td>Yes</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>metric</td>
+<td>query</td>
+<td></td>
+<td>Yes</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>device_id</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>[ string ]</td>
+</tr>
+<tr>
+<td>compare_start</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>compare_end</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+</tbody>
+</table>
+<h3 id="apireportadhawkdevice-summary">/api/report/adhawk/device-summary</h3>
+<hr />
+<h5 id="get_18"><strong><em>GET</em></strong></h5>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>start</td>
+<td>query</td>
+<td></td>
+<td>Yes</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>end</td>
+<td>query</td>
+<td></td>
+<td>Yes</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>interval</td>
+<td>query</td>
+<td></td>
+<td>Yes</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>metric</td>
+<td>query</td>
+<td></td>
+<td>Yes</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>device_id</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>[ string ]</td>
+</tr>
+<tr>
+<td>compare_start</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>compare_end</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+</tbody>
+</table>
+<h3 id="apireportadhawkdevice-heatmap">/api/report/adhawk/device-heatmap</h3>
+<hr />
+<h5 id="get_19"><strong><em>GET</em></strong></h5>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>start</td>
+<td>query</td>
+<td></td>
+<td>Yes</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>end</td>
+<td>query</td>
+<td></td>
+<td>Yes</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>interval</td>
+<td>query</td>
+<td></td>
+<td>Yes</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>metric</td>
+<td>query</td>
+<td></td>
+<td>Yes</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>device_id</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>[ string ]</td>
+</tr>
+<tr>
+<td>compare_start</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>compare_end</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+</tbody>
+</table>
+<h3 id="apireportadhawkdevice-geolocation">/api/report/adhawk/device-geolocation</h3>
+<hr />
+<h5 id="get_20"><strong><em>GET</em></strong></h5>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>start</td>
+<td>query</td>
+<td></td>
+<td>Yes</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>end</td>
+<td>query</td>
+<td></td>
+<td>Yes</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>interval</td>
+<td>query</td>
+<td></td>
+<td>Yes</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>metric</td>
+<td>query</td>
+<td></td>
+<td>Yes</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>device_id</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>[ string ]</td>
+</tr>
+<tr>
+<td>compare_start</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>compare_end</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+</tbody>
+</table>
+<h3 id="apireportexportreport_name">/api/report/export/{report_name}</h3>
+<hr />
+<h5 id="get_21"><strong><em>GET</em></strong></h5>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>report_name</td>
+<td>path</td>
+<td></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>format</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>activity_type</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>interval</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>start</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>end</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>device_id</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>[ string ]</td>
+</tr>
+<tr>
+<td>user_id</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>[ string ]</td>
+</tr>
+<tr>
+<td>media_id</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>[ string ]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+</tbody>
+</table>
+<h3 id="apischedules">/api/schedules</h3>
+<hr />
+<h5 id="get_22"><strong><em>GET</em></strong></h5>
+<p><strong>Summary:</strong> Gets all schedules in an account.</p>
+<p><strong>Description:</strong> </p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>take</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>page</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>group_id</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>[ string ]</td>
+</tr>
+<tr>
+<td>group_name</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>[ string ]</td>
+</tr>
+<tr>
+<td>device_id</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>Returns an array of schedules</td>
+<td>[ <a href="#schedule">Schedule</a> ]</td>
+</tr>
+</tbody>
+</table>
+<h3 id="apischedulesid">/api/schedules/{id}</h3>
+<hr />
+<h5 id="get_23"><strong><em>GET</em></strong></h5>
+<p><strong>Summary:</strong> Gets a schedule by ID.</p>
+<p><strong>Description:</strong> </p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>path</td>
+<td></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>Returns the schedule matching the ID</td>
+<td><a href="#schedule">Schedule</a></td>
+</tr>
+</tbody>
+</table>
+<h5 id="delete_6"><strong><em>DELETE</em></strong></h5>
+<p><strong>Summary:</strong> Delete a schedule.</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>path</td>
+<td></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>201</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+</tbody>
+</table>
+<h3 id="apischedulesgroups">/api/schedules/groups</h3>
+<hr />
+<h5 id="get_24"><strong><em>GET</em></strong></h5>
+<p><strong>Summary:</strong> Gets schedule groups in the account.</p>
+<p><strong>Description:</strong> </p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>take</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>page</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>integer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>Returns an array of playlist groups</td>
+<td>[ <a href="#group">Group</a> ]</td>
+</tr>
+</tbody>
+</table>
+<h5 id="post_9"><strong><em>POST</em></strong></h5>
+<p><strong>Summary:</strong> Create a new schedule group.</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>group</td>
+<td>body</td>
+<td>Schedule group</td>
+<td>No</td>
+<td><a href="#grouprequest">GroupRequest</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>201</td>
+<td>Returns the newly-created item</td>
+<td><a href="#group">Group</a></td>
+</tr>
+<tr>
+<td>400</td>
+<td>If the item is null</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="apischedulesgroupsid">/api/schedules/groups/{id}</h3>
+<hr />
+<h5 id="put_7"><strong><em>PUT</em></strong></h5>
+<p><strong>Summary:</strong> Updates a schedule group.</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td>API key</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>path</td>
+<td>Group id</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>group</td>
+<td>body</td>
+<td>Device group</td>
+<td>No</td>
+<td><a href="#grouprequest">GroupRequest</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>201</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+</tbody>
+</table>
+<h5 id="delete_7"><strong><em>DELETE</em></strong></h5>
+<p><strong>Summary:</strong> Delete a schedule group.</p>
+<p><strong>Description:</strong> Group must be empty.</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>path</td>
+<td></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>201</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+</tbody>
+</table>
+<h3 id="apitemplates">/api/templates</h3>
+<hr />
+<h5 id="get_25"><strong><em>GET</em></strong></h5>
+<p><strong>Summary:</strong> Gets all templates in an account.</p>
+<p><strong>Description:</strong> </p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>take</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>page</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>group_id</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>[ string ]</td>
+</tr>
+<tr>
+<td>group_name</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>[ string ]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>Returns an array of templates</td>
+<td>[ <a href="#template">Template</a> ]</td>
+</tr>
+</tbody>
+</table>
+<h3 id="apitemplatesid">/api/templates/{id}</h3>
+<hr />
+<h5 id="get_26"><strong><em>GET</em></strong></h5>
+<p><strong>Summary:</strong> Gets a template by ID.</p>
+<p><strong>Description:</strong> </p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>path</td>
+<td></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>Returns the template matching the ID</td>
+<td><a href="#template">Template</a></td>
+</tr>
+</tbody>
+</table>
+<h5 id="delete_8"><strong><em>DELETE</em></strong></h5>
+<p><strong>Summary:</strong> Delete a template.</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>path</td>
+<td></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>201</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+</tbody>
+</table>
+<h3 id="apitemplatesgroups">/api/templates/groups</h3>
+<hr />
+<h5 id="get_27"><strong><em>GET</em></strong></h5>
+<p><strong>Summary:</strong> Gets template groups in the account.</p>
+<p><strong>Description:</strong> </p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>take</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>page</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>integer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>Returns an array of playlist groups</td>
+<td>[ <a href="#group">Group</a> ]</td>
+</tr>
+</tbody>
+</table>
+<h5 id="post_10"><strong><em>POST</em></strong></h5>
+<p><strong>Summary:</strong> Create a new template group.</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>group</td>
+<td>body</td>
+<td>Template group</td>
+<td>No</td>
+<td><a href="#grouprequest">GroupRequest</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>201</td>
+<td>Returns the newly-created item</td>
+<td><a href="#group">Group</a></td>
+</tr>
+<tr>
+<td>400</td>
+<td>If the item is null</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="apitemplatesgroupsid">/api/templates/groups/{id}</h3>
+<hr />
+<h5 id="put_8"><strong><em>PUT</em></strong></h5>
+<p><strong>Summary:</strong> Updates a template group.</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td>API key</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>path</td>
+<td>Group id</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>group</td>
+<td>body</td>
+<td>Device group</td>
+<td>No</td>
+<td><a href="#grouprequest">GroupRequest</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>201</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+</tbody>
+</table>
+<h5 id="delete_9"><strong><em>DELETE</em></strong></h5>
+<p><strong>Summary:</strong> Delete a template group.</p>
+<p><strong>Description:</strong> Group must be empty.</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>path</td>
+<td></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>201</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+</tbody>
+</table>
+<h3 id="apiusers">/api/users</h3>
+<hr />
+<h5 id="get_28"><strong><em>GET</em></strong></h5>
+<p><strong>Summary:</strong> Gets all users in an account.</p>
+<p><strong>Description:</strong> </p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>take</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>page</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>integer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>Returns an array of users</td>
+<td>[ <a href="#user">User</a> ]</td>
+</tr>
+</tbody>
+</table>
+<h3 id="apiusersid">/api/users/{id}</h3>
+<hr />
+<h5 id="get_29"><strong><em>GET</em></strong></h5>
+<p><strong>Summary:</strong> Gets a user by ID.</p>
+<p><strong>Description:</strong> </p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>query</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>path</td>
+<td></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responses</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>Returns the user matching the ID</td>
+<td><a href="#user">User</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="models">Models</h3>
+<hr />
+<h3 id="account">Account</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>tags</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>business_name</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>address_1</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>address_2</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>city</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>state</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>postal_code</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>country</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>fax</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>primary_contact_id</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>secondary_contact_id</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>created_on</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>timezone</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>logo_url</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h3 id="device">Device</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>group_name</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>group_id</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>tags</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>device_type</td>
+<td><a href="#devicetype">DeviceType</a></td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>entered_service</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>last_service</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>timezone</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>last_update</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>location</td>
+<td><a href="#location">Location</a></td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>ping_data</td>
+<td><a href="#pingdata">PingData</a></td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>registration_key</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>mac_address</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>beacon</td>
+<td><a href="#beacon">Beacon</a></td>
+<td></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h3 id="devicetype">DeviceType</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>manufacturer</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>device_caps</td>
+<td>integer</td>
+<td></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h3 id="location">Location</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>city</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>state</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>county</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>country</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>postal_code</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>address</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>double</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>double</td>
+<td></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h3 id="pingdata">PingData</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>snap</td>
+<td>byte</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>player_version</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>os_version</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>cpu_usage</td>
+<td>float</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>memory_usage</td>
+<td>float</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>mac_address</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>disk_usage</td>
+<td>float</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>dateTime</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>bytes_received</td>
+<td>long</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>transfer_rate</td>
+<td>long</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>ip_address</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>double</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>double</td>
+<td></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h3 id="beacon">Beacon</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>distance</td>
+<td>double</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>calibration</td>
+<td>double</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>email</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>website</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>devices</td>
+<td>[ string ]</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>rating</td>
+<td>double</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>uuid</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>major</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>minor</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>notification_delay</td>
+<td>integer</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>instance_id</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>namespace</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h3 id="devicerequest">DeviceRequest</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>tags</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>timezone</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>group_id</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>last_service</td>
+<td>dateTime</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>mac_address</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>location</td>
+<td><a href="#location">Location</a></td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>beacon</td>
+<td><a href="#beacon">Beacon</a></td>
+<td></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h3 id="group">Group</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h3 id="grouprequest">GroupRequest</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h3 id="devicecommand">DeviceCommand</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>device_id</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>commands</td>
+<td>[ <a href="#command">Command</a> ]</td>
+<td></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h3 id="command">Command</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>arg</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h3 id="media">Media</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>group_name</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>group_id</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>tags</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>mime_type</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>file_size</td>
+<td>integer</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>file_name</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>file_url</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>thumbnail_url</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>uploaded_on</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>uploaded_by</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>advertiser_id</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>is_shared</td>
+<td>boolean</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>start_date</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>end_date</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mediarequest">MediaRequest</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>group_id</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>tags</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>advertiser_id</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>is_shared</td>
+<td>boolean</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>start_date</td>
+<td>dateTime</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>end_date</td>
+<td>dateTime</td>
+<td></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h3 id="playlist">Playlist</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>group_name</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>group_id</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>tags</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>created_on</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>created_by_id</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>modified_on</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>modified_by_id</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>sources</td>
+<td>[ <a href="#source">Source</a> ]</td>
+<td></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h3 id="source">Source</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>sequence</td>
+<td>integer</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>media_id</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>template_id</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>value</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>interval</td>
+<td>integer</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>media</td>
+<td><a href="#media">Media</a></td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>conditions</td>
+<td>[ <a href="#condition">Condition</a> ]</td>
+<td></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h3 id="condition">Condition</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>operator</td>
+<td>integer</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>value_1</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>value_2</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>value_3</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>value_4</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h3 id="schedule">Schedule</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>group_name</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>group_id</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>tags</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>monday</td>
+<td>boolean</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>tuesday</td>
+<td>boolean</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>wednesday</td>
+<td>boolean</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>thursday</td>
+<td>boolean</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>friday</td>
+<td>boolean</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>saturday</td>
+<td>boolean</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>sunday</td>
+<td>boolean</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>start_time</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>end_time</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>template_id</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>playlist_id</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>start_date</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>end_date</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>devices</td>
+<td>[ <a href="#scheduledevice">ScheduleDevice</a> ]</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>conditions</td>
+<td>[ <a href="#condition">Condition</a> ]</td>
+<td></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h3 id="scheduledevice">ScheduleDevice</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h3 id="template">Template</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>group_name</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>group_id</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>tags</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>created_on</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>created_by_id</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>modified_on</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>modified_by_id</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>script</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>back_color</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>width</td>
+<td>integer</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>height</td>
+<td>integer</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>orientation</td>
+<td>integer</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>modules</td>
+<td>[ <a href="#module">Module</a> ]</td>
+<td></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h3 id="module">Module</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>left</td>
+<td>integer</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>top</td>
+<td>integer</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>width</td>
+<td>integer</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>height</td>
+<td>integer</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>playlist_id</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>sequence</td>
+<td>integer</td>
+<td></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h3 id="user">User</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>first_name</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>last_name</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>city</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>state</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>postal_code</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>country</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>home_phone</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>work_phone</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>mobile_phone</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>created_on</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>email</td>
+<td>string</td>
+<td></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>role</td>
+<td>[ string ]</td>
+<td></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>user_name</td>
+<td>string</td>
+<td></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>last_activity</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../windows/" class="btn btn-neutral float-right" title="Player API for Windows">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../windows/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
+
+</body>
+</html>
