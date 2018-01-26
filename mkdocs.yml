@@ -1,8 +1,0 @@
-site_name: RevelDigital for Developers
-pages:
-    - Home: index.md
-    - REST API: rest-api.md
-    - Player API for Windows: windows.md
-    - Player API for Android: android.md
-    - Gadgets: gadgets.md
-theme: readthedocs
