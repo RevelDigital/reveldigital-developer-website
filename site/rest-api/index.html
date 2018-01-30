@@ -241,13 +241,20 @@
             <div class="section">
               
                 <h1 id="reveldigital-rest-api">RevelDigital REST API</h1>
-<p>Provides REST based access to your RevelDigital account. See our <a href="http://api.reveldigital.com/swagger/">Swagger Website</a> for interactive documentation.</p>
+<p>Provides REST based access to your RevelDigital account.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See our <a href="http://api.reveldigital.com/swagger/">Swagger Website</a> for interactive documentation.</p>
+</div>
 <h3 id="getting-started">Getting Started</h3>
 <h5 id="api-endpoint">API Endpoint</h5>
 <p>All API access originates from <code>https://api.reveldigital.com</code></p>
 <h5 id="authentication">Authentication</h5>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>A valid API key is required for each request.
 API keys are available in your Revel Digital account under <a href="https://as1.reveldigital.com/account/api">Account &gt; Developer API</a>.</p>
+</div>
 <p>The <code>api_key</code> query string parameter shoud be included in each request.</p>
 <pre><code class="sh">$curl -i https://api.reveldigital.com/account?api_key=&lt;your key here&gt;
 </code></pre>

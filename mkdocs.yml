@@ -6,3 +6,5 @@ pages:
     - Player API for Android: android.md
     - Gadgets: gadgets.md
 theme: readthedocs
+markdown_extensions:
+    - markdown.extensions.admonition

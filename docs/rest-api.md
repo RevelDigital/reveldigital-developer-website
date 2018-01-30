@@ -1,7 +1,10 @@
 RevelDigital REST API
 =====================
-Provides REST based access to your RevelDigital account. See our [Swagger Website](http://api.reveldigital.com/swagger/) for interactive documentation.
+Provides REST based access to your RevelDigital account.
 
+!!! Note
+     See our [Swagger Website](http://api.reveldigital.com/swagger/) for interactive documentation.
+     
 ###Getting Started###
 
 #####API Endpoint#####
@@ -10,8 +13,9 @@ All API access originates from `https://api.reveldigital.com`
 
 #####Authentication#####
 
-A valid API key is required for each request.
-API keys are available in your Revel Digital account under [Account > Developer API](https://as1.reveldigital.com/account/api).
+!!! Note
+    A valid API key is required for each request.
+    API keys are available in your Revel Digital account under [Account > Developer API](https://as1.reveldigital.com/account/api).
 
 The `api_key` query string parameter shoud be included in each request.
 
