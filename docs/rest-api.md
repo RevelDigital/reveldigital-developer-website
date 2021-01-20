@@ -3,7 +3,7 @@ RevelDigital REST API
 Provides REST based access to your RevelDigital account.
 
 !!! Note
-     See our [Swagger Website](http://api.reveldigital.com/swagger/) for interactive documentation.
+     See our [Swagger Website](https://api.reveldigital.com/swagger/) for interactive documentation.
      
 ###Getting Started###
 
@@ -46,7 +46,7 @@ or [this intro](https://code.google.com/archive/p/html5security/wikis/CrossOrigi
 
 ###Swagger###
 
-[Interactive API documentation provided by Swagger](http://api.reveldigital.com/swagger/)
+[Interactive API documentation provided by Swagger](https://api.reveldigital.com/swagger/)
 
 
 **Version:** v1
