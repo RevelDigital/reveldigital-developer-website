@@ -7,24 +7,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
+  
   <link rel="shortcut icon" href="../img/favicon.ico">
   <title>REST API - RevelDigital for Developers</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../css/highlight.css">
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
   
   <script>
     // Current page data
     var mkdocs_page_name = "REST API";
     var mkdocs_page_input_path = "rest-api.md";
-    var mkdocs_page_url = "/rest-api/";
+    var mkdocs_page_url = null;
   </script>
   
-  <script src="../js/jquery-2.1.1.min.js"></script>
-  <script src="../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
 
@@ -34,183 +36,375 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
         <a href=".." class="icon icon-home"> RevelDigital for Developers</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="..">Home</a>
-	    </li>
-          
-            <li class="toctree-l1 current">
-		
-    <a class="current" href="./">REST API</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#reveldigital-rest-api">RevelDigital REST API</a></li>
-    
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">REST API</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a>
         <ul>
-        
-            <li><a class="toctree-l3" href="#getting-started">Getting Started</a></li>
-        
-            <li><a class="toctree-l3" href="#swagger">Swagger</a></li>
-        
-            <li><a class="toctree-l3" href="#apiaccount">/api/account</a></li>
-        
-            <li><a class="toctree-l3" href="#apidevices">/api/devices</a></li>
-        
-            <li><a class="toctree-l3" href="#apidevicesid">/api/devices/{id}</a></li>
-        
-            <li><a class="toctree-l3" href="#apidevicesgroups">/api/devices/groups</a></li>
-        
-            <li><a class="toctree-l3" href="#apidevicesgroupsid">/api/devices/groups/{id}</a></li>
-        
-            <li><a class="toctree-l3" href="#apidevicespingdata">/api/devices/pingdata</a></li>
-        
-            <li><a class="toctree-l3" href="#apidevicesregistrationkeysnap">/api/devices/{registrationkey}/snap</a></li>
-        
-            <li><a class="toctree-l3" href="#apidevicesregistrationkeypingdata">/api/devices/{registrationkey}/pingdata</a></li>
-        
-            <li><a class="toctree-l3" href="#apidevicescommands">/api/devices/commands</a></li>
-        
-            <li><a class="toctree-l3" href="#apidevicesidcommands">/api/devices/{id}/commands</a></li>
-        
-            <li><a class="toctree-l3" href="#apimedia">/api/media</a></li>
-        
-            <li><a class="toctree-l3" href="#apimediaid">/api/media/{id}</a></li>
-        
-            <li><a class="toctree-l3" href="#apimediagroups">/api/media/groups</a></li>
-        
-            <li><a class="toctree-l3" href="#apimediagroupsid">/api/media/groups/{id}</a></li>
-        
-            <li><a class="toctree-l3" href="#apimediagroup_idfile_name">/api/media/{group_id}/{file_name}</a></li>
-        
-            <li><a class="toctree-l3" href="#apimediaimport">/api/media/import</a></li>
-        
-            <li><a class="toctree-l3" href="#apiplaylists">/api/playlists</a></li>
-        
-            <li><a class="toctree-l3" href="#apiplaylistsid">/api/playlists/{id}</a></li>
-        
-            <li><a class="toctree-l3" href="#apiplaylistsgroups">/api/playlists/groups</a></li>
-        
-            <li><a class="toctree-l3" href="#apiplaylistsgroupsid">/api/playlists/groups/{id}</a></li>
-        
-            <li><a class="toctree-l3" href="#apireportadhawkimpressions-by-gender">/api/report/adhawk/impressions-by-gender</a></li>
-        
-            <li><a class="toctree-l3" href="#apireportadhawkimpressions-by-hour">/api/report/adhawk/impressions-by-hour</a></li>
-        
-            <li><a class="toctree-l3" href="#apireportadhawkimpressions-by-age">/api/report/adhawk/impressions-by-age</a></li>
-        
-            <li><a class="toctree-l3" href="#apireportadhawkdevice-detail">/api/report/adhawk/device-detail</a></li>
-        
-            <li><a class="toctree-l3" href="#apireportadhawkgender-detail">/api/report/adhawk/gender-detail</a></li>
-        
-            <li><a class="toctree-l3" href="#apireportadhawkdevice-summary">/api/report/adhawk/device-summary</a></li>
-        
-            <li><a class="toctree-l3" href="#apireportadhawkdevice-heatmap">/api/report/adhawk/device-heatmap</a></li>
-        
-            <li><a class="toctree-l3" href="#apireportadhawkdevice-geolocation">/api/report/adhawk/device-geolocation</a></li>
-        
-            <li><a class="toctree-l3" href="#apireportexportreport_name">/api/report/export/{report_name}</a></li>
-        
-            <li><a class="toctree-l3" href="#apischedules">/api/schedules</a></li>
-        
-            <li><a class="toctree-l3" href="#apischedulesid">/api/schedules/{id}</a></li>
-        
-            <li><a class="toctree-l3" href="#apischedulesgroups">/api/schedules/groups</a></li>
-        
-            <li><a class="toctree-l3" href="#apischedulesgroupsid">/api/schedules/groups/{id}</a></li>
-        
-            <li><a class="toctree-l3" href="#apitemplates">/api/templates</a></li>
-        
-            <li><a class="toctree-l3" href="#apitemplatesid">/api/templates/{id}</a></li>
-        
-            <li><a class="toctree-l3" href="#apitemplatesgroups">/api/templates/groups</a></li>
-        
-            <li><a class="toctree-l3" href="#apitemplatesgroupsid">/api/templates/groups/{id}</a></li>
-        
-            <li><a class="toctree-l3" href="#apiusers">/api/users</a></li>
-        
-            <li><a class="toctree-l3" href="#apiusersid">/api/users/{id}</a></li>
-        
-            <li><a class="toctree-l3" href="#models">Models</a></li>
-        
-            <li><a class="toctree-l3" href="#account">Account</a></li>
-        
-            <li><a class="toctree-l3" href="#device">Device</a></li>
-        
-            <li><a class="toctree-l3" href="#devicetype">DeviceType</a></li>
-        
-            <li><a class="toctree-l3" href="#location">Location</a></li>
-        
-            <li><a class="toctree-l3" href="#pingdata">PingData</a></li>
-        
-            <li><a class="toctree-l3" href="#beacon">Beacon</a></li>
-        
-            <li><a class="toctree-l3" href="#devicerequest">DeviceRequest</a></li>
-        
-            <li><a class="toctree-l3" href="#group">Group</a></li>
-        
-            <li><a class="toctree-l3" href="#grouprequest">GroupRequest</a></li>
-        
-            <li><a class="toctree-l3" href="#devicecommand">DeviceCommand</a></li>
-        
-            <li><a class="toctree-l3" href="#command">Command</a></li>
-        
-            <li><a class="toctree-l3" href="#media">Media</a></li>
-        
-            <li><a class="toctree-l3" href="#mediarequest">MediaRequest</a></li>
-        
-            <li><a class="toctree-l3" href="#playlist">Playlist</a></li>
-        
-            <li><a class="toctree-l3" href="#source">Source</a></li>
-        
-            <li><a class="toctree-l3" href="#condition">Condition</a></li>
-        
-            <li><a class="toctree-l3" href="#schedule">Schedule</a></li>
-        
-            <li><a class="toctree-l3" href="#scheduledevice">ScheduleDevice</a></li>
-        
-            <li><a class="toctree-l3" href="#template">Template</a></li>
-        
-            <li><a class="toctree-l3" href="#module">Module</a></li>
-        
-            <li><a class="toctree-l3" href="#user">User</a></li>
-        
+    <li class="toctree-l3"><a class="reference internal" href="#api-endpoint">API Endpoint</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#authentication">Authentication</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data-format">Data Format</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cross-origin-resource-sharing">Cross Origin Resource Sharing</a>
+    </li>
         </ul>
-    
-
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#swagger">Swagger</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apiaccount">/api/account</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#get">GET</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#put">PUT</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apidevices">/api/devices</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#get_1">GET</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#post">POST</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apidevicesid">/api/devices/{id}</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#get_2">GET</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#put_1">PUT</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#delete">DELETE</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apidevicesgroups">/api/devices/groups</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#get_3">GET</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#post_1">POST</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apidevicesgroupsid">/api/devices/groups/{id}</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#put_2">PUT</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#delete_1">DELETE</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apidevicespingdata">/api/devices/pingdata</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#get_4">GET</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apidevicesregistrationkeysnap">/api/devices/{registrationkey}/snap</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#get_5">GET</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apidevicesregistrationkeypingdata">/api/devices/{registrationkey}/pingdata</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#get_6">GET</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apidevicescommands">/api/devices/commands</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#post_2">POST</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apidevicesidcommands">/api/devices/{id}/commands</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#post_3">POST</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apimedia">/api/media</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#get_7">GET</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#post_4">POST</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apimediaid">/api/media/{id}</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#get_8">GET</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#put_3">PUT</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#delete_2">DELETE</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apimediagroups">/api/media/groups</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#get_9">GET</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#post_5">POST</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apimediagroupsid">/api/media/groups/{id}</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#put_4">PUT</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#delete_3">DELETE</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apimediagroup_idfile_name">/api/media/{group_id}/{file_name}</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#post_6">POST</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apimediaimport">/api/media/import</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#post_7">POST</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apiplaylists">/api/playlists</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#get_10">GET</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apiplaylistsid">/api/playlists/{id}</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#get_11">GET</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#put_5">PUT</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#delete_4">DELETE</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apiplaylistsgroups">/api/playlists/groups</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#get_12">GET</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#post_8">POST</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apiplaylistsgroupsid">/api/playlists/groups/{id}</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#put_6">PUT</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#delete_5">DELETE</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apireportadhawkimpressions-by-gender">/api/report/adhawk/impressions-by-gender</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#get_13">GET</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apireportadhawkimpressions-by-hour">/api/report/adhawk/impressions-by-hour</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#get_14">GET</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apireportadhawkimpressions-by-age">/api/report/adhawk/impressions-by-age</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#get_15">GET</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apireportadhawkdevice-detail">/api/report/adhawk/device-detail</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#get_16">GET</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apireportadhawkgender-detail">/api/report/adhawk/gender-detail</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#get_17">GET</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apireportadhawkdevice-summary">/api/report/adhawk/device-summary</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#get_18">GET</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apireportadhawkdevice-heatmap">/api/report/adhawk/device-heatmap</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#get_19">GET</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apireportadhawkdevice-geolocation">/api/report/adhawk/device-geolocation</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#get_20">GET</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apireportexportreport_name">/api/report/export/{report_name}</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#get_21">GET</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apischedules">/api/schedules</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#get_22">GET</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apischedulesid">/api/schedules/{id}</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#get_23">GET</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#delete_6">DELETE</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apischedulesgroups">/api/schedules/groups</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#get_24">GET</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#post_9">POST</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apischedulesgroupsid">/api/schedules/groups/{id}</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#put_7">PUT</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#delete_7">DELETE</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apitemplates">/api/templates</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#get_25">GET</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apitemplatesid">/api/templates/{id}</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#get_26">GET</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#delete_8">DELETE</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apitemplatesgroups">/api/templates/groups</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#get_27">GET</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#post_10">POST</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apitemplatesgroupsid">/api/templates/groups/{id}</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#put_8">PUT</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#delete_9">DELETE</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apiusers">/api/users</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#get_28">GET</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apiusersid">/api/users/{id}</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#get_29">GET</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#models">Models</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#account">Account</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#device">Device</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#devicetype">DeviceType</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#location">Location</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pingdata">PingData</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#beacon">Beacon</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#devicerequest">DeviceRequest</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#group">Group</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#grouprequest">GroupRequest</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#devicecommand">DeviceCommand</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#command">Command</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#media">Media</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#mediarequest">MediaRequest</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#playlist">Playlist</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#source">Source</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#condition">Condition</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#schedule">Schedule</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#scheduledevice">ScheduleDevice</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#template">Template</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#module">Module</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#user">User</a>
+    </li>
     </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../windows/">Player API for Windows</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../android/">Player API for Android</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../gadgets/">Gadgets</a>
-	    </li>
-          
-        </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../windows/">Player API for Windows</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../android/">Player API for Android</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../gadgets/">Gadgets</a>
+                    </li>
+                </ul>
       </div>
-      &nbsp;
+    </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -235,6 +429,7 @@
       
     </li>
   </ul>
+  
   <hr/>
 </div>
           <div role="main">
@@ -244,7 +439,7 @@
 <p>Provides REST based access to your RevelDigital account.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>See our <a href="http://api.reveldigital.com/swagger/">Swagger Website</a> for interactive documentation.</p>
+<p>See our <a href="https://api.reveldigital.com/swagger/">Swagger Website</a> for interactive documentation.</p>
 </div>
 <h3 id="getting-started">Getting Started</h3>
 <h5 id="api-endpoint">API Endpoint</h5>
@@ -256,24 +451,21 @@
 API keys are available in your Revel Digital account under <a href="https://as1.reveldigital.com/account/api">Account &gt; Developer API</a>.</p>
 </div>
 <p>The <code>api_key</code> query string parameter shoud be included in each request.</p>
-<pre><code class="sh">$curl -i https://api.reveldigital.com/account?api_key=&lt;your key here&gt;
+<pre><code class="language-sh">$curl -i https://api.reveldigital.com/account?api_key=&lt;your key here&gt;
 </code></pre>
-
 <h5 id="data-format">Data Format</h5>
 <p>All data with the exception of media uploads is in JSON format. This includes POST body data. Request headers should include
 the following to specify JSON as the content type.</p>
 <pre><code>Content-Type: application/json
 </code></pre>
-
 <p>Timestamps are returned in ISO 8601 format:</p>
-<pre><code class="sh">YYYY-MM-DDTHH:MM:SSZ
+<pre><code class="language-sh">YYYY-MM-DDTHH:MM:SSZ
 </code></pre>
-
 <h5 id="cross-origin-resource-sharing">Cross Origin Resource Sharing</h5>
 <p>The API supports Cross Origin Resource Sharing (CORS) for AJAX requests. You can read the <a href="https://www.w3.org/TR/cors/">CORS W3C working draft</a>,
 or <a href="https://code.google.com/archive/p/html5security/wikis/CrossOriginRequestSecurity.wiki">this intro</a> from the HTML5 Security Guide.</p>
 <h3 id="swagger">Swagger</h3>
-<p><a href="http://api.reveldigital.com/swagger/">Interactive API documentation provided by Swagger</a></p>
+<p><a href="https://api.reveldigital.com/swagger/">Interactive API documentation provided by Swagger</a></p>
 <p><strong>Version:</strong> v1</p>
 <h3 id="apiaccount">/api/account</h3>
 <hr />
@@ -5455,7 +5647,7 @@ or <a href="https://code.google.com/archive/p/html5security/wikis/CrossOriginReq
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
         </div>
@@ -5465,7 +5657,7 @@ or <a href="https://code.google.com/archive/p/html5security/wikis/CrossOriginReq
 
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
+  <div class="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
@@ -5477,9 +5669,13 @@ or <a href="https://code.google.com/archive/p/html5security/wikis/CrossOriginReq
     </span>
 </div>
     <script>var base_url = '..';</script>
-    <script src="../js/theme.js"></script>
-      <script src="../search/require.js"></script>
-      <script src="../search/search.js"></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>
