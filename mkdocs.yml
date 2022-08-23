@@ -1,0 +1,11 @@
+site_name: RevelDigital for Developers
+nav:
+    - Home: index.md
+    - REST API: rest-api.md
+    - Player API for Windows: windows.md
+    - Player API for Android: android.md
+    - Gadgets: gadgets.md
+theme:
+    name: material
+markdown_extensions:
+    - markdown.extensions.admonition
