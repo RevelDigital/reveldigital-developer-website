@@ -1,2626 +1,3822 @@
-swagger: '2.0'
+---
+openapi: 3.0.1
 info:
+  title: Revel Digital REST API
+  description: Provides REST based access to your Revel Digital account
   version: v1
-  title: RevelDigital API
-  description: The RevelDigital API provides REST based access to your RevelDigital account
-basePath: /
+servers:
+- url: https://api.reveldigital.com
 paths:
-  /api/account:
+  "/account":
     get:
       tags:
-        - Account
+      - Account
       summary: Gets account details.
       description: ''
-      operationId: ApiAccountGet
-      consumes: []
-      produces:
-        - application/json
       parameters:
-        - name: api_key
-          in: query
-          required: false
+      - name: api_key
+        in: query
+        schema:
           type: string
       responses:
         '200':
           description: Returns account details
-          schema:
-            $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.Account'
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Account"
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
     put:
       tags:
-        - Account
+      - Account
       summary: Updates an account.
       description: ''
-      operationId: ApiAccountPut
-      consumes:
-        - application/json-patch+json
-        - application/json
-        - text/json
-        - application/*+json
-      produces: []
       parameters:
-        - name: api_key
-          in: query
-          required: false
+      - name: api_key
+        in: query
+        schema:
           type: string
-        - name: account
-          in: body
-          required: false
-          schema:
-            $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.Account'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/Account"
       responses:
         '201':
           description: If account was updated successfully
+        '204':
+          description: No Content
         '400':
           description: If the account API key is invalid
-  /api/devices:
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+  "/devices":
     get:
       tags:
-        - Devices
+      - Devices
       summary: Gets all devices in an account.
-      description: ''
-      operationId: ApiDevicesGet
-      consumes: []
-      produces:
-        - application/json
       parameters:
-        - name: api_key
-          in: query
-          required: false
+      - name: api_key
+        in: query
+        description: API key
+        schema:
           type: string
-        - name: id
-          in: query
-          required: false
+      - name: id
+        in: query
+        description: ''
+        schema:
           type: string
-        - name: take
-          in: query
-          required: false
+      - name: take
+        in: query
+        description: ''
+        schema:
           type: integer
           format: int32
-        - name: page
-          in: query
-          required: false
+      - name: page
+        in: query
+        description: ''
+        schema:
           type: integer
           format: int32
-        - name: device_type_id
-          in: query
-          required: false
+      - name: device_type_id
+        in: query
+        description: ''
+        schema:
           type: string
-        - name: group_id
-          in: query
-          required: false
+      - name: group_id
+        in: query
+        description: ''
+        schema:
           type: array
           items:
             type: string
-          collectionFormat: multi
-        - name: group_name
-          in: query
-          required: false
+      - name: group_name
+        in: query
+        description: ''
+        schema:
           type: array
           items:
             type: string
-          collectionFormat: multi
-        - name: include_snap
-          in: query
-          required: true
+      - name: include_snap
+        in: query
+        description: ''
+        schema:
           type: boolean
+          default: true
       responses:
         '200':
-          description: Returns an array of devices
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.Device'
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Device"
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
     post:
       tags:
-        - Devices
-      summary: Creates a device.
-      description: ''
-      operationId: ApiDevicesPost
-      consumes:
-        - application/json-patch+json
-        - application/json
-        - text/json
-        - application/*+json
-      produces:
-        - application/json
+      - Devices
+      summary: Registers a new device.
       parameters:
-        - name: api_key
-          in: query
-          required: false
+      - name: api_key
+        in: query
+        description: API key
+        schema:
           type: string
-        - name: activation_code
-          in: query
-          required: false
+      - name: activation_code
+        in: query
+        description: ''
+        schema:
           type: string
-        - name: device
-          in: body
-          required: false
-          schema:
-            $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.DeviceRequest'
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/DeviceRequest"
       responses:
         '201':
-          description: Returns the newly created device
-          schema:
-            $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.Device'
+          description: Created
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Device"
         '400':
-          description: If the registration code is invalid
-  '/api/devices/{id}':
+          description: Bad Request
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+  "/devices/{id}":
     get:
       tags:
-        - Devices
+      - Devices
       summary: Gets a device by ID.
-      description: ''
-      operationId: ApiDevicesByIdGet
-      consumes: []
-      produces:
-        - application/json
+      operationId: GetDevice
       parameters:
-        - name: api_key
-          in: query
-          required: false
+      - name: api_key
+        in: query
+        description: API key
+        schema:
           type: string
-        - name: id
-          in: path
-          required: true
+      - name: id
+        in: path
+        description: ''
+        required: true
+        schema:
           type: string
       responses:
         '200':
-          description: Returns the device matching the ID
-          schema:
-            $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.Device'
+          description: Success
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Device"
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
     put:
       tags:
-        - Devices
+      - Devices
       summary: Updates a device.
-      description: ''
-      operationId: ApiDevicesByIdPut
-      consumes:
-        - application/json-patch+json
-        - application/json
-        - text/json
-        - application/*+json
-      produces: []
       parameters:
-        - name: api_key
-          in: query
-          required: false
+      - name: api_key
+        in: query
+        description: API key
+        schema:
           type: string
-        - name: id
-          in: path
-          required: true
+      - name: id
+        in: path
+        description: ''
+        required: true
+        schema:
           type: string
-        - name: device
-          in: body
-          required: false
-          schema:
-            $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.DeviceRequest'
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/DeviceRequest"
       responses:
-        '201':
-          description: If device was updated successfully
-        '400':
-          description: If the device ID is invalid
-    delete:
-      tags:
-        - Devices
-      summary: Delete a device.
-      operationId: ApiDevicesByIdDelete
-      consumes: []
-      produces: []
-      parameters:
-        - name: api_key
-          in: query
-          description: ''
-          required: false
-          type: string
-        - name: id
-          in: path
-          description: ''
-          required: true
-          type: string
-      responses:
-        '201':
-          description: Success
+        '204':
+          description: No Content
         '400':
           description: Bad Request
-  /api/devices/groups:
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+    delete:
+      tags:
+      - Devices
+      summary: Delete a device.
+      parameters:
+      - name: api_key
+        in: query
+        description: API key
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+    patch:
+      tags:
+      - Devices
+      summary: "Patch a device. Patch allows partial updates by targeting specific
+        properties of the device.\r\nUses the JSON Patch syntax (http://jsonpatch.com)"
+      parameters:
+      - name: api_key
+        in: query
+        description: API key
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              "$ref": "#/components/schemas/JsonPatchDocument"
+      responses:
+        '200':
+          description: Success
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+  "/devices/groups":
     get:
       tags:
-        - Devices
+      - Devices
       summary: Gets device groups in the account.
-      description: ''
-      operationId: ApiDevicesGroupsGet
-      consumes: []
-      produces:
-        - application/json
+      operationId: GetDeviceGroups
       parameters:
-        - name: api_key
-          in: query
-          required: false
+      - name: api_key
+        in: query
+        description: API key
+        schema:
           type: string
-        - name: id
-          in: query
-          required: false
+      - name: tree
+        in: query
+        description: ''
+        schema:
+          type: boolean
+          default: false
+      - name: id
+        in: query
+        description: ''
+        schema:
           type: string
-        - name: take
-          in: query
-          required: false
+      - name: take
+        in: query
+        description: ''
+        schema:
           type: integer
           format: int32
-        - name: page
-          in: query
-          required: false
+      - name: page
+        in: query
+        description: ''
+        schema:
           type: integer
           format: int32
       responses:
         '200':
-          description: Returns an array of device groups
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.Group'
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Group"
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
     post:
       tags:
-        - Devices
+      - Devices
       summary: Create a new device group.
-      operationId: ApiDevicesGroupsPost
-      consumes:
-        - application/json-patch+json
-        - application/json
-        - text/json
-        - application/*+json
-      produces:
-        - application/json
       parameters:
-        - name: api_key
-          in: query
-          required: false
+      - name: api_key
+        in: query
+        description: API key
+        schema:
           type: string
-        - name: group
-          in: body
-          description: Device group
-          required: false
-          schema:
-            $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.GroupRequest'
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/GroupRequest"
       responses:
         '201':
-          description: Returns the newly-created item
-          schema:
-            $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.Group'
-        '400':
-          description: If the item is null
-  '/api/devices/groups/{id}':
-    put:
-      tags:
-        - Devices
-      summary: Updates a device group.
-      operationId: ApiDevicesGroupsByIdPut
-      consumes:
-        - application/json-patch+json
-        - application/json
-        - text/json
-        - application/*+json
-      produces: []
-      parameters:
-        - name: api_key
-          in: query
-          description: API key
-          required: false
-          type: string
-        - name: id
-          in: path
-          description: Group id
-          required: true
-          type: string
-        - name: group
-          in: body
-          description: Device group
-          required: false
-          schema:
-            $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.GroupRequest'
-      responses:
-        '201':
-          description: Success
+          description: Created
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Group"
         '400':
           description: Bad Request
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+  "/devices/groups/{id}":
+    put:
+      tags:
+      - Devices
+      summary: Updates a device group.
+      parameters:
+      - name: api_key
+        in: query
+        description: API key
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: Group id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Device group
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/GroupRequest"
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
     delete:
       tags:
-        - Devices
+      - Devices
       summary: Delete a device group.
       description: Group must be empty.
-      operationId: ApiDevicesGroupsByIdDelete
-      consumes: []
-      produces: []
       parameters:
-        - name: api_key
-          in: query
-          description: ''
-          required: false
+      - name: api_key
+        in: query
+        description: API key
+        schema:
           type: string
-        - name: id
-          in: path
-          description: ''
-          required: true
+      - name: id
+        in: path
+        description: ''
+        required: true
+        schema:
           type: string
       responses:
-        '201':
-          description: Success
+        '204':
+          description: No Content
         '400':
           description: Bad Request
-  /api/devices/pingdata:
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+  "/devices/pingdata":
     get:
       tags:
-        - Devices
+      - Devices
       summary: Gets device ping data by registration key.
-      description: ''
-      operationId: ApiDevicesPingdataGet
-      consumes: []
-      produces:
-        - application/json
       parameters:
-        - name: key
-          in: query
-          required: false
+      - name: api_key
+        in: query
+        description: API key
+        schema:
+          type: string
+      - name: key
+        in: query
+        description: ''
+        schema:
           type: string
       responses:
         '200':
-          description: Returns ping data for the device
-          schema:
-            $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.PingData'
-  '/api/devices/{registrationkey}/snap':
+          description: Success
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/PingData"
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+  "/devices/{registrationKey}/snap":
     get:
       tags:
-        - Devices
+      - Devices
       summary: Gets current snapshot of the device screen.
-      description: ''
-      operationId: ApiDevicesByRegistrationKeySnapGet
-      consumes: []
-      produces: []
       parameters:
-        - name: registrationKey
-          in: path
-          required: true
+      - name: registrationKey
+        in: path
+        description: ''
+        required: true
+        schema:
           type: string
       responses:
         '200':
-          description: Returns snapshot
-  '/api/devices/{registrationkey}/pingdata':
+          description: Success
+  "/devices/{registrationKey}/pingdata":
     get:
       tags:
-        - Devices
+      - Devices
       summary: Gets device ping data by registration key.
-      description: ''
-      operationId: ApiDevicesByRegistrationKeyPingdataGet
-      consumes: []
-      produces:
-        - application/json
       parameters:
-        - name: registrationKey
-          in: path
-          required: true
+      - name: registrationKey
+        in: path
+        description: ''
+        required: true
+        schema:
           type: string
       responses:
         '200':
-          description: Returns ping data for the device
-          schema:
-            $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.PingData'
-  /api/devices/commands:
+          description: Success
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/PingData"
+  "/devices/commands":
     post:
       tags:
-        - Devices
+      - Devices
       summary: Sends a collection of commands to devices.
-      description: ''
-      operationId: ApiDevicesCommandsPost
-      consumes:
-        - application/json-patch+json
-        - application/json
-        - text/json
-        - application/*+json
-      produces: []
       parameters:
-        - name: api_key
-          in: query
-          required: false
+      - name: api_key
+        in: query
+        description: API key
+        schema:
           type: string
-        - name: commandSet
-          in: body
-          required: false
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.DeviceCommand'
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                "$ref": "#/components/schemas/DeviceCommand"
       responses:
-        '201':
-          description: Commands delivered successfully
-  '/api/devices/{id}/commands':
+        '204':
+          description: No Content
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+  "/devices/{id}/commands":
     post:
       tags:
-        - Devices
+      - Devices
       summary: Sends a collection of commands to a specific device.
-      description: ''
-      operationId: ApiDevicesByIdCommandsPost
-      consumes:
-        - application/json-patch+json
-        - application/json
-        - text/json
-        - application/*+json
-      produces: []
       parameters:
-        - name: api_key
-          in: query
-          required: false
+      - name: api_key
+        in: query
+        description: API key
+        schema:
           type: string
-        - name: id
-          in: path
-          required: true
+      - name: id
+        in: path
+        description: ''
+        required: true
+        schema:
           type: string
-        - name: commands
-          in: body
-          required: false
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.Command'
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                "$ref": "#/components/schemas/Command"
       responses:
-        '201':
-          description: Commands delivered successfully
-  /api/media:
+        '204':
+          description: No Content
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+  "/devices/{id}/track":
+    post:
+      tags:
+      - Devices
+      summary: Create an event associated with a device.
+      parameters:
+      - name: api_key
+        in: query
+        description: API key
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/Event"
+      responses:
+        '204':
+          description: No Content
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+  "/media":
     get:
       tags:
-        - Media
+      - Media
       summary: Gets all media in an account.
-      description: ''
-      operationId: ApiMediaGet
-      consumes: []
-      produces:
-        - application/json
       parameters:
-        - name: api_key
-          in: query
-          required: false
+      - name: api_key
+        in: query
+        description: API key
+        schema:
           type: string
-        - name: id
-          in: query
-          required: false
+      - name: id
+        in: query
+        description: ''
+        schema:
           type: string
-        - name: take
-          in: query
-          required: false
+      - name: take
+        in: query
+        description: ''
+        schema:
           type: integer
           format: int32
-        - name: page
-          in: query
-          required: false
+      - name: page
+        in: query
+        description: ''
+        schema:
           type: integer
           format: int32
-        - name: group_id
-          in: query
-          required: false
+      - name: group_id
+        in: query
+        description: ''
+        schema:
           type: array
           items:
             type: string
-          collectionFormat: multi
-        - name: group_name
-          in: query
-          required: false
+      - name: group_name
+        in: query
+        description: ''
+        schema:
           type: array
           items:
             type: string
-          collectionFormat: multi
       responses:
         '200':
-          description: Returns an array of media
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.Media'
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Media"
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
     post:
       tags:
-        - Media
-      summary: Uploads new media
-      description: ''
-      operationId: ApiMediaPost
-      consumes: []
-      produces:
-        - application/json
+      - Media
+      summary: Uploads new media asset.
+      description: POST body must be in multipart/form-data format
       parameters:
-        - name: api_key
-          in: query
-          required: false
+      - name: api_key
+        in: query
+        description: API key
+        schema:
           type: string
-        - name: group_id
-          in: query
-          required: false
-          type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                name:
+                  type: string
+                group_id:
+                  type: string
+                tags:
+                  type: string
+                advertiser_id:
+                  type: string
+                is_shared:
+                  type: boolean
+                start_date:
+                  type: string
+                  format: date-time
+                end_date:
+                  type: string
+                  format: date-time
+            encoding:
+              file:
+                style: form
+              name:
+                style: form
+              group_id:
+                style: form
+              tags:
+                style: form
+              advertiser_id:
+                style: form
+              is_shared:
+                style: form
+              start_date:
+                style: form
+              end_date:
+                style: form
       responses:
         '201':
-          description: Returns the newly created media
-          schema:
-            $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.Media'
+          description: Created
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Media"
         '400':
-          description: If the API key is invalid or upload was not supplied
-  '/api/media/{id}':
+          description: Bad Request
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+  "/media/{id}":
     get:
       tags:
-        - Media
-      summary: Gets media by ID.
-      description: ''
-      operationId: ApiMediaByIdGet
-      consumes: []
-      produces:
-        - application/json
+      - Media
+      summary: Gets media item by ID.
+      operationId: GetMedia
       parameters:
-        - name: api_key
-          in: query
-          required: false
+      - name: api_key
+        in: query
+        description: API key
+        schema:
           type: string
-        - name: id
-          in: path
-          required: true
+      - name: id
+        in: path
+        description: ''
+        required: true
+        schema:
           type: string
       responses:
         '200':
-          description: Returns the media matching the ID
-          schema:
-            $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.Media'
+          description: Success
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Media"
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
     put:
       tags:
-        - Media
-      operationId: ApiMediaByIdPut
-      consumes:
-        - application/json-patch+json
-        - application/json
-        - text/json
-        - application/*+json
-      produces: []
+      - Media
+      summary: Update media asset properties.
       parameters:
-        - name: api_key
-          in: query
-          required: false
+      - name: api_key
+        in: query
+        description: API key
+        schema:
           type: string
-        - name: id
-          in: path
-          required: true
+      - name: id
+        in: path
+        description: Media Id
+        required: true
+        schema:
           type: string
-        - name: media
-          in: body
-          required: false
-          schema:
-            $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.MediaRequest'
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/MediaRequest"
       responses:
-        '201':
-          description: Success
+        '204':
+          description: No Content
         '400':
           description: Bad Request
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+    patch:
+      tags:
+      - Media
+      summary: "Patch a media item. Patch allows partial updates by targeting specific
+        properties of the schedule.\r\nUses the JSON Patch syntax (http://jsonpatch.com)"
+      parameters:
+      - name: api_key
+        in: query
+        description: API key
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: Media Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Patch update
+        content:
+          application/json-patch+json:
+            schema:
+              "$ref": "#/components/schemas/JsonPatchDocument"
+      responses:
+        '200':
+          description: Success
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
     delete:
       tags:
-        - Media
-      summary: Delete a device.
-      operationId: ApiMediaByIdDelete
-      consumes: []
-      produces: []
+      - Media
+      summary: Delete media asset.
       parameters:
-        - name: api_key
-          in: query
-          description: ''
-          required: false
+      - name: api_key
+        in: query
+        description: API key
+        schema:
           type: string
-        - name: id
-          in: path
-          description: ''
-          required: true
+      - name: id
+        in: path
+        description: ''
+        required: true
+        schema:
           type: string
       responses:
-        '201':
-          description: Success
+        '204':
+          description: No Content
         '400':
           description: Bad Request
-  /api/media/groups:
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+  "/media/groups":
     get:
       tags:
-        - Media
-      summary: Gets media groups in the account.
-      description: ''
-      operationId: ApiMediaGroupsGet
-      consumes: []
-      produces:
-        - application/json
+      - Media
+      summary: Gets media groups.
+      operationId: GetMediaGroups
       parameters:
-        - name: api_key
-          in: query
-          required: false
+      - name: api_key
+        in: query
+        description: API key
+        schema:
           type: string
-        - name: id
-          in: query
-          required: false
+      - name: tree
+        in: query
+        description: ''
+        schema:
+          type: boolean
+          default: false
+      - name: id
+        in: query
+        description: ''
+        schema:
           type: string
-        - name: take
-          in: query
-          required: false
+      - name: take
+        in: query
+        description: ''
+        schema:
           type: integer
           format: int32
-        - name: page
-          in: query
-          required: false
+      - name: page
+        in: query
+        description: ''
+        schema:
           type: integer
           format: int32
       responses:
         '200':
-          description: Returns an array of device groups
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.Group'
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Group"
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
     post:
       tags:
-        - Media
+      - Media
       summary: Create a new media group.
-      operationId: ApiMediaGroupsPost
-      consumes:
-        - application/json-patch+json
-        - application/json
-        - text/json
-        - application/*+json
-      produces:
-        - application/json
       parameters:
-        - name: api_key
-          in: query
-          required: false
+      - name: api_key
+        in: query
+        description: API key
+        schema:
           type: string
-        - name: group
-          in: body
-          description: Media group
-          required: false
-          schema:
-            $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.GroupRequest'
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/GroupRequest"
       responses:
         '201':
-          description: Returns the newly-created item
-          schema:
-            $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.Group'
-        '400':
-          description: If the item is null
-  '/api/media/groups/{id}':
-    put:
-      tags:
-        - Media
-      summary: Updates a media group.
-      operationId: ApiMediaGroupsByIdPut
-      consumes:
-        - application/json-patch+json
-        - application/json
-        - text/json
-        - application/*+json
-      produces: []
-      parameters:
-        - name: api_key
-          in: query
-          description: API key
-          required: false
-          type: string
-        - name: id
-          in: path
-          description: Group id
-          required: true
-          type: string
-        - name: group
-          in: body
-          description: Device group
-          required: false
-          schema:
-            $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.GroupRequest'
-      responses:
-        '201':
-          description: Success
+          description: Created
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Group"
         '400':
           description: Bad Request
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+  "/media/groups/{id}":
+    put:
+      tags:
+      - Media
+      summary: Updates a media group.
+      parameters:
+      - name: api_key
+        in: query
+        description: API key
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: Group id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Device group
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/GroupRequest"
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
     delete:
       tags:
-        - Media
+      - Media
       summary: Delete a media group.
       description: Group must be empty.
-      operationId: ApiMediaGroupsByIdDelete
-      consumes: []
-      produces: []
       parameters:
-        - name: api_key
-          in: query
-          description: ''
-          required: false
+      - name: api_key
+        in: query
+        description: API key
+        schema:
           type: string
-        - name: id
-          in: path
-          description: ''
-          required: true
+      - name: id
+        in: path
+        description: ''
+        required: true
+        schema:
           type: string
       responses:
-        '201':
-          description: Success
+        '204':
+          description: No Content
         '400':
           description: Bad Request
-  '/api/media/{group_id}/{file_name}':
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+  "/media/{group_id}/{file_name}":
     post:
       tags:
-        - Media
-      summary: Uploads new media
-      description: ''
-      operationId: ApiMediaByGroup_idByFile_namePost
-      consumes: []
-      produces:
-        - application/json
+      - Media
+      summary: Uploads new media asset.
+      description: POST body should contain raw binary media file
       parameters:
-        - name: group_id
-          in: path
-          required: true
+      - name: group_id
+        in: path
+        description: ''
+        required: true
+        schema:
           type: string
-        - name: file_name
-          in: path
-          required: true
+      - name: file_name
+        in: path
+        description: ''
+        required: true
+        schema:
           type: string
-        - name: api_key
-          in: query
-          required: false
+      - name: api_key
+        in: query
+        description: API key
+        schema:
           type: string
-        - name: shared
-          in: query
-          required: true
+      - name: shared
+        in: query
+        description: ''
+        schema:
           type: boolean
-        - name: start_date
-          in: query
-          required: false
+          default: false
+      - name: start_date
+        in: query
+        description: ''
+        schema:
           type: string
           format: date-time
-        - name: end_date
-          in: query
-          required: false
+      - name: end_date
+        in: query
+        description: ''
+        schema:
           type: string
           format: date-time
-        - name: advertiser_id
-          in: query
-          required: false
+      - name: advertiser_id
+        in: query
+        description: ''
+        schema:
           type: integer
           format: int32
-        - name: name
-          in: query
-          required: false
+      - name: name
+        in: query
+        description: ''
+        schema:
           type: string
-        - name: description
-          in: query
-          required: false
+      - name: description
+        in: query
+        description: ''
+        schema:
           type: string
       responses:
         '201':
-          description: Returns the newly created media
-          schema:
-            $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.Media'
+          description: Created
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Media"
         '400':
-          description: If the API key is invalid
-  /api/media/import:
+          description: Bad Request
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+  "/media/import":
     post:
       tags:
-        - Media
+      - Media
       summary: Import a file from a URL.
-      operationId: ApiMediaImportPost
-      consumes: []
-      produces:
-        - application/json
       parameters:
-        - name: api_key
-          in: query
-          description: API key
-          required: false
+      - name: api_key
+        in: query
+        description: API key
+        schema:
           type: string
-        - name: url
-          in: query
-          description: URL of the file to import
-          required: false
+      - name: url
+        in: query
+        description: URL of the file to import
+        schema:
           type: string
-        - name: group_id
-          in: query
-          description: ''
-          required: false
+      - name: group_id
+        in: query
+        description: ''
+        schema:
           type: string
       responses:
         '201':
           description: Returns the newly created media
-          schema:
-            $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.Media'
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Media"
         '400':
           description: If the API key is invalid or upload was not supplied
-  /api/playlists:
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+  "/playlists":
     get:
       tags:
-        - Playlists
+      - Playlists
       summary: Gets all playlists in an account.
       description: ''
-      operationId: ApiPlaylistsGet
-      consumes: []
-      produces:
-        - application/json
       parameters:
-        - name: api_key
-          in: query
-          required: false
+      - name: api_key
+        in: query
+        schema:
           type: string
-        - name: id
-          in: query
-          required: false
+      - name: id
+        in: query
+        schema:
           type: string
-        - name: take
-          in: query
-          required: false
+      - name: take
+        in: query
+        schema:
           type: integer
           format: int32
-        - name: page
-          in: query
-          required: false
+      - name: page
+        in: query
+        schema:
           type: integer
           format: int32
-        - name: group_id
-          in: query
-          required: false
+      - name: group_id
+        in: query
+        schema:
           type: array
           items:
             type: string
-          collectionFormat: multi
-        - name: group_name
-          in: query
-          required: false
+      - name: group_name
+        in: query
+        schema:
           type: array
           items:
             type: string
-          collectionFormat: multi
       responses:
         '200':
           description: Returns an array of playlists
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.Playlist'
-  '/api/playlists/{id}':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Playlist"
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+  "/playlists/{id}":
     get:
       tags:
-        - Playlists
+      - Playlists
       summary: Gets a playlist by ID.
       description: ''
-      operationId: ApiPlaylistsByIdGet
-      consumes: []
-      produces:
-        - application/json
       parameters:
-        - name: api_key
-          in: query
-          required: false
+      - name: api_key
+        in: query
+        schema:
           type: string
-        - name: id
-          in: path
-          required: true
+      - name: id
+        in: path
+        required: true
+        schema:
           type: string
       responses:
         '200':
           description: Returns the playlist matching the ID
-          schema:
-            $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.Playlist'
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Playlist"
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
     put:
       tags:
-        - Playlists
-      operationId: ApiPlaylistsByIdPut
-      consumes:
-        - application/json-patch+json
-        - application/json
-        - text/json
-        - application/*+json
-      produces: []
+      - Playlists
+      summary: Put a playlist. Replaces a playlist with the one provided.
       parameters:
-        - name: api_key
-          in: query
-          required: false
+      - name: api_key
+        in: query
+        description: API key
+        schema:
           type: string
-        - name: id
-          in: path
-          required: true
+      - name: id
+        in: path
+        description: ''
+        required: true
+        schema:
           type: string
-        - name: playlist
-          in: body
-          required: false
-          schema:
-            $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.Playlist'
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/Playlist"
       responses:
-        '201':
-          description: Success
+        '204':
+          description: No Content
         '400':
           description: Bad Request
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
     delete:
       tags:
-        - Playlists
+      - Playlists
       summary: Delete a playlist.
-      operationId: ApiPlaylistsByIdDelete
-      consumes: []
-      produces: []
       parameters:
-        - name: api_key
-          in: query
-          description: ''
-          required: false
+      - name: api_key
+        in: query
+        description: API key
+        schema:
           type: string
-        - name: id
-          in: path
-          description: ''
-          required: true
+      - name: id
+        in: path
+        description: ''
+        required: true
+        schema:
           type: string
       responses:
-        '201':
-          description: Success
+        '204':
+          description: No Content
         '400':
           description: Bad Request
-  /api/playlists/groups:
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+    patch:
+      tags:
+      - Playlists
+      summary: "Patch a playlist. Patch allows partial updates by targeting specific
+        properties of the playlist.\r\nUses the JSON Patch syntax (http://jsonpatch.com)"
+      parameters:
+      - name: api_key
+        in: query
+        description: API key
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: Playlist Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: ''
+        content:
+          application/json-patch+json:
+            schema:
+              "$ref": "#/components/schemas/JsonPatchDocument"
+      responses:
+        '200':
+          description: Success
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+  "/playlists/groups":
     get:
       tags:
-        - Playlists
+      - Playlists
       summary: Gets playlist groups in the account.
       description: ''
-      operationId: ApiPlaylistsGroupsGet
-      consumes: []
-      produces:
-        - application/json
+      operationId: GetPlaylistGroups
       parameters:
-        - name: api_key
-          in: query
-          required: false
+      - name: api_key
+        in: query
+        schema:
           type: string
-        - name: id
-          in: query
-          required: false
+      - name: tree
+        in: query
+        schema:
+          type: boolean
+          default: false
+      - name: id
+        in: query
+        schema:
           type: string
-        - name: take
-          in: query
-          required: false
+      - name: take
+        in: query
+        schema:
           type: integer
           format: int32
-        - name: page
-          in: query
-          required: false
+      - name: page
+        in: query
+        schema:
           type: integer
           format: int32
       responses:
         '200':
           description: Returns an array of playlist groups
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.Group'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Group"
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
     post:
       tags:
-        - Playlists
+      - Playlists
       summary: Create a new playlist group.
-      operationId: ApiPlaylistsGroupsPost
-      consumes:
-        - application/json-patch+json
-        - application/json
-        - text/json
-        - application/*+json
-      produces:
-        - application/json
       parameters:
-        - name: api_key
-          in: query
-          required: false
+      - name: api_key
+        in: query
+        schema:
           type: string
-        - name: group
-          in: body
-          description: Playlist group
-          required: false
-          schema:
-            $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.GroupRequest'
+      requestBody:
+        description: Playlist group
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/GroupRequest"
       responses:
         '201':
           description: Returns the newly-created item
-          schema:
-            $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.Group'
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Group"
         '400':
           description: If the item is null
-  '/api/playlists/groups/{id}':
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+  "/playlists/groups/{id}":
     put:
       tags:
-        - Playlists
+      - Playlists
       summary: Updates a playlist group.
-      operationId: ApiPlaylistsGroupsByIdPut
-      consumes:
-        - application/json-patch+json
-        - application/json
-        - text/json
-        - application/*+json
-      produces: []
       parameters:
-        - name: api_key
-          in: query
-          description: API key
-          required: false
+      - name: api_key
+        in: query
+        description: API key
+        schema:
           type: string
-        - name: id
-          in: path
-          description: Group id
-          required: true
+      - name: id
+        in: path
+        description: Group id
+        required: true
+        schema:
           type: string
-        - name: group
-          in: body
-          description: Device group
-          required: false
-          schema:
-            $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.GroupRequest'
+      requestBody:
+        description: Device group
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/GroupRequest"
       responses:
-        '201':
-          description: Success
+        '204':
+          description: No Content
         '400':
           description: Bad Request
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
     delete:
       tags:
-        - Playlists
+      - Playlists
       summary: Delete a playlist group.
       description: Group must be empty.
-      operationId: ApiPlaylistsGroupsByIdDelete
-      consumes: []
-      produces: []
       parameters:
-        - name: api_key
-          in: query
-          description: ''
-          required: false
+      - name: api_key
+        in: query
+        description: API key
+        schema:
           type: string
-        - name: id
-          in: path
-          description: ''
-          required: true
+      - name: id
+        in: path
+        description: ''
+        required: true
+        schema:
           type: string
       responses:
-        '201':
-          description: Success
+        '204':
+          description: No Content
         '400':
           description: Bad Request
-  /api/report/adhawk/impressions-by-gender:
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+  "/report/adhawk/impressions-by-gender":
     get:
       tags:
-        - Report
-      operationId: ApiReportAdhawkImpressions-by-genderGet
-      consumes: []
-      produces: []
+      - Report
       parameters:
-        - name: api_key
-          in: query
-          required: false
+      - name: api_key
+        in: query
+        schema:
           type: string
-        - name: start
-          in: query
-          required: true
-          type: string
-          format: date-time
-        - name: end
-          in: query
-          required: true
+      - name: start
+        in: query
+        schema:
           type: string
           format: date-time
-        - name: gender
-          in: query
-          required: false
+      - name: end
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: gender
+        in: query
+        schema:
           type: array
           items:
             type: string
-          collectionFormat: multi
-        - name: device_id
-          in: query
-          required: false
+      - name: device_id
+        in: query
+        schema:
           type: array
           items:
             type: string
-          collectionFormat: multi
-        - name: compare_start
-          in: query
-          required: false
+      - name: compare_start
+        in: query
+        schema:
           type: string
           format: date-time
-        - name: compare_end
-          in: query
-          required: false
+      - name: compare_end
+        in: query
+        schema:
           type: string
           format: date-time
       responses:
         '200':
           description: Success
-  /api/report/adhawk/impressions-by-hour:
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+  "/report/adhawk/impressions-by-hour":
     get:
       tags:
-        - Report
-      operationId: ApiReportAdhawkImpressions-by-hourGet
-      consumes: []
-      produces: []
+      - Report
       parameters:
-        - name: api_key
-          in: query
-          required: false
+      - name: api_key
+        in: query
+        schema:
           type: string
-        - name: start
-          in: query
-          required: true
-          type: string
-          format: date-time
-        - name: end
-          in: query
-          required: true
+      - name: start
+        in: query
+        schema:
           type: string
           format: date-time
-        - name: interval
-          in: query
-          required: true
-          type: integer
-          format: int32
-          enum:
-            - 0
-            - 1
-            - 2
-            - 3
-        - name: metric
-          in: query
-          required: true
-          type: integer
-          format: int32
-          enum:
-            - 0
-            - 1
-        - name: device_id
-          in: query
-          required: false
+      - name: end
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: interval
+        in: query
+        schema:
+          "$ref": "#/components/schemas/IntervalType"
+      - name: metric
+        in: query
+        schema:
+          "$ref": "#/components/schemas/MetricType"
+      - name: device_id
+        in: query
+        schema:
           type: array
           items:
             type: string
-          collectionFormat: multi
-        - name: compare_start
-          in: query
-          required: false
+      - name: compare_start
+        in: query
+        schema:
           type: string
           format: date-time
-        - name: compare_end
-          in: query
-          required: false
+      - name: compare_end
+        in: query
+        schema:
           type: string
           format: date-time
       responses:
         '200':
           description: Success
-  /api/report/adhawk/impressions-by-age:
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+  "/report/adhawk/impressions-by-age":
     get:
       tags:
-        - Report
-      operationId: ApiReportAdhawkImpressions-by-ageGet
-      consumes: []
-      produces: []
+      - Report
       parameters:
-        - name: api_key
-          in: query
-          required: false
+      - name: api_key
+        in: query
+        schema:
           type: string
-        - name: start
-          in: query
-          required: true
-          type: string
-          format: date-time
-        - name: end
-          in: query
-          required: true
+      - name: start
+        in: query
+        schema:
           type: string
           format: date-time
-        - name: interval
-          in: query
-          required: true
-          type: integer
-          format: int32
-          enum:
-            - 0
-            - 1
-            - 2
-            - 3
-        - name: metric
-          in: query
-          required: true
-          type: integer
-          format: int32
-          enum:
-            - 0
-            - 1
-        - name: device_id
-          in: query
-          required: false
+      - name: end
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: interval
+        in: query
+        schema:
+          "$ref": "#/components/schemas/IntervalType"
+      - name: metric
+        in: query
+        schema:
+          "$ref": "#/components/schemas/MetricType"
+      - name: device_id
+        in: query
+        schema:
           type: array
           items:
             type: string
-          collectionFormat: multi
-        - name: compare_start
-          in: query
-          required: false
+      - name: compare_start
+        in: query
+        schema:
           type: string
           format: date-time
-        - name: compare_end
-          in: query
-          required: false
+      - name: compare_end
+        in: query
+        schema:
           type: string
           format: date-time
       responses:
         '200':
           description: Success
-  /api/report/adhawk/device-detail:
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+  "/report/adhawk/device-detail":
     get:
       tags:
-        - Report
-      operationId: ApiReportAdhawkDevice-detailGet
-      consumes: []
-      produces: []
+      - Report
       parameters:
-        - name: api_key
-          in: query
-          required: false
+      - name: api_key
+        in: query
+        schema:
           type: string
-        - name: start
-          in: query
-          required: true
-          type: string
-          format: date-time
-        - name: end
-          in: query
-          required: true
+      - name: start
+        in: query
+        schema:
           type: string
           format: date-time
-        - name: interval
-          in: query
-          required: true
-          type: integer
-          format: int32
-          enum:
-            - 0
-            - 1
-            - 2
-            - 3
-        - name: metric
-          in: query
-          required: true
-          type: integer
-          format: int32
-          enum:
-            - 0
-            - 1
-        - name: device_id
-          in: query
-          required: false
+      - name: end
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: interval
+        in: query
+        schema:
+          "$ref": "#/components/schemas/IntervalType"
+      - name: metric
+        in: query
+        schema:
+          "$ref": "#/components/schemas/MetricType"
+      - name: device_id
+        in: query
+        schema:
           type: array
           items:
             type: string
-          collectionFormat: multi
-        - name: compare_start
-          in: query
-          required: false
+      - name: compare_start
+        in: query
+        schema:
           type: string
           format: date-time
-        - name: compare_end
-          in: query
-          required: false
+      - name: compare_end
+        in: query
+        schema:
           type: string
           format: date-time
       responses:
         '200':
           description: Success
-  /api/report/adhawk/gender-detail:
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+  "/report/adhawk/gender-detail":
     get:
       tags:
-        - Report
-      operationId: ApiReportAdhawkGender-detailGet
-      consumes: []
-      produces: []
+      - Report
       parameters:
-        - name: api_key
-          in: query
-          required: false
+      - name: api_key
+        in: query
+        schema:
           type: string
-        - name: start
-          in: query
-          required: true
-          type: string
-          format: date-time
-        - name: end
-          in: query
-          required: true
+      - name: start
+        in: query
+        schema:
           type: string
           format: date-time
-        - name: interval
-          in: query
-          required: true
-          type: integer
-          format: int32
-          enum:
-            - 0
-            - 1
-            - 2
-            - 3
-        - name: metric
-          in: query
-          required: true
-          type: integer
-          format: int32
-          enum:
-            - 0
-            - 1
-        - name: device_id
-          in: query
-          required: false
+      - name: end
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: interval
+        in: query
+        schema:
+          "$ref": "#/components/schemas/IntervalType"
+      - name: metric
+        in: query
+        schema:
+          "$ref": "#/components/schemas/MetricType"
+      - name: device_id
+        in: query
+        schema:
           type: array
           items:
             type: string
-          collectionFormat: multi
-        - name: compare_start
-          in: query
-          required: false
+      - name: compare_start
+        in: query
+        schema:
           type: string
           format: date-time
-        - name: compare_end
-          in: query
-          required: false
+      - name: compare_end
+        in: query
+        schema:
           type: string
           format: date-time
       responses:
         '200':
           description: Success
-  /api/report/adhawk/device-summary:
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+  "/report/adhawk/device-summary":
     get:
       tags:
-        - Report
-      operationId: ApiReportAdhawkDevice-summaryGet
-      consumes: []
-      produces: []
+      - Report
       parameters:
-        - name: api_key
-          in: query
-          required: false
+      - name: api_key
+        in: query
+        schema:
           type: string
-        - name: start
-          in: query
-          required: true
-          type: string
-          format: date-time
-        - name: end
-          in: query
-          required: true
+      - name: start
+        in: query
+        schema:
           type: string
           format: date-time
-        - name: interval
-          in: query
-          required: true
-          type: integer
-          format: int32
-          enum:
-            - 0
-            - 1
-            - 2
-            - 3
-        - name: metric
-          in: query
-          required: true
-          type: integer
-          format: int32
-          enum:
-            - 0
-            - 1
-        - name: device_id
-          in: query
-          required: false
+      - name: end
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: interval
+        in: query
+        schema:
+          "$ref": "#/components/schemas/IntervalType"
+      - name: metric
+        in: query
+        schema:
+          "$ref": "#/components/schemas/MetricType"
+      - name: device_id
+        in: query
+        schema:
           type: array
           items:
             type: string
-          collectionFormat: multi
-        - name: compare_start
-          in: query
-          required: false
+      - name: compare_start
+        in: query
+        schema:
           type: string
           format: date-time
-        - name: compare_end
-          in: query
-          required: false
+      - name: compare_end
+        in: query
+        schema:
           type: string
           format: date-time
       responses:
         '200':
           description: Success
-  /api/report/adhawk/device-heatmap:
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+  "/report/adhawk/device-heatmap":
     get:
       tags:
-        - Report
-      operationId: ApiReportAdhawkDevice-heatmapGet
-      consumes: []
-      produces: []
+      - Report
       parameters:
-        - name: api_key
-          in: query
-          required: false
+      - name: api_key
+        in: query
+        schema:
           type: string
-        - name: start
-          in: query
-          required: true
-          type: string
-          format: date-time
-        - name: end
-          in: query
-          required: true
+      - name: start
+        in: query
+        schema:
           type: string
           format: date-time
-        - name: interval
-          in: query
-          required: true
-          type: integer
-          format: int32
-          enum:
-            - 0
-            - 1
-            - 2
-            - 3
-        - name: metric
-          in: query
-          required: true
-          type: integer
-          format: int32
-          enum:
-            - 0
-            - 1
-        - name: device_id
-          in: query
-          required: false
+      - name: end
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: interval
+        in: query
+        schema:
+          "$ref": "#/components/schemas/IntervalType"
+      - name: metric
+        in: query
+        schema:
+          "$ref": "#/components/schemas/MetricType"
+      - name: device_id
+        in: query
+        schema:
           type: array
           items:
             type: string
-          collectionFormat: multi
-        - name: compare_start
-          in: query
-          required: false
+      - name: compare_start
+        in: query
+        schema:
           type: string
           format: date-time
-        - name: compare_end
-          in: query
-          required: false
+      - name: compare_end
+        in: query
+        schema:
           type: string
           format: date-time
       responses:
         '200':
           description: Success
-  /api/report/adhawk/device-geolocation:
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+  "/report/adhawk/device-geolocation":
     get:
       tags:
-        - Report
-      operationId: ApiReportAdhawkDevice-geolocationGet
-      consumes: []
-      produces: []
+      - Report
       parameters:
-        - name: api_key
-          in: query
-          required: false
+      - name: api_key
+        in: query
+        schema:
           type: string
-        - name: start
-          in: query
-          required: true
-          type: string
-          format: date-time
-        - name: end
-          in: query
-          required: true
+      - name: start
+        in: query
+        schema:
           type: string
           format: date-time
-        - name: interval
-          in: query
-          required: true
-          type: integer
-          format: int32
-          enum:
-            - 0
-            - 1
-            - 2
-            - 3
-        - name: metric
-          in: query
-          required: true
-          type: integer
-          format: int32
-          enum:
-            - 0
-            - 1
-        - name: device_id
-          in: query
-          required: false
+      - name: end
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: interval
+        in: query
+        schema:
+          "$ref": "#/components/schemas/IntervalType"
+      - name: metric
+        in: query
+        schema:
+          "$ref": "#/components/schemas/MetricType"
+      - name: device_id
+        in: query
+        schema:
           type: array
           items:
             type: string
-          collectionFormat: multi
-        - name: compare_start
-          in: query
-          required: false
+      - name: compare_start
+        in: query
+        schema:
           type: string
           format: date-time
-        - name: compare_end
-          in: query
-          required: false
+      - name: compare_end
+        in: query
+        schema:
           type: string
           format: date-time
       responses:
         '200':
           description: Success
-  '/api/report/export/{report_name}':
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+  "/report":
     get:
       tags:
-        - Report
-      operationId: ApiReportExportByReport_nameGet
-      consumes: []
-      produces: []
+      - Report
+      summary: Returns a list of reports available for export.
       parameters:
-        - name: api_key
-          in: query
-          required: false
+      - name: api_key
+        in: query
+        description: API key
+        schema:
           type: string
-        - name: report_name
-          in: path
-          required: true
+      - name: id
+        in: query
+        description: Optional report id filter
+        schema:
           type: string
-        - name: format
-          in: query
-          required: false
-          type: string
-        - name: activity_type
-          in: query
-          required: false
-          type: string
-        - name: interval
-          in: query
-          required: false
-          type: string
-        - name: start
-          in: query
-          required: false
-          type: string
-          format: date-time
-        - name: end
-          in: query
-          required: false
-          type: string
-          format: date-time
-        - name: device_id
-          in: query
-          required: false
-          type: array
-          items:
-            type: string
-          collectionFormat: multi
-        - name: user_id
-          in: query
-          required: false
-          type: array
-          items:
-            type: string
-          collectionFormat: multi
-        - name: media_id
-          in: query
-          required: false
-          type: array
-          items:
-            type: string
-          collectionFormat: multi
       responses:
         '200':
           description: Success
-  /api/schedules:
-    get:
-      tags:
-        - Schedules
-      summary: Gets all schedules in an account.
-      description: ''
-      operationId: ApiSchedulesGet
-      consumes: []
-      produces:
-        - application/json
-      parameters:
-        - name: api_key
-          in: query
-          required: false
-          type: string
-        - name: id
-          in: query
-          required: false
-          type: string
-        - name: take
-          in: query
-          required: false
-          type: integer
-          format: int32
-        - name: page
-          in: query
-          required: false
-          type: integer
-          format: int32
-        - name: group_id
-          in: query
-          required: false
-          type: array
-          items:
-            type: string
-          collectionFormat: multi
-        - name: group_name
-          in: query
-          required: false
-          type: array
-          items:
-            type: string
-          collectionFormat: multi
-        - name: device_id
-          in: query
-          required: false
-          type: string
-      responses:
-        '200':
-          description: Returns an array of schedules
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.Schedule'
-  '/api/schedules/{id}':
-    get:
-      tags:
-        - Schedules
-      summary: Gets a schedule by ID.
-      description: ''
-      operationId: ApiSchedulesByIdGet
-      consumes: []
-      produces:
-        - application/json
-      parameters:
-        - name: api_key
-          in: query
-          required: false
-          type: string
-        - name: id
-          in: path
-          required: true
-          type: string
-      responses:
-        '200':
-          description: Returns the schedule matching the ID
-          schema:
-            $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.Schedule'
-    delete:
-      tags:
-        - Schedules
-      summary: Delete a schedule.
-      operationId: ApiSchedulesByIdDelete
-      consumes: []
-      produces: []
-      parameters:
-        - name: api_key
-          in: query
-          description: ''
-          required: false
-          type: string
-        - name: id
-          in: path
-          description: ''
-          required: true
-          type: string
-      responses:
-        '201':
-          description: Success
-        '400':
-          description: Bad Request
-  /api/schedules/groups:
-    get:
-      tags:
-        - Schedules
-      summary: Gets schedule groups in the account.
-      description: ''
-      operationId: ApiSchedulesGroupsGet
-      consumes: []
-      produces:
-        - application/json
-      parameters:
-        - name: api_key
-          in: query
-          required: false
-          type: string
-        - name: id
-          in: query
-          required: false
-          type: string
-        - name: take
-          in: query
-          required: false
-          type: integer
-          format: int32
-        - name: page
-          in: query
-          required: false
-          type: integer
-          format: int32
-      responses:
-        '200':
-          description: Returns an array of playlist groups
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.Group'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Report"
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+  "/report/export":
     post:
       tags:
-        - Schedules
-      summary: Create a new schedule group.
-      operationId: ApiSchedulesGroupsPost
-      consumes:
-        - application/json-patch+json
-        - application/json
-        - text/json
-        - application/*+json
-      produces:
-        - application/json
+      - Report
+      summary: Generate and export a report.
       parameters:
-        - name: api_key
-          in: query
-          required: false
+      - name: api_key
+        in: query
+        description: API key
+        schema:
           type: string
-        - name: group
-          in: body
-          description: Schedule group
-          required: false
-          schema:
-            $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.GroupRequest'
+      - name: exclude_body
+        in: query
+        description: Exclude the generated report body in the response. This report
+          is always available at the URL provided in the X-RevelDigital-GeneratedReportUrl
+          header value.
+        schema:
+          type: boolean
+      requestBody:
+        description: Report parameters
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/ReportExportPostBody"
       responses:
-        '201':
-          description: Returns the newly-created item
-          schema:
-            $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.Group'
-        '400':
-          description: If the item is null
-  '/api/schedules/groups/{id}':
-    put:
-      tags:
-        - Schedules
-      summary: Updates a schedule group.
-      operationId: ApiSchedulesGroupsByIdPut
-      consumes:
-        - application/json-patch+json
-        - application/json
-        - text/json
-        - application/*+json
-      produces: []
-      parameters:
-        - name: api_key
-          in: query
-          description: API key
-          required: false
-          type: string
-        - name: id
-          in: path
-          description: Group id
-          required: true
-          type: string
-        - name: group
-          in: body
-          description: Device group
-          required: false
-          schema:
-            $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.GroupRequest'
-      responses:
-        '201':
+        '200':
           description: Success
-        '400':
-          description: Bad Request
-    delete:
-      tags:
-        - Schedules
-      summary: Delete a schedule group.
-      description: Group must be empty.
-      operationId: ApiSchedulesGroupsByIdDelete
-      consumes: []
-      produces: []
-      parameters:
-        - name: api_key
-          in: query
-          description: ''
-          required: false
-          type: string
-        - name: id
-          in: path
-          description: ''
-          required: true
-          type: string
-      responses:
-        '201':
-          description: Success
-        '400':
-          description: Bad Request
-  /api/templates:
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+  "/report/export/{report_id}":
     get:
       tags:
-        - Templates
+      - Report
+      parameters:
+      - name: api_key
+        in: query
+        schema:
+          type: string
+      - name: report_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: format
+        in: query
+        schema:
+          "$ref": "#/components/schemas/FormatType"
+      - name: activity_type
+        in: query
+        schema:
+          type: string
+      - name: interval
+        in: query
+        schema:
+          "$ref": "#/components/schemas/IntervalType"
+      - name: start
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: end
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: device_id
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+      - name: user_id
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+      - name: media_id
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: Success
+      deprecated: true
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+  "/schedules":
+    get:
+      tags:
+      - Schedules
+      summary: Gets schedules in an account.
+      parameters:
+      - name: api_key
+        in: query
+        description: API key
+        schema:
+          type: string
+      - name: id
+        in: query
+        description: Optional schedule id to filter by
+        schema:
+          type: string
+      - name: take
+        in: query
+        description: Optional number of items to return
+        schema:
+          type: integer
+          format: int32
+      - name: page
+        in: query
+        description: Optional number of page to return
+        schema:
+          type: integer
+          format: int32
+      - name: group_id
+        in: query
+        description: Optional schedule group Id
+        schema:
+          type: array
+          items:
+            type: string
+      - name: group_name
+        in: query
+        description: Optional group name to filter by
+        schema:
+          type: array
+          items:
+            type: string
+      - name: device_id
+        in: query
+        description: Optional device Id to filter by
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Schedule"
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+    post:
+      tags:
+      - Schedules
+      summary: Creates a new schedule.
+      parameters:
+      - name: api_key
+        in: query
+        description: API key
+        schema:
+          type: string
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/ScheduleRequest"
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Schedule"
+        '400':
+          description: Bad Request
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+  "/schedules/{id}":
+    get:
+      tags:
+      - Schedules
+      summary: Gets a schedule by ID.
+      operationId: GetSchedule
+      parameters:
+      - name: api_key
+        in: query
+        description: API key
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: Schedule Id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Schedule"
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+    put:
+      tags:
+      - Schedules
+      summary: Update schedule.
+      parameters:
+      - name: api_key
+        in: query
+        description: API Key
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: Schedule Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/ScheduleRequest"
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+    patch:
+      tags:
+      - Schedules
+      summary: "Patch a schedule. Patch allows partial updates by targeting specific
+        properties of the schedule.\r\nUses the JSON Patch syntax (http://jsonpatch.com)"
+      parameters:
+      - name: api_key
+        in: query
+        description: API key
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: Schedule Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Patch update
+        content:
+          application/json-patch+json:
+            schema:
+              "$ref": "#/components/schemas/JsonPatchDocument"
+      responses:
+        '200':
+          description: Success
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+    delete:
+      tags:
+      - Schedules
+      summary: Delete a schedule.
+      parameters:
+      - name: api_key
+        in: query
+        description: API Key
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: Schedule Id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+  "/schedules/groups":
+    get:
+      tags:
+      - Schedules
+      summary: Gets schedule groups in the account.
+      operationId: GetScheduleGroups
+      parameters:
+      - name: api_key
+        in: query
+        description: API key
+        schema:
+          type: string
+      - name: tree
+        in: query
+        description: Return as tree structure
+        schema:
+          type: boolean
+          default: false
+      - name: id
+        in: query
+        description: Optional group id
+        schema:
+          type: string
+      - name: take
+        in: query
+        description: Optional number of items to return
+        schema:
+          type: integer
+          format: int32
+      - name: page
+        in: query
+        description: Optional number of page to return
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Group"
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+    post:
+      tags:
+      - Schedules
+      summary: Create a new schedule group.
+      parameters:
+      - name: api_key
+        in: query
+        description: API key
+        schema:
+          type: string
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/GroupRequest"
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Group"
+        '400':
+          description: Bad Request
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+  "/schedules/groups/{id}":
+    put:
+      tags:
+      - Schedules
+      summary: Updates a schedule group.
+      parameters:
+      - name: api_key
+        in: query
+        description: API key
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: Schedule Group id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Device group
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/GroupRequest"
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+    delete:
+      tags:
+      - Schedules
+      summary: Delete a schedule group.
+      description: Group must be empty.
+      parameters:
+      - name: api_key
+        in: query
+        description: API Key
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: Schedule Group Id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+  "/templates":
+    get:
+      tags:
+      - Templates
       summary: Gets all templates in an account.
       description: ''
-      operationId: ApiTemplatesGet
-      consumes: []
-      produces:
-        - application/json
       parameters:
-        - name: api_key
-          in: query
-          required: false
+      - name: api_key
+        in: query
+        schema:
           type: string
-        - name: id
-          in: query
-          required: false
+      - name: id
+        in: query
+        schema:
           type: string
-        - name: take
-          in: query
-          required: false
+      - name: take
+        in: query
+        schema:
           type: integer
           format: int32
-        - name: page
-          in: query
-          required: false
+      - name: page
+        in: query
+        schema:
           type: integer
           format: int32
-        - name: group_id
-          in: query
-          required: false
+      - name: group_id
+        in: query
+        schema:
           type: array
           items:
             type: string
-          collectionFormat: multi
-        - name: group_name
-          in: query
-          required: false
+      - name: group_name
+        in: query
+        schema:
           type: array
           items:
             type: string
-          collectionFormat: multi
       responses:
         '200':
           description: Returns an array of templates
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.Template'
-  '/api/templates/{id}':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Template"
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+  "/templates/{id}":
     get:
       tags:
-        - Templates
+      - Templates
       summary: Gets a template by ID.
       description: ''
-      operationId: ApiTemplatesByIdGet
-      consumes: []
-      produces:
-        - application/json
       parameters:
-        - name: api_key
-          in: query
-          required: false
+      - name: api_key
+        in: query
+        schema:
           type: string
-        - name: id
-          in: path
-          required: true
+      - name: id
+        in: path
+        required: true
+        schema:
           type: string
       responses:
         '200':
           description: Returns the template matching the ID
-          schema:
-            $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.Template'
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Template"
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
     delete:
       tags:
-        - Templates
+      - Templates
       summary: Delete a template.
-      operationId: ApiTemplatesByIdDelete
-      consumes: []
-      produces: []
       parameters:
-        - name: api_key
-          in: query
-          description: ''
-          required: false
+      - name: api_key
+        in: query
+        description: ''
+        schema:
           type: string
-        - name: id
-          in: path
-          description: ''
-          required: true
+      - name: id
+        in: path
+        description: ''
+        required: true
+        schema:
           type: string
       responses:
-        '201':
-          description: Success
+        '204':
+          description: No Content
         '400':
           description: Bad Request
-  /api/templates/groups:
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+  "/templates/groups":
     get:
       tags:
-        - Templates
+      - Templates
       summary: Gets template groups in the account.
       description: ''
-      operationId: ApiTemplatesGroupsGet
-      consumes: []
-      produces:
-        - application/json
+      operationId: GetTemplateGroups
       parameters:
-        - name: api_key
-          in: query
-          required: false
+      - name: api_key
+        in: query
+        schema:
           type: string
-        - name: id
-          in: query
-          required: false
+      - name: tree
+        in: query
+        schema:
+          type: boolean
+          default: false
+      - name: id
+        in: query
+        schema:
           type: string
-        - name: take
-          in: query
-          required: false
+      - name: take
+        in: query
+        schema:
           type: integer
           format: int32
-        - name: page
-          in: query
-          required: false
+      - name: page
+        in: query
+        schema:
           type: integer
           format: int32
       responses:
         '200':
           description: Returns an array of playlist groups
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.Group'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Group"
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
     post:
       tags:
-        - Templates
+      - Templates
       summary: Create a new template group.
-      operationId: ApiTemplatesGroupsPost
-      consumes:
-        - application/json-patch+json
-        - application/json
-        - text/json
-        - application/*+json
-      produces:
-        - application/json
       parameters:
-        - name: api_key
-          in: query
-          required: false
+      - name: api_key
+        in: query
+        schema:
           type: string
-        - name: group
-          in: body
-          description: Template group
-          required: false
-          schema:
-            $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.GroupRequest'
+      requestBody:
+        description: Template group
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/GroupRequest"
       responses:
         '201':
           description: Returns the newly-created item
-          schema:
-            $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.Group'
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Group"
         '400':
           description: If the item is null
-  '/api/templates/groups/{id}':
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+  "/templates/groups/{id}":
     put:
       tags:
-        - Templates
+      - Templates
       summary: Updates a template group.
-      operationId: ApiTemplatesGroupsByIdPut
-      consumes:
-        - application/json-patch+json
-        - application/json
-        - text/json
-        - application/*+json
-      produces: []
       parameters:
-        - name: api_key
-          in: query
-          description: API key
-          required: false
+      - name: api_key
+        in: query
+        description: API key
+        schema:
           type: string
-        - name: id
-          in: path
-          description: Group id
-          required: true
+      - name: id
+        in: path
+        description: Group id
+        required: true
+        schema:
           type: string
-        - name: group
-          in: body
-          description: Device group
-          required: false
-          schema:
-            $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.GroupRequest'
+      requestBody:
+        description: Device group
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/GroupRequest"
       responses:
-        '201':
-          description: Success
+        '204':
+          description: No Content
         '400':
           description: Bad Request
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
     delete:
       tags:
-        - Templates
+      - Templates
       summary: Delete a template group.
       description: Group must be empty.
-      operationId: ApiTemplatesGroupsByIdDelete
-      consumes: []
-      produces: []
       parameters:
-        - name: api_key
-          in: query
-          description: ''
-          required: false
+      - name: api_key
+        in: query
+        description: ''
+        schema:
           type: string
-        - name: id
-          in: path
-          description: ''
-          required: true
+      - name: id
+        in: path
+        description: ''
+        required: true
+        schema:
           type: string
       responses:
-        '201':
-          description: Success
+        '204':
+          description: No Content
         '400':
           description: Bad Request
-  /api/users:
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+  "/users":
     get:
       tags:
-        - Users
+      - Users
       summary: Gets all users in an account.
       description: ''
-      operationId: ApiUsersGet
-      consumes: []
-      produces:
-        - application/json
       parameters:
-        - name: api_key
-          in: query
-          required: false
+      - name: api_key
+        in: query
+        schema:
           type: string
-        - name: id
-          in: query
-          required: false
+      - name: id
+        in: query
+        schema:
           type: string
-        - name: take
-          in: query
-          required: false
+      - name: take
+        in: query
+        schema:
           type: integer
           format: int32
-        - name: page
-          in: query
-          required: false
+      - name: page
+        in: query
+        schema:
           type: integer
           format: int32
       responses:
         '200':
           description: Returns an array of users
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.User'
-  '/api/users/{id}':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/User"
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+  "/users/{id}":
     get:
       tags:
-        - Users
+      - Users
       summary: Gets a user by ID.
       description: ''
-      operationId: ApiUsersByIdGet
-      consumes: []
-      produces:
-        - application/json
       parameters:
-        - name: api_key
-          in: query
-          required: false
+      - name: api_key
+        in: query
+        schema:
           type: string
-        - name: id
-          in: path
-          required: true
+      - name: id
+        in: path
+        required: true
+        schema:
           type: string
       responses:
         '200':
           description: Returns the user matching the ID
-          schema:
-            $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.User'
-definitions:
-  RevelDigital.Core.PublicApi.Models.Account:
-    type: object
-    properties:
-      id:
-        type: string
-      name:
-        type: string
-      tags:
-        type: string
-      business_name:
-        type: string
-      address_1:
-        type: string
-      address_2:
-        type: string
-      city:
-        type: string
-      state:
-        type: string
-      postal_code:
-        type: string
-      country:
-        type: string
-      phone:
-        type: string
-      fax:
-        type: string
-      primary_contact_id:
-        type: string
-      secondary_contact_id:
-        type: string
-      created_on:
-        type: string
-      timezone:
-        type: string
-      logo_url:
-        type: string
-  RevelDigital.Core.PublicApi.Models.Device:
-    type: object
-    properties:
-      id:
-        type: string
-      name:
-        type: string
-      group_name:
-        type: string
-      group_id:
-        type: string
-      tags:
-        type: string
-      device_type:
-        $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.DeviceType'
-      entered_service:
-        type: string
-      last_service:
-        type: string
-      timezone:
-        type: string
-      last_update:
-        type: string
-      location:
-        $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.Location'
-      ping_data:
-        $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.PingData'
-      registration_key:
-        type: string
-      mac_address:
-        type: string
-      beacon:
-        $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.Beacon'
-  RevelDigital.Core.PublicApi.Models.DeviceType:
-    type: object
-    properties:
-      id:
-        type: string
-      name:
-        type: string
-      manufacturer:
-        type: string
-      device_caps:
-        format: int32
-        type: integer
-  RevelDigital.Core.PublicApi.Models.Location:
-    type: object
-    properties:
-      city:
-        type: string
-      state:
-        type: string
-      county:
-        type: string
-      country:
-        type: string
-      postal_code:
-        type: string
-      address:
-        type: string
-      latitude:
-        format: double
-        type: number
-      longitude:
-        format: double
-        type: number
-  RevelDigital.Core.PublicApi.Models.PingData:
-    type: object
-    properties:
-      snap:
-        format: byte
-        type: string
-      player_version:
-        type: string
-      os_version:
-        type: string
-      cpu_usage:
-        format: float
-        type: number
-      memory_usage:
-        format: float
-        type: number
-      mac_address:
-        type: string
-      disk_usage:
-        format: float
-        type: number
-      timestamp:
-        format: date-time
-        type: string
-      bytes_received:
-        format: int64
-        type: integer
-      transfer_rate:
-        format: int64
-        type: integer
-      ip_address:
-        type: string
-      latitude:
-        format: double
-        type: number
-      longitude:
-        format: double
-        type: number
-  RevelDigital.Core.PublicApi.Models.Beacon:
-    type: object
-    properties:
-      distance:
-        format: double
-        type: number
-      calibration:
-        format: double
-        type: number
-      phone:
-        type: string
-      email:
-        type: string
-      website:
-        type: string
-      devices:
-        type: array
-        items:
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/User"
+      security:
+      - Bearer:
+        - webapi
+      - ApiKeyInHeader: []
+      - ApiKeyInQuery: []
+components:
+  schemas:
+    Account:
+      type: object
+      properties:
+        id:
           type: string
-      rating:
-        format: double
-        type: number
-      uuid:
-        type: string
-      major:
-        type: string
-      minor:
-        type: string
-      notification_delay:
-        format: int32
-        type: integer
-      instance_id:
-        type: string
-      namespace:
-        type: string
-  RevelDigital.Core.PublicApi.Models.DeviceRequest:
-    required:
-      - name
-    type: object
-    properties:
-      name:
-        type: string
-      tags:
-        type: string
-      timezone:
-        type: string
-      group_id:
-        type: string
-      last_service:
-        format: date-time
-        type: string
-      mac_address:
-        type: string
-      location:
-        $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.Location'
-      beacon:
-        $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.Beacon'
-  RevelDigital.Core.PublicApi.Models.Group:
-    type: object
-    properties:
-      id:
-        type: string
-      name:
-        type: string
-  RevelDigital.Core.PublicApi.Models.GroupRequest:
-    type: object
-    properties:
-      name:
-        type: string
-  RevelDigital.Core.PublicApi.Models.DeviceCommand:
-    type: object
-    properties:
-      device_id:
-        type: string
-      commands:
-        type: array
-        items:
-          $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.Command'
-  RevelDigital.Core.PublicApi.Models.Command:
-    type: object
-    properties:
-      name:
-        type: string
-      arg:
-        type: string
-  RevelDigital.Core.PublicApi.Models.Media:
-    type: object
-    properties:
-      id:
-        type: string
-      name:
-        type: string
-      group_name:
-        type: string
-      group_id:
-        type: string
-      tags:
-        type: string
-      mime_type:
-        type: string
-      file_size:
-        format: int32
-        type: integer
-      file_name:
-        type: string
-      file_url:
-        type: string
-      thumbnail_url:
-        type: string
-      uploaded_on:
-        type: string
-      uploaded_by:
-        type: string
-      advertiser_id:
-        type: string
-      is_shared:
-        type: boolean
-      start_date:
-        type: string
-      end_date:
-        type: string
-  RevelDigital.Core.PublicApi.Models.MediaRequest:
-    type: object
-    properties:
-      name:
-        type: string
-      group_id:
-        type: string
-      tags:
-        type: string
-      advertiser_id:
-        type: string
-      is_shared:
-        type: boolean
-      start_date:
-        format: date-time
-        type: string
-      end_date:
-        format: date-time
-        type: string
-  RevelDigital.Core.PublicApi.Models.Playlist:
-    type: object
-    properties:
-      id:
-        type: string
-      name:
-        type: string
-      group_name:
-        type: string
-      group_id:
-        type: string
-      tags:
-        type: string
-      type:
-        type: string
-      created_on:
-        type: string
-      created_by_id:
-        type: string
-      modified_on:
-        type: string
-      modified_by_id:
-        type: string
-      sources:
-        type: array
-        items:
-          $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.Source'
-  RevelDigital.Core.PublicApi.Models.Source:
-    type: object
-    properties:
-      id:
-        type: string
-      name:
-        type: string
-      type:
-        type: string
-      sequence:
-        format: int32
-        type: integer
-      media_id:
-        type: string
-      template_id:
-        type: string
-      value:
-        type: string
-      interval:
-        format: int32
-        type: integer
-      media:
-        $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.Media'
-      conditions:
-        type: array
-        items:
-          $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.Condition'
-  RevelDigital.Core.PublicApi.Models.Condition:
-    type: object
-    properties:
-      type:
-        type: string
-      operator:
-        format: int32
-        type: integer
-      value_1:
-        type: string
-      value_2:
-        type: string
-      value_3:
-        type: string
-      value_4:
-        type: string
-  RevelDigital.Core.PublicApi.Models.Schedule:
-    type: object
-    properties:
-      id:
-        type: string
-      name:
-        type: string
-      group_name:
-        type: string
-      group_id:
-        type: string
-      tags:
-        type: string
-      monday:
-        type: boolean
-      tuesday:
-        type: boolean
-      wednesday:
-        type: boolean
-      thursday:
-        type: boolean
-      friday:
-        type: boolean
-      saturday:
-        type: boolean
-      sunday:
-        type: boolean
-      start_time:
-        type: string
-      end_time:
-        type: string
-      template_id:
-        type: string
-      playlist_id:
-        type: string
-      type:
-        type: string
-      start_date:
-        type: string
-      end_date:
-        type: string
-      devices:
-        type: array
-        items:
-          $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.ScheduleDevice'
-      conditions:
-        type: array
-        items:
-          $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.Condition'
-  RevelDigital.Core.PublicApi.Models.ScheduleDevice:
-    type: object
-    properties:
-      id:
-        type: string
-  RevelDigital.Core.PublicApi.Models.Template:
-    type: object
-    properties:
-      id:
-        type: string
-      name:
-        type: string
-      group_name:
-        type: string
-      group_id:
-        type: string
-      tags:
-        type: string
-      created_on:
-        type: string
-      created_by_id:
-        type: string
-      modified_on:
-        type: string
-      modified_by_id:
-        type: string
-      script:
-        type: string
-      back_color:
-        type: string
-      width:
-        format: int32
-        type: integer
-      height:
-        format: int32
-        type: integer
-      orientation:
-        format: int32
-        type: integer
-      modules:
-        type: array
-        items:
-          $ref: '#/definitions/RevelDigital.Core.PublicApi.Models.Module'
-  RevelDigital.Core.PublicApi.Models.Module:
-    type: object
-    properties:
-      id:
-        type: string
-      name:
-        type: string
-      type:
-        type: string
-      left:
-        format: int32
-        type: integer
-      top:
-        format: int32
-        type: integer
-      width:
-        format: int32
-        type: integer
-      height:
-        format: int32
-        type: integer
-      playlist_id:
-        type: string
-      sequence:
-        format: int32
-        type: integer
-  RevelDigital.Core.PublicApi.Models.User:
-    required:
-      - email
-      - role
-      - user_name
-    type: object
-    properties:
-      id:
-        type: string
-      first_name:
-        type: string
-      last_name:
-        type: string
-      city:
-        type: string
-      state:
-        type: string
-      postal_code:
-        type: string
-      country:
-        type: string
-      home_phone:
-        type: string
-      work_phone:
-        type: string
-      mobile_phone:
-        type: string
-      created_on:
-        type: string
-      email:
-        type: string
-      role:
-        type: array
-        items:
+          nullable: true
+        name:
           type: string
-      user_name:
-        type: string
-      last_activity:
-        type: string
-securityDefinitions: {}
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        business_name:
+          type: string
+          nullable: true
+        address_1:
+          type: string
+          nullable: true
+        address_2:
+          type: string
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        state:
+          type: string
+          nullable: true
+        postal_code:
+          type: string
+          nullable: true
+        country:
+          type: string
+          nullable: true
+        phone:
+          type: string
+          nullable: true
+        fax:
+          type: string
+          nullable: true
+        primary_contact_id:
+          type: string
+          nullable: true
+        secondary_contact_id:
+          type: string
+          nullable: true
+        created_on:
+          type: string
+          format: date-time
+          nullable: true
+        timeZone:
+          type: string
+          nullable: true
+        logo_url:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Beacon:
+      type: object
+      properties:
+        distance:
+          type: number
+          format: double
+          nullable: true
+        calibration:
+          type: number
+          format: double
+          nullable: true
+        phone:
+          type: string
+          nullable: true
+        emailAddress:
+          type: string
+          nullable: true
+        website:
+          type: string
+          nullable: true
+        devices:
+          type: array
+          items:
+            type: string
+          nullable: true
+        rating:
+          type: number
+          format: double
+          nullable: true
+        uuid:
+          type: string
+          nullable: true
+        major:
+          type: string
+          nullable: true
+        minor:
+          type: string
+          nullable: true
+        notification_delay:
+          type: integer
+          format: int32
+          nullable: true
+        instance_id:
+          type: string
+          nullable: true
+        namespace:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Command:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        arg:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Condition:
+      type: object
+      properties:
+        type:
+          "$ref": "#/components/schemas/ConditionType"
+        operator:
+          "$ref": "#/components/schemas/ConditionOperator"
+        value_1:
+          type: string
+          nullable: true
+        value_2:
+          type: string
+          nullable: true
+        value_3:
+          type: string
+          nullable: true
+        value_4:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ConditionOperator:
+      enum:
+      - And
+      - Or
+      - AndNot
+      - OrNot
+      type: string
+    ConditionType:
+      enum:
+      - AfterDate
+      - AfterTime
+      - Always
+      - BeforeDate
+      - BeforeTime
+      - Command
+      - DateRange
+      - DayOfMonth
+      - DaysOfWeek
+      - DeviceByGroup
+      - DeviceByName
+      - DeviceByTag
+      - Everywhere
+      - GeoLocation
+      - GpsWithinRadius
+      - KeyEvent
+      - MonthOfYear
+      - Motion
+      - Never
+      - Nowhere
+      - PctAdult
+      - PctChild
+      - PctFemale
+      - PctMale
+      - PctSenior
+      - PctYoung
+      - PctYoungAdult
+      - PlaylistByName
+      - PlaylistByTag
+      - SendCommand
+      - SpecificDevice
+      - SpecificPlaylist
+      - SpecificTemplate
+      - SpecificZone
+      - TemplateByName
+      - TemplateByTag
+      - TimeRange
+      - TopicSet
+      - TotalViewersGreaterThan
+      - TotalViewersLessThan
+      - TouchEvent
+      - WeekOfMonth
+      - WeekOfYear
+      type: string
+    Device:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        group_name:
+          type: string
+          nullable: true
+        group_id:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        device_type:
+          "$ref": "#/components/schemas/DeviceType"
+        entered_service:
+          type: string
+          format: date-time
+          nullable: true
+        last_service:
+          type: string
+          format: date-time
+          nullable: true
+        timezone:
+          type: string
+          nullable: true
+        language_code:
+          type: string
+          nullable: true
+        last_update:
+          type: string
+          format: date-time
+          nullable: true
+        location:
+          "$ref": "#/components/schemas/Location"
+        ping_data:
+          "$ref": "#/components/schemas/PingData"
+        registration_key:
+          type: string
+          nullable: true
+        encrypted_registration_key:
+          type: string
+          nullable: true
+        mac_address:
+          type: string
+          nullable: true
+        beacon:
+          "$ref": "#/components/schemas/Beacon"
+        service_level:
+          type: string
+          nullable: true
+        in_sync:
+          type: boolean
+      additionalProperties: false
+    DeviceCommand:
+      type: object
+      properties:
+        deviceId:
+          type: string
+          nullable: true
+        commands:
+          type: array
+          items:
+            "$ref": "#/components/schemas/Command"
+          nullable: true
+      additionalProperties: false
+    DeviceJsonPatchDocument:
+      type: object
+      properties:
+        operations:
+          type: array
+          items:
+            "$ref": "#/components/schemas/DeviceOperation"
+          nullable: true
+          readOnly: true
+        contractResolver:
+          "$ref": "#/components/schemas/IContractResolver"
+      additionalProperties: false
+    DeviceOperation:
+      type: object
+      properties:
+        operationType:
+          "$ref": "#/components/schemas/OperationType"
+        path:
+          type: string
+          nullable: true
+        op:
+          type: string
+          nullable: true
+        from:
+          type: string
+          nullable: true
+        value:
+          nullable: true
+      additionalProperties: false
+    DeviceRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        timeZone:
+          type: string
+          nullable: true
+        language_code:
+          type: string
+          nullable: true
+        group_id:
+          type: string
+          nullable: true
+        last_service:
+          type: string
+          format: date-time
+          nullable: true
+        mac_address:
+          type: string
+          nullable: true
+        location:
+          "$ref": "#/components/schemas/Location"
+        beacon:
+          "$ref": "#/components/schemas/Beacon"
+      additionalProperties: false
+    DeviceType:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        manufacturer:
+          type: string
+          nullable: true
+        device_caps:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    Event:
+      type: object
+      properties:
+        session_id:
+          type: string
+          nullable: true
+        event_name:
+          type: string
+          nullable: true
+        properties:
+          type: object
+          additionalProperties: {}
+          nullable: true
+      additionalProperties: false
+    FormatType:
+      enum:
+      - XML
+      - CSV
+      - IMAGE
+      - PDF
+      - EXCEL
+      - WORD
+      - HTML
+      - MHTML
+      type: string
+    Group:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        parent_id:
+          type: string
+          nullable: true
+        count:
+          type: integer
+          format: int32
+          nullable: true
+        level:
+          type: integer
+          format: int32
+          nullable: true
+        family:
+          type: integer
+          format: int64
+          nullable: true
+        organization_count:
+          type: integer
+          format: int32
+          nullable: true
+        children:
+          type: array
+          items:
+            "$ref": "#/components/schemas/Group"
+          nullable: true
+      additionalProperties: false
+    GroupRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+      additionalProperties: false
+    IContractResolver:
+      type: object
+      additionalProperties: false
+    IntervalType:
+      enum:
+      - Minute
+      - Hour
+      - Day
+      - Month
+      type: string
+      description: Duration interval to generate the report for
+    JsonPatchDocument:
+      type: array
+      items:
+        "$ref": "#/components/schemas/Operation"
+      description: Array of operations to perform
+    Location:
+      type: object
+      properties:
+        city:
+          type: string
+          nullable: true
+        state:
+          type: string
+          nullable: true
+        county:
+          type: string
+          nullable: true
+        country:
+          type: string
+          nullable: true
+        postal_code:
+          type: string
+          nullable: true
+        address:
+          type: string
+          nullable: true
+        latitude:
+          type: number
+          format: double
+          nullable: true
+        longitude:
+          type: number
+          format: double
+          nullable: true
+      additionalProperties: false
+    LoopPolicyType:
+      enum:
+      - Default
+      - OverSaturate2x
+      - OverSaturate3x
+      - OverSaturate4x
+      - OverSaturate5x
+      - Random
+      - UnderSaturate2x
+      - UnderSaturate3x
+      - UnderSaturate4x
+      - UnderSaturate5x
+      - Prefill
+      - Postfill
+      - Spreadfill
+      type: string
+    Media:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        group_id:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        advertiser_id:
+          type: string
+          nullable: true
+        is_shared:
+          type: boolean
+          nullable: true
+        start_date:
+          type: string
+          format: date-time
+          nullable: true
+        end_date:
+          type: string
+          format: date-time
+          nullable: true
+        id:
+          type: string
+          nullable: true
+        group_name:
+          type: string
+          nullable: true
+        mime_type:
+          type: string
+          nullable: true
+        file_size:
+          type: integer
+          format: int32
+        file_name:
+          type: string
+          nullable: true
+        file_url:
+          type: string
+          nullable: true
+        thumbnail_url:
+          type: string
+          nullable: true
+        uploaded_on:
+          type: string
+          format: date-time
+          nullable: true
+        uploaded_by_id:
+          type: string
+          nullable: true
+      additionalProperties: false
+    MediaRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        group_id:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        advertiser_id:
+          type: string
+          nullable: true
+        is_shared:
+          type: boolean
+          nullable: true
+        start_date:
+          type: string
+          format: date-time
+          nullable: true
+        end_date:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    MediaRequestJsonPatchDocument:
+      type: object
+      properties:
+        operations:
+          type: array
+          items:
+            "$ref": "#/components/schemas/MediaRequestOperation"
+          nullable: true
+          readOnly: true
+        contractResolver:
+          "$ref": "#/components/schemas/IContractResolver"
+      additionalProperties: false
+    MediaRequestOperation:
+      type: object
+      properties:
+        operationType:
+          "$ref": "#/components/schemas/OperationType"
+        path:
+          type: string
+          nullable: true
+        op:
+          type: string
+          nullable: true
+        from:
+          type: string
+          nullable: true
+        value:
+          nullable: true
+      additionalProperties: false
+    MetricType:
+      enum:
+      - PingCount
+      - AverageDwell
+      type: string
+      description: Type of metric to run the report on
+    Module:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        left:
+          type: integer
+          format: int32
+          nullable: true
+        top:
+          type: integer
+          format: int32
+          nullable: true
+        width:
+          type: integer
+          format: int32
+          nullable: true
+        height:
+          type: integer
+          format: int32
+          nullable: true
+        playlist_id:
+          type: string
+          nullable: true
+        sequence:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    Operation:
+      type: object
+      properties:
+        op:
+          type: string
+        value:
+          type: object
+          nullable: true
+        path:
+          type: string
+    OperationType:
+      enum:
+      - Add
+      - Remove
+      - Replace
+      - Move
+      - Copy
+      - Test
+      - Invalid
+      type: string
+    PingData:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        snap:
+          type: string
+          format: byte
+          nullable: true
+        player_version:
+          type: string
+          nullable: true
+        os_version:
+          type: string
+          nullable: true
+        cpu_usage:
+          type: number
+          format: float
+        memory_usage:
+          type: number
+          format: float
+        mac_address:
+          type: string
+          nullable: true
+        disk_usage:
+          type: number
+          format: float
+        timestamp:
+          type: string
+          format: date-time
+        bytes_received:
+          type: integer
+          format: int64
+        transfer_rate:
+          type: integer
+          format: int64
+        ip_address:
+          type: string
+          nullable: true
+        latitude:
+          type: number
+          format: double
+          nullable: true
+        longitude:
+          type: number
+          format: double
+          nullable: true
+        current_schedule:
+          type: string
+          nullable: true
+        uptime:
+          type: integer
+          format: int64
+          nullable: true
+        external_ip_address:
+          type: string
+          nullable: true
+        download_pct_complete:
+          type: integer
+          format: int64
+          nullable: true
+        meta:
+          type: object
+          additionalProperties: {}
+          nullable: true
+        cpu_temperature:
+          type: number
+          format: float
+          nullable: true
+      additionalProperties: false
+    Playlist:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        group_name:
+          type: string
+          nullable: true
+        group_id:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        type:
+          "$ref": "#/components/schemas/PlaylistType"
+        duration:
+          type: integer
+          format: int32
+          nullable: true
+        is_random_start:
+          type: boolean
+          nullable: true
+        created_on:
+          type: string
+          format: date-time
+          nullable: true
+        created_by_id:
+          type: string
+          nullable: true
+        modified_on:
+          type: string
+          format: date-time
+          nullable: true
+        modified_by_id:
+          type: string
+          nullable: true
+        sources:
+          type: array
+          items:
+            "$ref": "#/components/schemas/Source"
+          nullable: true
+      additionalProperties: false
+    PlaylistJsonPatchDocument:
+      type: object
+      properties:
+        operations:
+          type: array
+          items:
+            "$ref": "#/components/schemas/PlaylistOperation"
+          nullable: true
+          readOnly: true
+        contractResolver:
+          "$ref": "#/components/schemas/IContractResolver"
+      additionalProperties: false
+    PlaylistOperation:
+      type: object
+      properties:
+        operationType:
+          "$ref": "#/components/schemas/OperationType"
+        path:
+          type: string
+          nullable: true
+        op:
+          type: string
+          nullable: true
+        from:
+          type: string
+          nullable: true
+        value:
+          nullable: true
+      additionalProperties: false
+    PlaylistType:
+      enum:
+      - Multimedia
+      - Slideshow
+      - Template
+      - Marquee
+      type: string
+    Report:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        parameters:
+          type: array
+          items:
+            "$ref": "#/components/schemas/ReportParameter"
+          nullable: true
+      additionalProperties: false
+    ReportExportPostBody:
+      type: object
+      properties:
+        report_id:
+          type: string
+          description: Report name
+          nullable: true
+        format:
+          "$ref": "#/components/schemas/FormatType"
+        activity_type:
+          type: string
+          description: Activity type
+          nullable: true
+        interval_type:
+          "$ref": "#/components/schemas/IntervalType"
+        start_date:
+          type: string
+          description: Start date
+          format: date-time
+          nullable: true
+        end_date:
+          type: string
+          description: End date
+          format: date-time
+          nullable: true
+        start_time:
+          type: string
+          description: "Start time\r\n\r\nFormat is 'HHmm'"
+          format: date-time
+          nullable: true
+        end_time:
+          type: string
+          description: "End time\r\n\r\nFormat is 'HHmm'"
+          format: date-time
+          nullable: true
+        device_id:
+          type: array
+          items:
+            type: string
+          description: Array of devices by Id to include in report
+          nullable: true
+        user_id:
+          type: array
+          items:
+            type: string
+          description: Array of users by Id to include in report
+          nullable: true
+        media_id:
+          type: array
+          items:
+            type: string
+          description: Array of media items by Id to include in report
+          nullable: true
+      additionalProperties: false
+    ReportParameter:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        required:
+          type: boolean
+        multi_value:
+          type: boolean
+      additionalProperties: false
+    Schedule:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        group_id:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        monday:
+          type: boolean
+          nullable: true
+        tuesday:
+          type: boolean
+          nullable: true
+        wednesday:
+          type: boolean
+          nullable: true
+        thursday:
+          type: boolean
+          nullable: true
+        friday:
+          type: boolean
+          nullable: true
+        saturday:
+          type: boolean
+          nullable: true
+        sunday:
+          type: boolean
+          nullable: true
+        start_date:
+          type: string
+          nullable: true
+        end_date:
+          type: string
+          nullable: true
+        start_time:
+          type: string
+          nullable: true
+        end_time:
+          type: string
+          nullable: true
+        template_id:
+          type: string
+          nullable: true
+        playlist_id:
+          type: string
+          nullable: true
+        type:
+          "$ref": "#/components/schemas/ScheduleType"
+        devices:
+          type: array
+          items:
+            "$ref": "#/components/schemas/ScheduleDevice"
+          nullable: true
+        conditions:
+          type: array
+          items:
+            "$ref": "#/components/schemas/Condition"
+          nullable: true
+        priority:
+          "$ref": "#/components/schemas/SchedulePriorityType"
+        id:
+          type: string
+          nullable: true
+        group_name:
+          type: string
+          nullable: true
+        created_on:
+          type: string
+          format: date-time
+          nullable: true
+        created_by_id:
+          type: string
+          nullable: true
+        modified_on:
+          type: string
+          format: date-time
+          nullable: true
+        modified_by_id:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ScheduleDevice:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SchedulePriorityType:
+      enum:
+      - Normal
+      - High
+      - Highest
+      - Lowest
+      - Low
+      type: string
+    ScheduleRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        group_id:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        monday:
+          type: boolean
+          nullable: true
+        tuesday:
+          type: boolean
+          nullable: true
+        wednesday:
+          type: boolean
+          nullable: true
+        thursday:
+          type: boolean
+          nullable: true
+        friday:
+          type: boolean
+          nullable: true
+        saturday:
+          type: boolean
+          nullable: true
+        sunday:
+          type: boolean
+          nullable: true
+        start_date:
+          type: string
+          nullable: true
+        end_date:
+          type: string
+          nullable: true
+        start_time:
+          type: string
+          nullable: true
+        end_time:
+          type: string
+          nullable: true
+        template_id:
+          type: string
+          nullable: true
+        playlist_id:
+          type: string
+          nullable: true
+        type:
+          "$ref": "#/components/schemas/ScheduleType"
+        devices:
+          type: array
+          items:
+            "$ref": "#/components/schemas/ScheduleDevice"
+          nullable: true
+        conditions:
+          type: array
+          items:
+            "$ref": "#/components/schemas/Condition"
+          nullable: true
+        priority:
+          "$ref": "#/components/schemas/SchedulePriorityType"
+      additionalProperties: false
+    ScheduleRequestJsonPatchDocument:
+      type: object
+      properties:
+        operations:
+          type: array
+          items:
+            "$ref": "#/components/schemas/ScheduleRequestOperation"
+          nullable: true
+          readOnly: true
+        contractResolver:
+          "$ref": "#/components/schemas/IContractResolver"
+      additionalProperties: false
+    ScheduleRequestOperation:
+      type: object
+      properties:
+        operationType:
+          "$ref": "#/components/schemas/OperationType"
+        path:
+          type: string
+          nullable: true
+        op:
+          type: string
+          nullable: true
+        from:
+          type: string
+          nullable: true
+        value:
+          nullable: true
+      additionalProperties: false
+    ScheduleType:
+      enum:
+      - Playlist
+      - Template
+      - Campaign
+      type: string
+    Source:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        type:
+          "$ref": "#/components/schemas/SourceType"
+        sequence:
+          type: integer
+          format: int32
+          nullable: true
+        media_id:
+          type: string
+          nullable: true
+        template_id:
+          type: string
+          nullable: true
+        playlist_id:
+          type: string
+          nullable: true
+        value:
+          type: string
+          nullable: true
+        interval:
+          type: integer
+          format: int32
+          nullable: true
+        media:
+          "$ref": "#/components/schemas/Media"
+        loop_policy_type:
+          "$ref": "#/components/schemas/LoopPolicyType"
+        conditions:
+          type: array
+          items:
+            "$ref": "#/components/schemas/Condition"
+          nullable: true
+      additionalProperties: false
+    SourceType:
+      enum:
+      - Audio
+      - Command
+      - Flash
+      - Gadget
+      - Image
+      - Pdf
+      - PlaceExchange
+      - Playlist
+      - PowerPoint
+      - Rss
+      - Svg
+      - Template
+      - Text
+      - Twitter
+      - Url
+      - Video
+      - VistarMedia
+      - WebPage
+      - YouTube
+      type: string
+    Template:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        group_name:
+          type: string
+          nullable: true
+        group_id:
+          type: string
+          nullable: true
+        tags:
+          type: string
+          nullable: true
+        created_on:
+          type: string
+          format: date-time
+          nullable: true
+        created_by_id:
+          type: string
+          nullable: true
+        modified_on:
+          type: string
+          format: date-time
+          nullable: true
+        modified_by_id:
+          type: string
+          nullable: true
+        script:
+          type: string
+          nullable: true
+        back_color:
+          type: string
+          nullable: true
+        width:
+          type: integer
+          format: int32
+          nullable: true
+        height:
+          type: integer
+          format: int32
+          nullable: true
+        orientation:
+          type: integer
+          format: int32
+          nullable: true
+        modules:
+          type: array
+          items:
+            "$ref": "#/components/schemas/Module"
+          nullable: true
+      additionalProperties: false
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        first_name:
+          type: string
+          nullable: true
+        last_name:
+          type: string
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        state:
+          type: string
+          nullable: true
+        postal_code:
+          type: string
+          nullable: true
+        country:
+          type: string
+          nullable: true
+        home_phone:
+          type: string
+          nullable: true
+        work_phone:
+          type: string
+          nullable: true
+        mobile_phone:
+          type: string
+          nullable: true
+        created_on:
+          type: string
+          format: date-time
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        role:
+          type: array
+          items:
+            type: string
+          nullable: true
+        user_name:
+          type: string
+          nullable: true
+        last_activity:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://id.reveldigital.com/connect/authorize
+          tokenUrl: https://id.reveldigital.com/connect/token
+          scopes:
+            webapi: Web API
+    ApiKeyInHeader:
+      type: apiKey
+      description: 'Utilize a header based API key associated with your Revel Digital
+        account. X-RevelDigital-ApiKey: XXXXXXXX'
+      name: X-RevelDigital-ApiKey
+      in: header
+    ApiKeyInQuery:
+      type: apiKey
+      description: Utilize a query based API key associated with your Revel Digital
+        account. api_key=XXXXXXXXX
+      name: api_key
+      in: query
+security:
+- {}
