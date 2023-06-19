@@ -53,7 +53,8 @@ The script editor has a number of built-in snippets available for some of the mo
 
 These snippets will auto generate the script necessary to perform the function selected.
 
-**IMPORTANT: Make sure your platform is properly selected at the top/right of the script editor window.**
+!!! Note
+    Make sure your platform is properly selected at the top/right of the script editor window.
 
 
 #Technical Reference
