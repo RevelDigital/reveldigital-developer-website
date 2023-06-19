@@ -8,8 +8,12 @@
       
       
       
+      
+        <link rel="prev" href="../android/">
+      
+      
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.1">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.16">
     
     
       
@@ -17,13 +21,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.69437709.min.css">
-      
-        
-        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
-        
+      <link rel="stylesheet" href="../assets/stylesheets/main.26e3688c.min.css">
       
       
+
     
     
     
@@ -42,17 +43,15 @@
 
     
     
+    
   </head>
   
   
-    
-    
-    
-    
-    
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+    <body dir="ltr">
   
     
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -72,7 +71,9 @@
     
       
 
-<header class="md-header" data-md-component="header">
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="RevelDigital for Developers" class="md-header__button md-logo" aria-label="RevelDigital for Developers" data-md-component="logo">
       
@@ -116,7 +117,7 @@
       </label>
       <nav class="md-search__options" aria-label="Search">
         
-        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
         </button>
       </nav>
@@ -128,7 +129,7 @@
           <div class="md-search-result__meta">
             Initializing search
           </div>
-          <ol class="md-search-result__list"></ol>
+          <ol class="md-search-result__list" role="presentation"></ol>
         </div>
       </div>
     </div>
@@ -242,7 +243,7 @@
   
     <li class="md-nav__item md-nav__item--active">
       
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
         
@@ -282,10 +283,11 @@
               </div>
             
           
-          <div class="md-content" data-md-component="content">
-            <article class="md-content__inner md-typeset">
-              
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
                 
+                  
 
 
 <h1 id="revel-digital-gadgets">Revel Digital Gadgets</h1>
@@ -293,7 +295,7 @@
 <p>Gadgets are a simple means of providing customizable, dynamic content to any template. The Revel Digital platform includes a number of ready-to-use
 gadgets for everything from weather conditions to social media feeds. Creating your own gadget is simple if you have some basic understanding of HTML
 and Javascript.</p>
-<p><img alt="template" src="/img/gadget-example.png" /></p>
+<p><img alt="template" src="../img/gadget-preview.png" /></p>
 <h1 id="whats-in-a-gadget">What's in a gadget</h1>
 <p>A gadget is nothing more than an XML file which defines the properties of the gadget along with the HTML and Javascript for rendering the gadget content.</p>
 <p>Here's a template for a sample gadget:</p>
@@ -402,12 +404,12 @@ Most any web hosting provider will do, but we recommend <a href="https://pages.g
 <p>You can read more on <a href="https://pages.github.com/">Github Pages here</a>. This is a great option for simple hosting.</p>
 <h3 id="adding-your-gadget-to-a-template">Adding your gadget to a template</h3>
 <p>Now that your gadget is available on the web we can add it to your template.</p>
-<p><img alt="template" src="/img/gadget-1.png" /></p>
-<p>Add a new <strong>Gadget zone</strong> to your template, and paste the URL to your gadget XML in the Source field. Click the refresh icon to load your gadget properties in the editor.</p>
+<p><img alt="template" src="../img/assign-custom-gadget.png" /></p>
+<p>Add a new <strong>Gadget zone</strong> to your template, in the gadget properties click the 'Select Gadget' button and paste the URL to your gadget XML in the Source field. Tap Enter to submit the new Gadget URL. The custom gadget properties will populate and you will be able to now preview your gadget within the template.</p>
 <p>Now you can preview the template to see your work!</p>
 <h1 id="yeoman-generator">Yeoman generator</h1>
-<p>Our Yeoman generator can scaffold a template for you automatically.</p>
-<p>First, install <a href="http://yeoman.io">Yeoman</a> and <a href="https://github.com/RevelDigital/generator-reveldigital-gadget">generator-reveldigital-gadget</a> using <a href="https://www.npmjs.com/">npm</a>
+<p>Our Yeoman generator can scaffold a gadget template for you automatically.</p>
+<p>First, install <a href="https://yeoman.io">Yeoman</a> and <a href="https://github.com/RevelDigital/generator-reveldigital-gadget">generator-reveldigital-gadget</a> using <a href="https://www.npmjs.com/">npm</a>
 (we assume you have pre-installed <a href="https://nodejs.org/">node.js</a>).</p>
 <pre><code class="language-sh">npm install -g yo
 npm install -g generator-reveldigital-gadget
@@ -415,40 +417,191 @@ npm install -g generator-reveldigital-gadget
 <p>Then generate your new gadget:</p>
 <pre><code class="language-sh">yo reveldigital-gadget
 </code></pre>
+<h1 id="angular-based-gadgets">Angular Based Gadgets <img alt="Angular Logo" src="../img/angular-logo.png" /></h1>
+<p><a href="https://angular.io/">Angular</a> is a popular framework for developing web based applications. By developing your gadget in Angular you are provided a wide range custom components, development tools, internationalization tools, accessibility tools, and more.</p>
+<p>Revel Digital provides a custom Angular schematic for quickly scaffolding your Angular app for use as a gadget. The schematic incorporates the <a href="https://github.com/RevelDigital/reveldigital-client-library">Revel Digital client library</a> for interfacing with player devices. The schematic also provides a simplified method for publishing and hosting your gadget to <a href="https://pages.github.com/">GitHub Pages</a>.</p>
+<h2 id="quickstart">Quickstart</h2>
+<p><strong>New to Angular?</strong> <a href="https://angular.io/guide/setup-local">Check out the Angular documentation</a> for getting your environment configured for development.</p>
+<h3 id="step-1-github-repository-creation-optional"><strong>Step 1.</strong> GitHub Repository Creation (Optional)</h3>
+<p><strong>Not hosting your app on Github? Skip to step #2.</strong></p>
+<p>Create a new repository on <a href="https://github.com/">GitHub.com</a>. For more information, see "<a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository">Creating a new repository</a>."</p>
+<p>Copy your remote repository URL</p>
+<p><img alt="Alt text" src="https://reveldigital.github.io/reveldigital-client-library/images/copy-remote-repository-url-quick-setup.jpg" /></p>
+<pre><code class="language-sh">git remote add origin &lt;REMOTE_URL&gt;
+# Sets the new remote
+git remote -v
+# Verifies the new remote URL
+</code></pre>
+<h3 id="step-2-create-a-new-angular-app"><strong>Step 2.</strong> Create a new Angular app</h3>
+<p>From within your working folder, run the following Angular CLI command using the name of your app.</p>
+<pre><code class="language-sh">ng new my-app --directory ./
+# Generates the boilerplate code for a new Angular app
+</code></pre>
+<h3 id="step-3-add-the-revel-digital-libaries"><strong>Step 3.</strong> Add the Revel Digital libaries</h3>
+<p>Run the Revel Digital angular schematic which will configure your app for use as a Revel Digital gadget.</p>
+<pre><code class="language-sh">ng add @reveldigital/player-client
+# Run the Revel Digital Angular schematic
+</code></pre>
+<h3 id="step-4-build"><strong>Step 4.</strong> Build</h3>
+<p>The build script will generate the Angular app along with a the gadget XML definition file.</p>
+<pre><code class="language-sh">npm run build:gadget
+# Run the gadget build script
+</code></pre>
+<h3 id="step-5-deploy"><strong>Step 5.</strong> Deploy</h3>
+<p>The app can be hosted using any number of hosting services, however the provided schematic includes a simplified option for publishing to <a href="https://pages.github.com/">GitHub Pages</a>.</p>
+<p>Assuming your working folder is associated with your GitHub repository, simply run the following command to deploy the app to the <code>gh-pages</code> branch. The gadget app and associated XML file will be publicly visibile and available for use in your signage.</p>
+<pre><code class="language-sh">npm run deploy:gagdet
+# Deploy to GitHub Pages
+</code></pre>
+<h2 id="sample-usage">Sample usage</h2>
+<p>The majority of the functionality is contained within the <a href="https://reveldigital.github.io/reveldigital-client-library/injectables/PlayerClientService.html">PlayerClientService</a>. The service and supporting library exposes the following functionality:</p>
+<ul>
+<li>Methods for obtaining player details such as device time, locale, etc</li>
+<li>Methods for interfacting with the player including sending commands and calling into player scripting</li>
+<li>Player lifecycle methods (ready/start/stop)</li>
+<li>Gadget property accessors such as user preferences</li>
+<li>Miscellaneous helpers such as the SafeStyle pipe</li>
+</ul>
+<p>Simply inject this service in your Angular component constructor in order to access the player client interface.</p>
+<pre><code class="language-ts">  constructor(public client: PlayerClientService) {
+
+    this.prefs = client.getPrefs();
+
+    this.style = this.prefs.getString('myStylePref');
+
+    this.client.onReady$.subscribe((val) =&gt; {
+      console.log(val ? 'Ready' : 'Not ready');
+    });
+
+    this.client.onCommand$.subscribe((cmd) =&gt; {
+      console.log(`onCommand: ${cmd.name}, ${cmd.arg}`);
+    });
+
+    this.client.onStart$.subscribe(() =&gt; {
+      console.log(&quot;onStart&quot;);
+    });
+
+    this.client.onStop$.subscribe(() =&gt; {
+      console.log(&quot;onStop&quot;);
+    });
+  }
+</code></pre>
+<h2 id="gadget-definition-preferences">Gadget Definition &amp; Preferences</h2>
+<p>The <code>assets/gadget.yaml</code> file is the definition file for your gadget, responsible for defining the basic properties and features of the gadget as presented to the user. These properties include the gadget name, description, support URL, and preferences. A sample <code>gadgets.yaml</code> file is included in your project after running the schematic.</p>
+<p>Preferences are the primary method for providing customization options of your gadget. They allow signage designers to change and preview gadget properties at design time within the Revel Digital CMS.</p>
+<p>The following is the sample <code>gadgets.yaml</code> included with the schematic:</p>
+<pre><code class="language-yaml"># Basic properties of the gadget must include the following:
+#   title: Title of the gadget as it will appear in the Revel Digital CMS UX
+#   title_url: Optional support URL for the gadget
+#   description: Details of the gadget. Will appear within the Revel Digital CMS
+#   author: Name of author or organization credited with developing the gadget
+#   background: (Deprecated) should always be transparent for most gadgets
+#
+title: My Gadget
+title_url: https://mysupporturl.org
+description: Describe the purpose of your gadget here
+author: My Organization
+background: transparent
+
+# Requirments enable certain features of the gadget. Available options include:
+#   reveldigital (core Revel Digital features)
+#   offline (Enable service worker caching for offline support)
+#   webfont (Enable Google WebFonts for dynamic font loading)
+#
+requirements:
+  - reveldigital
+  - offline
+  - webfont
+
+# Locales are use for localization within the gadget definition (XML) itself.
+#  Docs for using the Gadget API for i18n are available here: https://developers.google.com/gadgets/docs/i18n
+#
+# Angular applications should use the i18n support provided by the Angular framework:
+#  https://angular.io/guide/i18n-overview
+#
+locales:
+  - messages: https://reveldigital.github.io/reveldigital-gadgets/ALL_ALL.xml
+
+  - lang: fr
+    messages: https://reveldigital.github.io/reveldigital-gadgets/ALL_ALL.xml
+
+# Preferences provide customization options for the gadget and are accessible at both design time and runtime.
+#
+# Propreties of a preference include:
+#   name: Unique name or ID for the preference
+#   display_name: Name as shown in the UX
+#   datatype: string, enum, hidden, bool, style
+#   default_value: Default value
+#   required: Make this prefence mandatory, must have a value
+#   depends: The visibility of this preference depends on other preferences. This requires the name
+#     of the dependent preference along with a list of values. Condition types can include
+#     any_of, all_of, none_of. Nested depends conditions are also possible.
+#
+prefs:
+  - name: myStringPref
+    display_name: Sample string preference
+    datatype: string
+    default_value: test string
+    required: true
+
+  - name: myBoolPref
+    display_name: Sample boolean preference
+    datatype: bool
+    default_value: true
+    required: true
+    depends:
+      - name: myEnumPref
+        any_of:
+          - fast
+
+  - name: myStylePref
+    display_name: Sample style preference
+    datatype: style
+    default_value: font-family:Verdana;color:rgb(255, 255, 255);font-size:18px;
+    required: true
+
+  - name: myEnumPref
+    display_name: Sample enum preference
+    datatype: enum
+    default_value: fast
+    required: true
+    options:
+      - value: fastest
+        display_value: Fastest
+      - value: fast
+        display_value: Fast
+      - value: medium
+        display_value: Medium
+</code></pre>
+<p>This definition file results in the following user experience when designing your gadget in a template:</p>
+<p><img alt="Alt text" src="https://reveldigital.github.io/reveldigital-client-library/images/sample-gadget-editor.png" /></p>
+<p>You will see the preferences exposed in the editor which can then be modified at design time.</p>
+<p>Individual preferences are able to be accessed in your gadget code like so:</p>
+<pre><code class="language-ts">this.prefs = client.getPrefs();
+
+this.prefs.getString('myStringPref');
+this.prefs.getBool('myBoolPref');
+this.prefs.getFloat('myFloatPref');
+this.prefs.getInt('myIntPref');
+</code></pre>
+<h2 id="angular-library-documentation">Angular Library Documentation</h2>
+<p>Library documentation is available here: https://reveldigital.github.io/reveldigital-client-library/</p>
+<p>A sample Angular app is available in this repo under <a href="/projects/test-app">projects/test-app</a>.</p>
 
 
 
 
-              
-            </article>
-            
-          </div>
+
+                
+              </article>
+            </div>
+          
+          
         </div>
         
       </main>
       
         <footer class="md-footer">
-  
-    
-    <nav class="md-footer__inner md-grid" aria-label="Footer" >
-      
-        
-        <a href="../android/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Player API for Android" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              Player API for Android
-            </div>
-          </div>
-        </a>
-      
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -471,10 +624,10 @@ npm install -g generator-reveldigital-gadget
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.9c69f0bc.min.js"></script>
+      <script src="../assets/javascripts/bundle.a51614de.min.js"></script>
       
     
   </body>
