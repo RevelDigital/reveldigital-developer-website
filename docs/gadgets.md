@@ -149,7 +149,7 @@ Now you can preview the template to see your work!
 
 Our Yeoman generator can scaffold a gadget template for you automatically.
 
-First, install [Yeoman](http://yeoman.io) and [generator-reveldigital-gadget](https://github.com/RevelDigital/generator-reveldigital-gadget) using [npm](https://www.npmjs.com/)
+First, install [Yeoman](https://yeoman.io) and [generator-reveldigital-gadget](https://github.com/RevelDigital/generator-reveldigital-gadget) using [npm](https://www.npmjs.com/)
 (we assume you have pre-installed [node.js](https://nodejs.org/)).
 
 ```sh
