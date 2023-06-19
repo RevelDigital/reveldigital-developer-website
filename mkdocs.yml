@@ -1,4 +1,4 @@
-site_name: RevelDigital for Developers
+site_name: Revel Digital for Developers
 nav:
     - Home: index.md
     - REST API: rest-api.md
@@ -9,3 +9,5 @@ theme:
     name: material
 markdown_extensions:
     - markdown.extensions.admonition
+docs_dir: mkdocs
+site_dir: docs
