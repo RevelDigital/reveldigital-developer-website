@@ -379,6 +379,6 @@ this.prefs.getInt('myIntPref');
 
 ## Angular Library Documentation
 
-Library documentation is available here: https://reveldigital.github.io/reveldigital-client-library/
+Library documentation is available here: [https://reveldigital.github.io/reveldigital-client-library/](https://reveldigital.github.io/reveldigital-client-library/)
 
-A sample Angular app is available in this repo under [projects/test-app](/projects/test-app).
+A sample Angular app is available in this repo under [https://github.com/RevelDigital/reveldigital-client-library/tree/master/projects/test-app](https://github.com/RevelDigital/reveldigital-client-library/tree/master/projects/test-app).
