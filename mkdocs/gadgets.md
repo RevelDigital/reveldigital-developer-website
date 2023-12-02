@@ -226,7 +226,7 @@ The app can be hosted using any number of hosting services, however the provided
 Assuming your working folder is associated with your GitHub repository, simply run the following command to deploy the app to the `gh-pages` branch. The gadget app and associated XML file will be publicly visibile and available for use in your signage.
 
 ```sh
-npm run deploy:gagdet
+npm run deploy:gadget
 # Deploy to GitHub Pages
 ```
 
@@ -289,15 +289,19 @@ description: Describe the purpose of your gadget here
 author: My Organization
 background: transparent
 
-# Requirments enable certain features of the gadget. Available options include:
+# Requirements enable certain features of the gadget. Available options include:
 #   reveldigital (core Revel Digital features)
 #   offline (Enable service worker caching for offline support)
 #   webfont (Enable Google WebFonts for dynamic font loading)
+#   moment (Enable the moment library for localized date/time, initialized with device timezone)
+#   jquery (Enable the jQuery libary)
 #
 requirements:
   - reveldigital
   - offline
   - webfont
+  - moment
+  - jquery
 
 # Locales are use for localization within the gadget definition (XML) itself.
 #  Docs for using the Gadget API for i18n are available here: https://developers.google.com/gadgets/docs/i18n
@@ -316,7 +320,7 @@ locales:
 # Propreties of a preference include:
 #   name: Unique name or ID for the preference
 #   display_name: Name as shown in the UX
-#   datatype: string, enum, hidden, bool, style
+#   datatype: string, enum, hidden, bool, style, list
 #   default_value: Default value
 #   required: Make this prefence mandatory, must have a value
 #   depends: The visibility of this preference depends on other preferences. This requires the name
@@ -338,7 +342,8 @@ prefs:
     depends:
       - name: myEnumPref
         any_of:
-          - fast
+          - values:
+            - fast
           
   - name: myStylePref
     display_name: Sample style preference
@@ -351,6 +356,7 @@ prefs:
     datatype: enum
     default_value: fast
     required: true
+    multiple: false
     options:
       - value: fastest
         display_value: Fastest
@@ -358,6 +364,12 @@ prefs:
         display_value: Fast
       - value: medium
         display_value: Medium
+
+  - name: myListPref
+    display_name: Sample list preference
+    datatype: list
+    default_value: dog|cat
+    required: false
 ```
 
 This definition file results in the following user experience when designing your gadget in a template:
@@ -375,6 +387,7 @@ this.prefs.getString('myStringPref');
 this.prefs.getBool('myBoolPref');
 this.prefs.getFloat('myFloatPref');
 this.prefs.getInt('myIntPref');
+this.prefs.getArray('myListPref');
 ```
 
 ## Angular Library Documentation
