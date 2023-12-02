@@ -7,7 +7,14 @@ nav:
     - Gadgets: gadgets.md
 theme:
     name: material
+    features:
+    - content.code.copy
 markdown_extensions:
     - markdown.extensions.admonition
+    - admonition
+    - pymdownx.details
+    - pymdownx.superfences
+    - pymdownx.inlinehilite
+    - pymdownx.snippets
 docs_dir: mkdocs
 site_dir: docs

@@ -178,7 +178,7 @@ Revel Digital provides a custom Angular schematic for quickly scaffolding your A
 
 **Not hosting your app on Github? Skip to step #2.**
 
-Create a new repository on [GitHub.com](https://github.com/). For more information, see "[Creating a new repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository)."
+Create a new repository on [GitHub.com](https://github.com/). For more information, see "[Creating a new repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository)".
 
 
 Copy your remote repository URL
@@ -200,6 +200,15 @@ From within your working folder, run the following Angular CLI command using the
 ng new my-app --directory ./
 # Generates the boilerplate code for a new Angular app
 ```
+
+???+ note
+
+    Need to use a specific version of Angular for your project?
+    
+    Try using NPX:
+
+    npm install -g npx  
+    npx -p @angular/cli@12.2.6 ng new my-app
 
 ### **Step 3.** Add the Revel Digital libaries
 
