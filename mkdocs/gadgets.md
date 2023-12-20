@@ -208,14 +208,14 @@ ng new my-app --directory ./
     Try using NPX:
 
     npm install -g npx  
-    npx -p @angular/cli@12.2.6 ng new my-app
+    npx -p @angular/cli@13 ng new my-app
 
 ### **Step 3.** Add the Revel Digital libaries
 
 Run the Revel Digital angular schematic which will configure your app for use as a Revel Digital gadget.
 
 ```sh
-ng add @reveldigital/player-client
+ng add @reveldigital/player-client@latest
 # Run the Revel Digital Angular schematic
 ```
 
