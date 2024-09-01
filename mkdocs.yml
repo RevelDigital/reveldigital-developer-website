@@ -2,9 +2,10 @@ site_name: Revel Digital for Developers
 nav:
     - Home: index.md
     - REST API: rest-api.md
+    - Gadgets: gadgets.md
+    - Webapps: webapps.md
     - Player API for Windows: windows.md
     - Player API for Android: android.md
-    - Gadgets: gadgets.md
 theme:
     name: material
     features:
