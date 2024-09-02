@@ -1,7 +1,7 @@
 Revel Digital Gadgets
 =====================
 
-#Introduction
+## Introduction
 
 Gadgets are a simple means of providing customizable, dynamic content to any template. The Revel Digital platform includes a number of ready-to-use
 gadgets for everything from weather conditions to social media feeds. Creating your own gadget is simple if you have some basic understanding of HTML
@@ -9,7 +9,7 @@ and Javascript.
 
 ![template](./img/gadget-preview.png)
 
-# What's in a gadget
+## What's in a gadget
 
 A gadget is nothing more than an XML file which defines the properties of the gadget along with the HTML and Javascript for rendering the gadget content.
 
@@ -145,7 +145,7 @@ Add a new **Gadget zone** to your template, in the gadget properties click the '
 
 Now you can preview the template to see your work!
 
-# Yeoman generator
+## Yeoman generator
 
 Our Yeoman generator can scaffold a gadget template for you automatically.
 
@@ -163,18 +163,18 @@ Then generate your new gadget:
 yo reveldigital-gadget
 ```
 
-# Angular Based Gadgets ![Angular Logo](./img/angular-logo.png) 
+## Angular Based Gadgets ![Angular Logo](./img/angular-logo.png) 
 
 [Angular](https://angular.io/) is a popular framework for developing web based applications. By developing your gadget in Angular you are provided a wide range custom components, development tools, internationalization tools, accessibility tools, and more.
 
 Revel Digital provides a custom Angular schematic for quickly scaffolding your Angular app for use as a gadget. The schematic incorporates the [Revel Digital client library](https://github.com/RevelDigital/reveldigital-client-library) for interfacing with player devices. The schematic also provides a simplified method for publishing and hosting your gadget to [GitHub Pages](https://pages.github.com/).
 
-## Quickstart
+### Quickstart
 
 **New to Angular?** [Check out the Angular documentation](https://angular.io/guide/setup-local) for getting your environment configured for development.
 
 
-### **Step 1.** GitHub Repository Creation (Optional)
+#### **Step 1.** GitHub Repository Creation (Optional)
 
 **Not hosting your app on Github? Skip to step #2.**
 
@@ -192,7 +192,7 @@ git remote -v
 # Verifies the new remote URL
 ```
 
-### **Step 2.** Create a new Angular app
+#### **Step 2.** Create a new Angular app
 
 From within your working folder, run the following Angular CLI command using the name of your app.
 
@@ -210,7 +210,7 @@ ng new my-app --directory ./
     npm install -g npx  
     npx -p @angular/cli@13 ng new my-app
 
-### **Step 3.** Add the Revel Digital libaries
+#### **Step 3.** Add the Revel Digital libaries
 
 Run the Revel Digital angular schematic which will configure your app for use as a Revel Digital gadget.
 
@@ -219,7 +219,7 @@ ng add @reveldigital/player-client@latest
 # Run the Revel Digital Angular schematic
 ```
 
-### **Step 4.** Build
+#### **Step 4.** Build
 
 The build script will generate the Angular app along with a the gadget XML definition file.
 
@@ -228,7 +228,7 @@ npm run build:gadget
 # Run the gadget build script
 ```
 
-### **Step 5.** Deploy
+#### **Step 5.** Deploy
 
 The app can be hosted using any number of hosting services, however the provided schematic includes a simplified option for publishing to [GitHub Pages](https://pages.github.com/).
 
@@ -239,7 +239,7 @@ npm run deploy:gadget
 # Deploy to GitHub Pages
 ```
 
-## Sample usage
+### Sample usage
 
 The majority of the functionality is contained within the [PlayerClientService](https://reveldigital.github.io/reveldigital-client-library/injectables/PlayerClientService.html). The service and supporting library exposes the following functionality:
 
@@ -276,7 +276,7 @@ Simply inject this service in your Angular component constructor in order to acc
   }
 ```
 
-## Gadget Definition & Preferences
+### Gadget Definition & Preferences
 
 The `assets/gadget.yaml` file is the definition file for your gadget, responsible for defining the basic properties and features of the gadget as presented to the user. These properties include the gadget name, description, support URL, and preferences. A sample `gadgets.yaml` file is included in your project after running the schematic.
 

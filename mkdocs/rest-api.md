@@ -5,13 +5,13 @@ Provides REST based access to your RevelDigital account.
 !!! Note
      See our [Swagger](https://api.reveldigital.com/swagger/) or [Postman](https://www.postman.com/reveldigital) websites for interactive documentation.
      
-###Getting Started###
+### Getting Started
 
-#####API Endpoint#####
+##### API Endpoint
 
 All API access originates from `https://api.reveldigital.com`
 
-#####Authentication#####
+##### Authentication
 
 !!! Note
     A valid API key is required for each request.
@@ -60,13 +60,13 @@ Timestamps are returned in ISO 8601 format:
 YYYY-MM-DDTHH:MM:SSZ
 ```
 
-#####Cross Origin Resource Sharing#####
+##### Cross Origin Resource Sharing
 
 The API supports Cross Origin Resource Sharing (CORS) for AJAX requests. You can read the [CORS W3C working draft](https://www.w3.org/TR/cors/),
 or [this intro](https://code.google.com/archive/p/html5security/wikis/CrossOriginRequestSecurity.wiki) from the HTML5 Security Guide.
 
 
-###Swagger###
+### Swagger
 
 [Interactive API documentation provided by Swagger](https://api.reveldigital.com/swagger/)
 

@@ -1,7 +1,7 @@
 Revel Digital Player API for Android
 ====================================
 
-#Introduction
+## Introduction
 
 The Revel Digital Player API provides runtime access to the Revel Digital player software. This capability allows complete freedom to manipulate the signage, while it's playing, to
 achieve any level of functionality required.
@@ -21,7 +21,7 @@ The RevelControl interface can also be treated as a reference to an [Android Vie
 for performing any Android specific operations. Similarily the [`Template`](https://reveldigital.github.io/RevelDigital.Player.Android.Doc/)
 interface can be treated as a reference to an Android [ViewGroup](https://developer.android.com/reference/android/view/ViewGroup.html).
 
-###Example script
+### Example script
 
 The following example will fade out an image when a hot spot is clicked. The template looks like this:
 
@@ -45,7 +45,7 @@ Hot_Spot_1.setOnClickListener(new View.OnClickListener() {
 In this example an event handler was added for the [Click event](https://developer.android.com/reference/android/view/View.html#setOnClickListener(android.view.View.OnClickListener)).
 This in turn called alpha method of the Android animation framework to perform the fade.
 
-###Snippets
+### Snippets
 
 The script editor has a number of built-in snippets available for some of the more common scripting tasks. Only zones currently added to the template will be available in the snippet dropdown.
 
@@ -57,7 +57,7 @@ These snippets will auto generate the script necessary to perform the function s
     Make sure your platform is properly selected at the top/right of the script editor window.
 
 
-#Technical Reference
+## Technical Reference
 
 Please refer to our technical API website for more details on actual controls, events, and methods available.
 

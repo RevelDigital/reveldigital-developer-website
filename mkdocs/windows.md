@@ -1,7 +1,7 @@
 Revel Digital Player API for Windows
 ====================================
 
-#Introduction
+## Introduction
 
 The Revel Digital Player API provides runtime access to the Revel Digital player software. This capability allows complete freedom to manipulate the signage, while it's playing, to
 achieve any level of functionality required.
@@ -25,7 +25,7 @@ As a rule, the classes in this API are representative of definitions for the sch
 That is they should be considered read-only and are purely data bound. Interfaces on the other hand represent the underlying UWP controls.
 These objects are normally the focus of any scripting since they provide access to the live template objects and directly affect the template visuals.
 
-###Example script
+### Example script
 
 The following example will fade out an image when a hot spot is clicked. The template looks like this:
 
@@ -47,7 +47,7 @@ In this example an event handler was added for the [Tapped event](https://docs.m
 This in turn called the [FadeOut](https://reveldigital.github.io/ReveDigital.Player.UWP.Doc/api/RevelDigital.Player.RevelScript.IRevelControl.html#RevelDigital_Player_RevelScript_IRevelControl_FadeOut)
 method on the image control.
 
-###Snippets
+### Snippets
 
 The script editor has a number of built-in snippets available for some of the more common scripting tasks. Only zones currently added to the template will be available in the snippet dropdown.
 
@@ -59,7 +59,7 @@ These snippets will auto generate the script necessary to perform the function s
     Make sure your platform is properly selected at the top/right of the script editor window.
 
 
-#Technical Reference
+## Technical Reference
 
 Please refer to our technical API website for more details on actual controls, events, and methods available.
 
