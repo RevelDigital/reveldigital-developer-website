@@ -8,6 +8,7 @@ nav:
     - Player API for Android: android.md
 theme:
     name: material
+    logo: img/logo.png
     features:
     - content.code.copy
 markdown_extensions:
