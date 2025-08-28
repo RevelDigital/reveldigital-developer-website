@@ -24,7 +24,7 @@ Webapps (and Gadgets), are able to interface with the underlying player applicat
 simply discover player specific details such as device name, location, tags, etc.
 
 Revel Digital provides a Javascript library to simplify this interface and is compatible with most any modern Javascript runtime.
-Library documentation is available here: [https://reveldigital.github.io/reveldigital-client-sdk/](https://reveldigital.github.io/reveldigital-client-sdk/)
+Library documentation is available here: [https://github.com/RevelDigital/reveldigital-client-sdk](https://github.com/RevelDigital/reveldigital-client-sdk)
 
 ## Deployment Options
 
@@ -34,6 +34,7 @@ As such, Revel Digital provides a number of options for deployment of your Webap
 ### GitHub Actions
 
 A [GitHub Action](https://docs.github.com/en/actions) is used in automated CI/CD workflows for performing the build, packaging, and deployment of your Webapp. This, of course, assumes you are using GitHub as your code repository.
+
 The [Revel Digital Webapp Action](https://github.com/marketplace/actions/revel-digital-webapp-deploy-action) performs the packaging and uploading of your Webapp to your Revel Digital account.
 Tags are automatically applied to all newly uploaded Webapp assets including tags for version, environment, and any other custom tags you would like to apply.
 

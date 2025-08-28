@@ -707,13 +707,13 @@ or when using existing development platforms and workflows.</p>
 <p>Webapps (and Gadgets), are able to interface with the underlying player application for performing tasks such as event tracking, sending commands, executing script, or to
 simply discover player specific details such as device name, location, tags, etc.</p>
 <p>Revel Digital provides a Javascript library to simplify this interface and is compatible with most any modern Javascript runtime.
-Library documentation is available here: <a href="https://reveldigital.github.io/reveldigital-client-sdk/">https://reveldigital.github.io/reveldigital-client-sdk/</a></p>
+Library documentation is available here: <a href="https://github.com/RevelDigital/reveldigital-client-sdk">https://github.com/RevelDigital/reveldigital-client-sdk</a></p>
 <h2 id="deployment-options">Deployment Options</h2>
 <p>In many cases the development team working on the digital signage UX will be completly independent of the team responsible for the digital signage network and deployment of assets.
 As such, Revel Digital provides a number of options for deployment of your Webapp in order to streamline the process, reduce potential for mistakes, and to maintain this separation of concerns.</p>
 <h3 id="github-actions">GitHub Actions</h3>
-<p>A <a href="https://docs.github.com/en/actions">GitHub Action</a> is used in automated CI/CD workflows for performing the build, packaging, and deployment of your Webapp. This, of course, assumes you are using GitHub as your code repository.
-The <a href="https://github.com/marketplace/actions/revel-digital-webapp-deploy-action">Revel Digital Webapp Action</a> performs the packaging and uploading of your Webapp to your Revel Digital account.
+<p>A <a href="https://docs.github.com/en/actions">GitHub Action</a> is used in automated CI/CD workflows for performing the build, packaging, and deployment of your Webapp. This, of course, assumes you are using GitHub as your code repository.</p>
+<p>The <a href="https://github.com/marketplace/actions/revel-digital-webapp-deploy-action">Revel Digital Webapp Action</a> performs the packaging and uploading of your Webapp to your Revel Digital account.
 Tags are automatically applied to all newly uploaded Webapp assets including tags for version, environment, and any other custom tags you would like to apply.</p>
 <p>Here's an example worflow utilizing our GitHub action for deployment of an Angular based app:
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy Webapp</span>
