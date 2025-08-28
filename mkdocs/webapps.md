@@ -23,8 +23,10 @@ A Webapp is simply a web application, or website, archived in ZIP format, and up
 Webapps (and Gadgets), are able to interface with the underlying player application for performing tasks such as event tracking, sending commands, executing script, or to
 simply discover player specific details such as device name, location, tags, etc.
 
-Revel Digital provides a Javascript library to simplify this interface and is compatible with most any modern Javascript runtime.
-Library documentation is available here: [https://github.com/RevelDigital/reveldigital-client-sdk](https://github.com/RevelDigital/reveldigital-client-sdk)
+Revel Digital provides a Javascript/Typescript library to simplify this interface and is compatible with most any modern Javascript runtime.
+
+!!! note
+    Library documentation is available here: [https://github.com/RevelDigital/reveldigital-client-sdk](https://github.com/RevelDigital/reveldigital-client-sdk)
 
 ## Deployment Options
 
