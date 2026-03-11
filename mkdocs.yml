@@ -2,6 +2,7 @@ site_name: Revel Digital for Developers
 nav:
     - Home: index.md
     - REST API: rest-api.md
+    - GraphQL API: graphql.md
     - Gadgets: gadgets.md
     - Webapps: webapps.md
     - Player API for Windows: windows.md

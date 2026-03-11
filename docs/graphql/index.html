@@ -1,0 +1,2910 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../rest-api/">
+      
+      
+        <link rel="next" href="../gadgets/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.14">
+    
+    
+      
+        <title>GraphQL API - Revel Digital for Developers</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.fad675c6.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#revel-digital-graphql-api" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Revel Digital for Developers" class="md-header__button md-logo" aria-label="Revel Digital for Developers" data-md-component="logo">
+      
+  <img src="../img/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Revel Digital for Developers
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              GraphQL API
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Revel Digital for Developers" class="md-nav__button md-logo" aria-label="Revel Digital for Developers" data-md-component="logo">
+      
+  <img src="../img/logo.png" alt="logo">
+
+    </a>
+    Revel Digital for Developers
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rest-api/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    REST API
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    GraphQL API
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    GraphQL API
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting Started
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Getting Started">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#endpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      Endpoint
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authentication
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#making-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Making Requests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checking-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checking Permissions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Queries
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Queries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#content-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Content Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Content Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#device" class="md-nav__link">
+    <span class="md-ellipsis">
+      device
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#devicegroups" class="md-nav__link">
+    <span class="md-ellipsis">
+      deviceGroups
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#media" class="md-nav__link">
+    <span class="md-ellipsis">
+      media
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mediagroups" class="md-nav__link">
+    <span class="md-ellipsis">
+      mediaGroups
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#playlist" class="md-nav__link">
+    <span class="md-ellipsis">
+      playlist
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#playlistgroups" class="md-nav__link">
+    <span class="md-ellipsis">
+      playlistGroups
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#template" class="md-nav__link">
+    <span class="md-ellipsis">
+      template
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#templategroups" class="md-nav__link">
+    <span class="md-ellipsis">
+      templateGroups
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schedule" class="md-nav__link">
+    <span class="md-ellipsis">
+      schedule
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schedulegroups" class="md-nav__link">
+    <span class="md-ellipsis">
+      scheduleGroups
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user" class="md-nav__link">
+    <span class="md-ellipsis">
+      user
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alert" class="md-nav__link">
+    <span class="md-ellipsis">
+      alert
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auditevent" class="md-nav__link">
+    <span class="md-ellipsis">
+      auditEvent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#displaycommands" class="md-nav__link">
+    <span class="md-ellipsis">
+      displayCommands
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Tables
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Tables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#datatables" class="md-nav__link">
+    <span class="md-ellipsis">
+      dataTables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datatable" class="md-nav__link">
+    <span class="md-ellipsis">
+      dataTable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datatablerows" class="md-nav__link">
+    <span class="md-ellipsis">
+      dataTableRows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datatablerow" class="md-nav__link">
+    <span class="md-ellipsis">
+      dataTableRow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exportdatatablerows" class="md-nav__link">
+    <span class="md-ellipsis">
+      exportDataTableRows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datatablerowversions" class="md-nav__link">
+    <span class="md-ellipsis">
+      dataTableRowVersions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datatablerowversion" class="md-nav__link">
+    <span class="md-ellipsis">
+      dataTableRowVersion
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analytics-adhawk" class="md-nav__link">
+    <span class="md-ellipsis">
+      Analytics (AdHawk)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Analytics (AdHawk)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#playlogs" class="md-nav__link">
+    <span class="md-ellipsis">
+      playLogs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pinglogs" class="md-nav__link">
+    <span class="md-ellipsis">
+      pingLogs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eventlogs" class="md-nav__link">
+    <span class="md-ellipsis">
+      eventLogs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eventmetrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      eventMetrics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#impressions" class="md-nav__link">
+    <span class="md-ellipsis">
+      impressions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#devicemetrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      deviceMetrics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audiencemetrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      audienceMetrics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mediaplaystats" class="md-nav__link">
+    <span class="md-ellipsis">
+      mediaPlayStats
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deviceplaystats" class="md-nav__link">
+    <span class="md-ellipsis">
+      devicePlayStats
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#devicemediaplaystats" class="md-nav__link">
+    <span class="md-ellipsis">
+      deviceMediaPlayStats
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#playstatsbytime" class="md-nav__link">
+    <span class="md-ellipsis">
+      playStatsByTime
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eventflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      eventFlow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heatmapdata" class="md-nav__link">
+    <span class="md-ellipsis">
+      heatMapData
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eventheatmapdata" class="md-nav__link">
+    <span class="md-ellipsis">
+      eventHeatMapData
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mediaimpressions" class="md-nav__link">
+    <span class="md-ellipsis">
+      mediaImpressions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#devicemediaimpressions" class="md-nav__link">
+    <span class="md-ellipsis">
+      deviceMediaImpressions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mutations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mutations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mutations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-table-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Table Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Table Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#createdatatable" class="md-nav__link">
+    <span class="md-ellipsis">
+      createDataTable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updatedatatable" class="md-nav__link">
+    <span class="md-ellipsis">
+      updateDataTable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deletedatatable" class="md-nav__link">
+    <span class="md-ellipsis">
+      deleteDataTable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createdatatablerow" class="md-nav__link">
+    <span class="md-ellipsis">
+      createDataTableRow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updatedatatablerow" class="md-nav__link">
+    <span class="md-ellipsis">
+      updateDataTableRow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deletedatatablerow" class="md-nav__link">
+    <span class="md-ellipsis">
+      deleteDataTableRow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batchcreatedatatablerows" class="md-nav__link">
+    <span class="md-ellipsis">
+      batchCreateDataTableRows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batchdeletedatatablerows" class="md-nav__link">
+    <span class="md-ellipsis">
+      batchDeleteDataTableRows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#importdatatablerows" class="md-nav__link">
+    <span class="md-ellipsis">
+      importDataTableRows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reorderdatatablerows" class="md-nav__link">
+    <span class="md-ellipsis">
+      reorderDataTableRows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rollbackdatatablerow" class="md-nav__link">
+    <span class="md-ellipsis">
+      rollbackDataTableRow
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#device-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Device Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Device Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#senddevicecommand" class="md-nav__link">
+    <span class="md-ellipsis">
+      sendDeviceCommand
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sendbulkdevicecommands" class="md-nav__link">
+    <span class="md-ellipsis">
+      sendBulkDeviceCommands
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#media-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Media Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Media Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#createmediafromurl" class="md-nav__link">
+    <span class="md-ellipsis">
+      createMediaFromUrl
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updatemedia" class="md-nav__link">
+    <span class="md-ellipsis">
+      updateMedia
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deletemedia" class="md-nav__link">
+    <span class="md-ellipsis">
+      deleteMedia
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#playlist-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Playlist Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Playlist Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#addplaylistsource" class="md-nav__link">
+    <span class="md-ellipsis">
+      addPlaylistSource
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updateplaylistsource" class="md-nav__link">
+    <span class="md-ellipsis">
+      updatePlaylistSource
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removeplaylistsource" class="md-nav__link">
+    <span class="md-ellipsis">
+      removePlaylistSource
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reorderplaylistsources" class="md-nav__link">
+    <span class="md-ellipsis">
+      reorderPlaylistSources
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filtering-sorting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtering &amp; Sorting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Filtering & Sorting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtering
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sorting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sorting
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enums" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enums
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authorization-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authorization Policies
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gadgets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gadgets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../webapps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Webapps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../windows/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Player API for Windows
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../android/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Player API for Android
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting Started
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Getting Started">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#endpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      Endpoint
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authentication
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#making-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Making Requests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checking-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checking Permissions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Queries
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Queries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#content-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Content Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Content Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#device" class="md-nav__link">
+    <span class="md-ellipsis">
+      device
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#devicegroups" class="md-nav__link">
+    <span class="md-ellipsis">
+      deviceGroups
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#media" class="md-nav__link">
+    <span class="md-ellipsis">
+      media
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mediagroups" class="md-nav__link">
+    <span class="md-ellipsis">
+      mediaGroups
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#playlist" class="md-nav__link">
+    <span class="md-ellipsis">
+      playlist
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#playlistgroups" class="md-nav__link">
+    <span class="md-ellipsis">
+      playlistGroups
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#template" class="md-nav__link">
+    <span class="md-ellipsis">
+      template
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#templategroups" class="md-nav__link">
+    <span class="md-ellipsis">
+      templateGroups
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schedule" class="md-nav__link">
+    <span class="md-ellipsis">
+      schedule
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schedulegroups" class="md-nav__link">
+    <span class="md-ellipsis">
+      scheduleGroups
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user" class="md-nav__link">
+    <span class="md-ellipsis">
+      user
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alert" class="md-nav__link">
+    <span class="md-ellipsis">
+      alert
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auditevent" class="md-nav__link">
+    <span class="md-ellipsis">
+      auditEvent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#displaycommands" class="md-nav__link">
+    <span class="md-ellipsis">
+      displayCommands
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Tables
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Tables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#datatables" class="md-nav__link">
+    <span class="md-ellipsis">
+      dataTables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datatable" class="md-nav__link">
+    <span class="md-ellipsis">
+      dataTable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datatablerows" class="md-nav__link">
+    <span class="md-ellipsis">
+      dataTableRows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datatablerow" class="md-nav__link">
+    <span class="md-ellipsis">
+      dataTableRow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exportdatatablerows" class="md-nav__link">
+    <span class="md-ellipsis">
+      exportDataTableRows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datatablerowversions" class="md-nav__link">
+    <span class="md-ellipsis">
+      dataTableRowVersions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datatablerowversion" class="md-nav__link">
+    <span class="md-ellipsis">
+      dataTableRowVersion
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analytics-adhawk" class="md-nav__link">
+    <span class="md-ellipsis">
+      Analytics (AdHawk)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Analytics (AdHawk)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#playlogs" class="md-nav__link">
+    <span class="md-ellipsis">
+      playLogs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pinglogs" class="md-nav__link">
+    <span class="md-ellipsis">
+      pingLogs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eventlogs" class="md-nav__link">
+    <span class="md-ellipsis">
+      eventLogs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eventmetrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      eventMetrics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#impressions" class="md-nav__link">
+    <span class="md-ellipsis">
+      impressions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#devicemetrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      deviceMetrics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audiencemetrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      audienceMetrics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mediaplaystats" class="md-nav__link">
+    <span class="md-ellipsis">
+      mediaPlayStats
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deviceplaystats" class="md-nav__link">
+    <span class="md-ellipsis">
+      devicePlayStats
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#devicemediaplaystats" class="md-nav__link">
+    <span class="md-ellipsis">
+      deviceMediaPlayStats
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#playstatsbytime" class="md-nav__link">
+    <span class="md-ellipsis">
+      playStatsByTime
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eventflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      eventFlow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heatmapdata" class="md-nav__link">
+    <span class="md-ellipsis">
+      heatMapData
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eventheatmapdata" class="md-nav__link">
+    <span class="md-ellipsis">
+      eventHeatMapData
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mediaimpressions" class="md-nav__link">
+    <span class="md-ellipsis">
+      mediaImpressions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#devicemediaimpressions" class="md-nav__link">
+    <span class="md-ellipsis">
+      deviceMediaImpressions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mutations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mutations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mutations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-table-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Table Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Table Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#createdatatable" class="md-nav__link">
+    <span class="md-ellipsis">
+      createDataTable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updatedatatable" class="md-nav__link">
+    <span class="md-ellipsis">
+      updateDataTable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deletedatatable" class="md-nav__link">
+    <span class="md-ellipsis">
+      deleteDataTable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createdatatablerow" class="md-nav__link">
+    <span class="md-ellipsis">
+      createDataTableRow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updatedatatablerow" class="md-nav__link">
+    <span class="md-ellipsis">
+      updateDataTableRow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deletedatatablerow" class="md-nav__link">
+    <span class="md-ellipsis">
+      deleteDataTableRow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batchcreatedatatablerows" class="md-nav__link">
+    <span class="md-ellipsis">
+      batchCreateDataTableRows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batchdeletedatatablerows" class="md-nav__link">
+    <span class="md-ellipsis">
+      batchDeleteDataTableRows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#importdatatablerows" class="md-nav__link">
+    <span class="md-ellipsis">
+      importDataTableRows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reorderdatatablerows" class="md-nav__link">
+    <span class="md-ellipsis">
+      reorderDataTableRows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rollbackdatatablerow" class="md-nav__link">
+    <span class="md-ellipsis">
+      rollbackDataTableRow
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#device-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Device Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Device Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#senddevicecommand" class="md-nav__link">
+    <span class="md-ellipsis">
+      sendDeviceCommand
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sendbulkdevicecommands" class="md-nav__link">
+    <span class="md-ellipsis">
+      sendBulkDeviceCommands
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#media-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Media Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Media Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#createmediafromurl" class="md-nav__link">
+    <span class="md-ellipsis">
+      createMediaFromUrl
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updatemedia" class="md-nav__link">
+    <span class="md-ellipsis">
+      updateMedia
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deletemedia" class="md-nav__link">
+    <span class="md-ellipsis">
+      deleteMedia
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#playlist-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Playlist Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Playlist Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#addplaylistsource" class="md-nav__link">
+    <span class="md-ellipsis">
+      addPlaylistSource
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updateplaylistsource" class="md-nav__link">
+    <span class="md-ellipsis">
+      updatePlaylistSource
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removeplaylistsource" class="md-nav__link">
+    <span class="md-ellipsis">
+      removePlaylistSource
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reorderplaylistsources" class="md-nav__link">
+    <span class="md-ellipsis">
+      reorderPlaylistSources
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filtering-sorting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtering &amp; Sorting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Filtering & Sorting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtering
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sorting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sorting
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enums" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enums
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authorization-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authorization Policies
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="revel-digital-graphql-api">Revel Digital GraphQL API</h1>
+<p>The Revel Digital GraphQL API provides a flexible, strongly-typed interface for querying and mutating your account data. Unlike the REST API, GraphQL allows you to request exactly the fields you need in a single request, reducing payload size and eliminating over-fetching.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The full SDL (Schema Definition Language) is available at <a href="https://api.reveldigital.com/graphql/?sdl">https://api.reveldigital.com/graphql/?sdl</a></p>
+</div>
+<h3 id="getting-started">Getting Started</h3>
+<h5 id="endpoint">Endpoint</h5>
+<p>All GraphQL requests are sent to:</p>
+<div class="highlight"><pre><span></span><code>https://api.reveldigital.com/graphql
+</code></pre></div>
+<h5 id="authentication">Authentication</h5>
+<p>The GraphQL API uses the same authentication methods as the REST API:</p>
+<ul>
+<li><strong>Header (Recommended)</strong> — Include <code>X-RevelDigital-ApiKey: &lt;your key here&gt;</code></li>
+<li><strong>Query Parameter</strong> — Append <code>?api_key=&lt;your key here&gt;</code> to the endpoint URL</li>
+<li><strong>OAuth 2.0</strong> — Use a Bearer token from the Revel Digital identity provider</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>API keys are available in your Revel Digital account under <a href="https://as1.reveldigital.com/account/api">Account &gt; Developer API</a>.
+Users must be assigned to the <code>API</code> role for programmatic access.</p>
+</div>
+<h5 id="making-requests">Making Requests</h5>
+<p>Send a <code>POST</code> request with a JSON body containing a <code>query</code> field (and optionally <code>variables</code>):</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>https://api.reveldigital.com/graphql<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;X-RevelDigital-ApiKey: &lt;your key here&gt;&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;query&quot;: &quot;{ device { id name isOnline } }&quot;</span>
+<span class="s1">  }&#39;</span>
+</code></pre></div>
+<h5 id="checking-permissions">Checking Permissions</h5>
+<p>The <code>permissions</code> query returns the current user's access rights. AI agents and integrations should call this at the start of each session to determine which operations are available.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="n">permissions</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">isAdministrator</span>
+<span class="w">    </span><span class="n">permissions</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">resource</span>
+<span class="w">      </span><span class="n">canView</span>
+<span class="w">      </span><span class="n">canEdit</span>
+<span class="w">      </span><span class="n">canDelete</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">allowedMutations</span>
+<span class="w">    </span><span class="n">deniedMutations</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h3 id="queries">Queries</h3>
+<p>All queries require authentication. Each query is protected by an authorization policy listed below.</p>
+<h4 id="content-management">Content Management</h4>
+<h5 id="device">device</h5>
+<p>Gets devices in the account. Requires <code>Devices_View</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="n">device</span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;device-id&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="n">groupId</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;group-id&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="n">groupName</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;Lobby&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="n">tag</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;kiosk&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="n">limit</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">id</span>
+<span class="w">    </span><span class="n">name</span>
+<span class="w">    </span><span class="n">isOnline</span>
+<span class="w">    </span><span class="n">tags</span>
+<span class="w">    </span><span class="n">deviceType</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="n">manufacturer</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="n">pingData</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">cpuUsage</span>
+<span class="w">      </span><span class="n">memoryUsage</span>
+<span class="w">      </span><span class="n">diskUsage</span>
+<span class="w">      </span><span class="n">playerVersion</span>
+<span class="w">      </span><span class="n">ipAddress</span>
+<span class="w">      </span><span class="n">timestamp</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">location</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">city</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="n">country</span><span class="w"> </span><span class="n">latitude</span><span class="w"> </span><span class="n">longitude</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<details class="info">
+<summary>device arguments</summary>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>[String!]</td>
+<td>Filter by device IDs</td>
+</tr>
+<tr>
+<td><code>groupId</code></td>
+<td>[String!]</td>
+<td>Filter by group IDs</td>
+</tr>
+<tr>
+<td><code>groupName</code></td>
+<td>[String!]</td>
+<td>Filter by group names</td>
+</tr>
+<tr>
+<td><code>deviceTypeId</code></td>
+<td>[String!]</td>
+<td>Filter by device type IDs</td>
+</tr>
+<tr>
+<td><code>includeSnap</code></td>
+<td>Boolean</td>
+<td>Include device screenshot</td>
+</tr>
+<tr>
+<td><code>orgId</code></td>
+<td>String</td>
+<td>Filter by organization ID</td>
+</tr>
+<tr>
+<td><code>tag</code></td>
+<td>[String!]</td>
+<td>Filter by tags</td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td>Int</td>
+<td>Maximum results</td>
+</tr>
+<tr>
+<td><code>where</code></td>
+<td>DeviceFilterInput</td>
+<td>Advanced filtering</td>
+</tr>
+<tr>
+<td><code>order</code></td>
+<td>[DeviceSortInput!]</td>
+<td>Sorting</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h5 id="devicegroups">deviceGroups</h5>
+<p>Gets device groups. Requires <code>Devices_View</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="n">deviceGroups</span><span class="p">(</span><span class="n">tree</span><span class="p">:</span><span class="w"> </span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">id</span>
+<span class="w">    </span><span class="n">name</span>
+<span class="w">    </span><span class="n">count</span>
+<span class="w">    </span><span class="n">level</span>
+<span class="w">    </span><span class="n">children</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h5 id="media">media</h5>
+<p>Gets media assets. Requires <code>Files_View</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="n">media</span><span class="p">(</span><span class="n">groupName</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;Images&quot;</span><span class="p">],</span><span class="w"> </span><span class="n">limit</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">id</span>
+<span class="w">    </span><span class="n">name</span>
+<span class="w">    </span><span class="n">fileName</span>
+<span class="w">    </span><span class="n">mimeType</span>
+<span class="w">    </span><span class="n">fileSize</span>
+<span class="w">    </span><span class="n">fileUrl</span>
+<span class="w">    </span><span class="n">thumbnailUrl</span>
+<span class="w">    </span><span class="n">uploadedOn</span>
+<span class="w">    </span><span class="n">width</span>
+<span class="w">    </span><span class="n">height</span>
+<span class="w">    </span><span class="n">tags</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<details class="info">
+<summary>media arguments</summary>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>[String!]</td>
+<td>Filter by media IDs</td>
+</tr>
+<tr>
+<td><code>groupId</code></td>
+<td>[String!]</td>
+<td>Filter by group IDs</td>
+</tr>
+<tr>
+<td><code>groupName</code></td>
+<td>[String!]</td>
+<td>Filter by group names</td>
+</tr>
+<tr>
+<td><code>orgId</code></td>
+<td>String</td>
+<td>Filter by organization ID</td>
+</tr>
+<tr>
+<td><code>tag</code></td>
+<td>[String!]</td>
+<td>Filter by tags</td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td>Int</td>
+<td>Maximum results</td>
+</tr>
+<tr>
+<td><code>where</code></td>
+<td>MediaFilterInput</td>
+<td>Advanced filtering</td>
+</tr>
+<tr>
+<td><code>order</code></td>
+<td>[MediaSortInput!]</td>
+<td>Sorting</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h5 id="mediagroups">mediaGroups</h5>
+<p>Gets media groups. Requires <code>Files_View</code>.</p>
+<h5 id="playlist">playlist</h5>
+<p>Gets playlists. Requires <code>Playlists_View</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="n">playlist</span><span class="p">(</span><span class="n">limit</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">id</span>
+<span class="w">    </span><span class="n">name</span>
+<span class="w">    </span><span class="n">type</span>
+<span class="w">    </span><span class="n">duration</span>
+<span class="w">    </span><span class="n">calculatedDuration</span>
+<span class="w">    </span><span class="n">sources</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">id</span>
+<span class="w">      </span><span class="n">name</span>
+<span class="w">      </span><span class="n">type</span>
+<span class="w">      </span><span class="n">sequence</span>
+<span class="w">      </span><span class="n">interval</span>
+<span class="w">      </span><span class="n">media</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">fileName</span><span class="w"> </span><span class="n">fileUrl</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h5 id="playlistgroups">playlistGroups</h5>
+<p>Gets playlist groups. Requires <code>Playlists_View</code>.</p>
+<h5 id="template">template</h5>
+<p>Gets templates. Requires <code>Templates_View</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="n">template</span><span class="p">(</span><span class="n">limit</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">id</span>
+<span class="w">    </span><span class="n">name</span>
+<span class="w">    </span><span class="n">width</span>
+<span class="w">    </span><span class="n">height</span>
+<span class="w">    </span><span class="n">orientation</span>
+<span class="w">    </span><span class="n">modules</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">id</span>
+<span class="w">      </span><span class="n">name</span>
+<span class="w">      </span><span class="n">type</span>
+<span class="w">      </span><span class="n">left</span>
+<span class="w">      </span><span class="n">top</span>
+<span class="w">      </span><span class="n">width</span>
+<span class="w">      </span><span class="n">height</span>
+<span class="w">      </span><span class="n">playlistId</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h5 id="templategroups">templateGroups</h5>
+<p>Gets template groups. Requires <code>Templates_View</code>.</p>
+<h5 id="schedule">schedule</h5>
+<p>Gets schedules. Requires <code>Schedules_View</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="n">schedule</span><span class="p">(</span><span class="n">deviceId</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;device-id&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">id</span>
+<span class="w">    </span><span class="n">name</span>
+<span class="w">    </span><span class="n">startDate</span>
+<span class="w">    </span><span class="n">endDate</span>
+<span class="w">    </span><span class="n">startTime</span>
+<span class="w">    </span><span class="n">endTime</span>
+<span class="w">    </span><span class="n">monday</span>
+<span class="w">    </span><span class="n">tuesday</span>
+<span class="w">    </span><span class="n">wednesday</span>
+<span class="w">    </span><span class="n">thursday</span>
+<span class="w">    </span><span class="n">friday</span>
+<span class="w">    </span><span class="n">saturday</span>
+<span class="w">    </span><span class="n">sunday</span>
+<span class="w">    </span><span class="n">priority</span>
+<span class="w">    </span><span class="n">templateId</span>
+<span class="w">    </span><span class="n">playlistId</span>
+<span class="w">    </span><span class="n">devices</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<details class="info">
+<summary>schedule arguments</summary>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>[String!]</td>
+<td>Filter by schedule IDs</td>
+</tr>
+<tr>
+<td><code>groupId</code></td>
+<td>[String!]</td>
+<td>Filter by group IDs</td>
+</tr>
+<tr>
+<td><code>groupName</code></td>
+<td>[String!]</td>
+<td>Filter by group names</td>
+</tr>
+<tr>
+<td><code>deviceId</code></td>
+<td>String</td>
+<td>Filter by device ID</td>
+</tr>
+<tr>
+<td><code>orgId</code></td>
+<td>String</td>
+<td>Filter by organization ID</td>
+</tr>
+<tr>
+<td><code>tag</code></td>
+<td>[String!]</td>
+<td>Filter by tags</td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td>Int</td>
+<td>Maximum results</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h5 id="schedulegroups">scheduleGroups</h5>
+<p>Gets schedule groups. Requires <code>Schedules_View</code>.</p>
+<h5 id="user">user</h5>
+<p>Gets users. Requires <code>Account_ManageUsers_View</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="n">user</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">id</span>
+<span class="w">    </span><span class="n">firstName</span>
+<span class="w">    </span><span class="n">lastName</span>
+<span class="w">    </span><span class="n">email</span>
+<span class="w">    </span><span class="n">username</span>
+<span class="w">    </span><span class="n">role</span>
+<span class="w">    </span><span class="n">lastActivity</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h5 id="alert">alert</h5>
+<p>Gets alerts. Requires <code>Alerts_View</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="n">alert</span><span class="p">(</span><span class="n">activeOnly</span><span class="p">:</span><span class="w"> </span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">id</span>
+<span class="w">    </span><span class="n">createdOn</span>
+<span class="w">    </span><span class="n">isActive</span>
+<span class="w">    </span><span class="n">alertRule</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="n">ruleSet</span><span class="w"> </span><span class="n">isEnabled</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="n">devices</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="n">snoozedUntil</span>
+<span class="w">    </span><span class="n">resolvedOn</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h5 id="auditevent">auditEvent</h5>
+<p>Gets audit events. Requires <code>AuditEventsOwnerOnly</code> (account owners only).</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="n">auditEvent</span><span class="p">(</span>
+<span class="w">    </span><span class="n">startDate</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-01-01T00:00:00Z&quot;</span>
+<span class="w">    </span><span class="n">endDate</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-01-31T23:59:59Z&quot;</span>
+<span class="w">    </span><span class="n">limit</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">eventId</span>
+<span class="w">    </span><span class="n">timestamp</span>
+<span class="w">    </span><span class="n">eventType</span>
+<span class="w">    </span><span class="n">userName</span>
+<span class="w">    </span><span class="n">httpMethod</span>
+<span class="w">    </span><span class="n">controllerName</span>
+<span class="w">    </span><span class="n">actionName</span>
+<span class="w">    </span><span class="n">ipAddress</span>
+<span class="w">    </span><span class="n">responseCode</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h5 id="displaycommands">displayCommands</h5>
+<p>Gets the device commands configured for the account. Requires <code>Devices_View</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="n">displayCommands</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">name</span>
+<span class="w">    </span><span class="n">command</span>
+<span class="w">    </span><span class="n">arg</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="data-tables">Data Tables</h4>
+<h5 id="datatables">dataTables</h5>
+<p>Lists data tables with pagination. Requires <code>DataTables_View</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="n">dataTables</span><span class="p">(</span><span class="n">pageSize</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">data</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="n">columnCount</span><span class="w"> </span><span class="n">rowCount</span><span class="w"> </span><span class="n">updatedAt</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="n">continuationToken</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h5 id="datatable">dataTable</h5>
+<p>Gets a single data table definition including column schema. Requires <code>DataTables_View</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="n">dataTable</span><span class="p">(</span><span class="n">tableId</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;table-id&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">id</span>
+<span class="w">    </span><span class="n">name</span>
+<span class="w">    </span><span class="n">description</span>
+<span class="w">    </span><span class="n">rowCount</span>
+<span class="w">    </span><span class="n">cacheTtlSeconds</span>
+<span class="w">    </span><span class="n">columns</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">id</span>
+<span class="w">      </span><span class="n">name</span>
+<span class="w">      </span><span class="n">key</span>
+<span class="w">      </span><span class="n">type</span>
+<span class="w">      </span><span class="n">required</span>
+<span class="w">      </span><span class="n">sortable</span>
+<span class="w">      </span><span class="n">options</span>
+<span class="w">      </span><span class="n">default</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h5 id="datatablerows">dataTableRows</h5>
+<p>Lists rows with optional filtering, sorting, and field selection. Requires <code>DataTables_View</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="n">dataTableRows</span><span class="p">(</span>
+<span class="w">    </span><span class="n">tableId</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;table-id&quot;</span>
+<span class="w">    </span><span class="n">filter</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{</span><span class="se">\&quot;</span><span class="s">status</span><span class="se">\&quot;</span><span class="s">:</span><span class="se">\&quot;</span><span class="s">active</span><span class="se">\&quot;</span><span class="s">}&quot;</span>
+<span class="w">    </span><span class="n">sort</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;name&quot;</span>
+<span class="w">    </span><span class="n">sortDir</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;asc&quot;</span>
+<span class="w">    </span><span class="n">pageSize</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">data</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="n">sortOrder</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="n">updatedAt</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="n">totalCount</span>
+<span class="w">    </span><span class="n">continuationToken</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h5 id="datatablerow">dataTableRow</h5>
+<p>Gets a single row by ID. Requires <code>DataTables_View</code>.</p>
+<h5 id="exportdatatablerows">exportDataTableRows</h5>
+<p>Exports all rows as a CSV string. Requires <code>DataTables_View</code>.</p>
+<h5 id="datatablerowversions">dataTableRowVersions</h5>
+<p>Lists version history for a row (newest first). Requires <code>DataTables_View</code>.</p>
+<h5 id="datatablerowversion">dataTableRowVersion</h5>
+<p>Gets a specific version snapshot of a row. Requires <code>DataTables_View</code>.</p>
+<h4 id="analytics-adhawk">Analytics (AdHawk)</h4>
+<p>All analytics queries require <code>AdHawk_View</code> and accept <code>startDate</code> and <code>endDate</code> (ISO 8601, required).</p>
+<h5 id="playlogs">playLogs</h5>
+<p>Content playback history.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="n">playLogs</span><span class="p">(</span>
+<span class="w">    </span><span class="n">startDate</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-01-01T00:00:00Z&quot;</span>
+<span class="w">    </span><span class="n">endDate</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-01-31T23:59:59Z&quot;</span>
+<span class="w">    </span><span class="n">deviceId</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;device-id&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="n">limit</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">id</span>
+<span class="w">    </span><span class="n">timestamp</span>
+<span class="w">    </span><span class="n">deviceId</span>
+<span class="w">    </span><span class="n">fileId</span>
+<span class="w">    </span><span class="n">fileName</span>
+<span class="w">    </span><span class="n">duration</span>
+<span class="w">    </span><span class="n">type</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h5 id="pinglogs">pingLogs</h5>
+<p>Device heartbeat/health data including CPU, memory, and disk usage.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="n">pingLogs</span><span class="p">(</span>
+<span class="w">    </span><span class="n">startDate</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-01-01T00:00:00Z&quot;</span>
+<span class="w">    </span><span class="n">endDate</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-01-31T23:59:59Z&quot;</span>
+<span class="w">    </span><span class="n">limit</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">id</span>
+<span class="w">    </span><span class="n">timestamp</span>
+<span class="w">    </span><span class="n">deviceId</span>
+<span class="w">    </span><span class="n">cpuUsage</span>
+<span class="w">    </span><span class="n">memoryUsage</span>
+<span class="w">    </span><span class="n">diskUsage</span>
+<span class="w">    </span><span class="n">ipAddress</span>
+<span class="w">    </span><span class="n">externalIpAddress</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h5 id="eventlogs">eventLogs</h5>
+<p>Custom events generated by devices or applications.</p>
+<h5 id="eventmetrics">eventMetrics</h5>
+<p>Aggregated event metrics with support for interval-based aggregation.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="n">eventMetrics</span><span class="p">(</span>
+<span class="w">    </span><span class="n">startDate</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-01-01T00:00:00Z&quot;</span>
+<span class="w">    </span><span class="n">endDate</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-01-31T23:59:59Z&quot;</span>
+<span class="w">    </span><span class="n">interval</span><span class="p">:</span><span class="w"> </span><span class="no">DAY</span>
+<span class="w">    </span><span class="n">groupByEvent</span><span class="p">:</span><span class="w"> </span><span class="nb">true</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">eventName</span>
+<span class="w">    </span><span class="n">periodStart</span>
+<span class="w">    </span><span class="n">periodEnd</span>
+<span class="w">    </span><span class="n">totalEvents</span>
+<span class="w">    </span><span class="n">uniqueSessions</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h5 id="impressions">impressions</h5>
+<p>Audience detection data from sensors (motion, face detection, BLE, WiFi).</p>
+<h5 id="devicemetrics">deviceMetrics</h5>
+<p>Aggregated device health metrics for fleet monitoring.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="n">deviceMetrics</span><span class="p">(</span>
+<span class="w">    </span><span class="n">startDate</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-01-01T00:00:00Z&quot;</span>
+<span class="w">    </span><span class="n">endDate</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-01-31T23:59:59Z&quot;</span>
+<span class="w">    </span><span class="n">interval</span><span class="p">:</span><span class="w"> </span><span class="no">DAY</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">deviceId</span>
+<span class="w">    </span><span class="n">deviceName</span>
+<span class="w">    </span><span class="n">periodStart</span>
+<span class="w">    </span><span class="n">periodEnd</span>
+<span class="w">    </span><span class="n">avgCpuUsage</span>
+<span class="w">    </span><span class="n">maxCpuUsage</span>
+<span class="w">    </span><span class="n">avgMemoryUsage</span>
+<span class="w">    </span><span class="n">maxMemoryUsage</span>
+<span class="w">    </span><span class="n">uptimePercentage</span>
+<span class="w">    </span><span class="n">alertCount</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h5 id="audiencemetrics">audienceMetrics</h5>
+<p>Aggregated audience demographics, traffic, and engagement data.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="n">audienceMetrics</span><span class="p">(</span>
+<span class="w">    </span><span class="n">startDate</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-01-01T00:00:00Z&quot;</span>
+<span class="w">    </span><span class="n">endDate</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-01-31T23:59:59Z&quot;</span>
+<span class="w">    </span><span class="n">interval</span><span class="p">:</span><span class="w"> </span><span class="no">DAY</span>
+<span class="w">    </span><span class="n">includeDwellTime</span><span class="p">:</span><span class="w"> </span><span class="nb">true</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">deviceId</span>
+<span class="w">    </span><span class="n">deviceName</span>
+<span class="w">    </span><span class="n">periodStart</span>
+<span class="w">    </span><span class="n">totalImpressions</span>
+<span class="w">    </span><span class="n">uniqueVisitors</span>
+<span class="w">    </span><span class="n">avgDwellTime</span>
+<span class="w">    </span><span class="n">maleCount</span>
+<span class="w">    </span><span class="n">femaleCount</span>
+<span class="w">    </span><span class="n">ageUnder18</span>
+<span class="w">    </span><span class="n">age18To24</span>
+<span class="w">    </span><span class="n">age25To34</span>
+<span class="w">    </span><span class="n">age35To44</span>
+<span class="w">    </span><span class="n">age45To54</span>
+<span class="w">    </span><span class="n">age55To64</span>
+<span class="w">    </span><span class="n">age65To74</span>
+<span class="w">    </span><span class="n">ageOver74</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h5 id="mediaplaystats">mediaPlayStats</h5>
+<p>Media performance aggregated by file.</p>
+<h5 id="deviceplaystats">devicePlayStats</h5>
+<p>Device playback summary aggregated by device.</p>
+<h5 id="devicemediaplaystats">deviceMediaPlayStats</h5>
+<p>Combined device/media analysis — what content played on which devices.</p>
+<h5 id="playstatsbytime">playStatsByTime</h5>
+<p>Time-series playback trends with configurable intervals.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="n">playStatsByTime</span><span class="p">(</span>
+<span class="w">    </span><span class="n">startDate</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-01-01T00:00:00Z&quot;</span>
+<span class="w">    </span><span class="n">endDate</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-01-31T23:59:59Z&quot;</span>
+<span class="w">    </span><span class="n">interval</span><span class="p">:</span><span class="w"> </span><span class="no">DAY</span>
+<span class="w">    </span><span class="n">groupByFile</span><span class="p">:</span><span class="w"> </span><span class="nb">true</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">fileId</span>
+<span class="w">    </span><span class="n">fileName</span>
+<span class="w">    </span><span class="n">periodStart</span>
+<span class="w">    </span><span class="n">periodEnd</span>
+<span class="w">    </span><span class="n">totalPlays</span>
+<span class="w">    </span><span class="n">totalDuration</span>
+<span class="w">    </span><span class="n">avgDuration</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h5 id="eventflow">eventFlow</h5>
+<p>User navigation paths for Sankey-type visualizations.</p>
+<h5 id="heatmapdata">heatMapData</h5>
+<p>Geographic impression data aggregated by location.</p>
+<h5 id="eventheatmapdata">eventHeatMapData</h5>
+<p>Geographic event data aggregated by location.</p>
+<h5 id="mediaimpressions">mediaImpressions</h5>
+<p>OTS (Opportunity To See) metrics aggregated by media file.</p>
+<h5 id="devicemediaimpressions">deviceMediaImpressions</h5>
+<p>OTS metrics aggregated by device.</p>
+<hr />
+<h3 id="mutations">Mutations</h3>
+<p>All mutations require authentication and are protected by authorization policies.</p>
+<h4 id="data-table-management">Data Table Management</h4>
+<h5 id="createdatatable">createDataTable</h5>
+<p>Creates a new data table with a column schema. Requires <code>DataTables_Edit</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="k">mutation</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">createDataTable</span><span class="p">(</span><span class="n">input</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Menu Board&quot;</span>
+<span class="w">    </span><span class="n">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Restaurant menu items&quot;</span>
+<span class="w">    </span><span class="n">columns</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Item&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;item&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="p">:</span><span class="w"> </span><span class="no">TEXT</span><span class="p">,</span><span class="w"> </span><span class="n">required</span><span class="p">:</span><span class="w"> </span><span class="nb">true</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Price&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;price&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="p">:</span><span class="w"> </span><span class="no">TEXT</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Description&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;desc&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="p">:</span><span class="w"> </span><span class="no">TEXT</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">success</span>
+<span class="w">    </span><span class="n">table</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="n">columns</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="n">error</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h5 id="updatedatatable">updateDataTable</h5>
+<p>Updates a data table definition. Requires <code>DataTables_Edit</code>.</p>
+<h5 id="deletedatatable">deleteDataTable</h5>
+<p>Deletes a data table and all its rows. Requires <code>DataTables_Delete</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="k">mutation</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">deleteDataTable</span><span class="p">(</span><span class="n">tableId</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;table-id&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">success</span>
+<span class="w">    </span><span class="n">error</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h5 id="createdatatablerow">createDataTableRow</h5>
+<p>Creates a new row. Requires <code>DataTables_Edit</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="k">mutation</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">createDataTableRow</span><span class="p">(</span><span class="n">input</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">tableId</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;table-id&quot;</span>
+<span class="w">    </span><span class="n">data</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">item</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Burger&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">price</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;$9.99&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">desc</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Classic cheeseburger&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">success</span>
+<span class="w">    </span><span class="n">row</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="n">updatedAt</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="n">error</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h5 id="updatedatatablerow">updateDataTableRow</h5>
+<p>Updates a row (partial update). Requires <code>DataTables_Edit</code>.</p>
+<h5 id="deletedatatablerow">deleteDataTableRow</h5>
+<p>Deletes a row. Requires <code>DataTables_Delete</code>.</p>
+<h5 id="batchcreatedatatablerows">batchCreateDataTableRows</h5>
+<p>Batch creates up to 100 rows. Requires <code>DataTables_Edit</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="k">mutation</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">batchCreateDataTableRows</span><span class="p">(</span><span class="n">input</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">tableId</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;table-id&quot;</span>
+<span class="w">    </span><span class="n">rows</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="n">data</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">item</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Burger&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">price</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;$9.99&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="n">data</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">item</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Fries&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">price</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;$4.99&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">success</span>
+<span class="w">    </span><span class="n">results</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">rowId</span><span class="w"> </span><span class="n">success</span><span class="w"> </span><span class="n">error</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="n">error</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h5 id="batchdeletedatatablerows">batchDeleteDataTableRows</h5>
+<p>Batch deletes up to 100 rows. Requires <code>DataTables_Delete</code>.</p>
+<h5 id="importdatatablerows">importDataTableRows</h5>
+<p>Imports rows from CSV content. Requires <code>DataTables_Edit</code>.</p>
+<h5 id="reorderdatatablerows">reorderDataTableRows</h5>
+<p>Reorders rows by specifying the desired row ID sequence. Requires <code>DataTables_Edit</code>.</p>
+<h5 id="rollbackdatatablerow">rollbackDataTableRow</h5>
+<p>Rolls back a row to a previous version. Requires <code>DataTables_Edit</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="k">mutation</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">rollbackDataTableRow</span><span class="p">(</span><span class="n">input</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">tableId</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;table-id&quot;</span>
+<span class="w">    </span><span class="n">rowId</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;row-id&quot;</span>
+<span class="w">    </span><span class="n">version</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">  </span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">success</span>
+<span class="w">    </span><span class="n">newVersion</span>
+<span class="w">    </span><span class="n">restoredRow</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="n">updatedAt</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="n">error</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="device-commands">Device Commands</h4>
+<h5 id="senddevicecommand">sendDeviceCommand</h5>
+<p>Sends commands to a specific device. Requires <code>Devices_Edit</code>.</p>
+<p>Known commands: <code>restart</code>, <code>reboot</code>, <code>screenshot</code>, <code>refresh</code>, <code>display_on</code>, <code>display_off</code>, <code>volume</code> (arg: 0-100), <code>clear_cache</code>, <code>update</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="k">mutation</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">sendDeviceCommand</span><span class="p">(</span>
+<span class="w">    </span><span class="n">deviceId</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;device-id&quot;</span>
+<span class="w">    </span><span class="n">commands</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="n">command</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;volume&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">arg</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;50&quot;</span><span class="w"> </span><span class="p">}]</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">success</span>
+<span class="w">    </span><span class="n">deviceId</span>
+<span class="w">    </span><span class="n">commandCount</span>
+<span class="w">    </span><span class="n">error</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h5 id="sendbulkdevicecommands">sendBulkDeviceCommands</h5>
+<p>Sends commands to multiple devices at once. Requires <code>Devices_Edit</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="k">mutation</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">sendBulkDeviceCommands</span><span class="p">(</span><span class="n">input</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">deviceIds</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;device-1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;device-2&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="n">commands</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="n">command</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;restart&quot;</span><span class="w"> </span><span class="p">}]</span>
+<span class="w">  </span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">totalDevices</span>
+<span class="w">    </span><span class="n">successCount</span>
+<span class="w">    </span><span class="n">failureCount</span>
+<span class="w">    </span><span class="n">results</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">success</span><span class="w"> </span><span class="n">deviceId</span><span class="w"> </span><span class="n">error</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="media-management">Media Management</h4>
+<h5 id="createmediafromurl">createMediaFromUrl</h5>
+<p>Creates a new media asset by downloading from a URL. Requires <code>Files_Edit</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="k">mutation</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">createMediaFromUrl</span><span class="p">(</span><span class="n">input</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://example.com/image.jpg&quot;</span>
+<span class="w">    </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Promo Image&quot;</span>
+<span class="w">    </span><span class="n">groupId</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;group-id&quot;</span>
+<span class="w">  </span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">success</span>
+<span class="w">    </span><span class="n">media</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="n">fileUrl</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="n">error</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h5 id="updatemedia">updateMedia</h5>
+<p>Updates media metadata (does not replace the file). Requires <code>Files_Edit</code>.</p>
+<h5 id="deletemedia">deleteMedia</h5>
+<p>Deletes a media asset. Requires <code>Files_Delete</code>.</p>
+<h4 id="playlist-management">Playlist Management</h4>
+<h5 id="addplaylistsource">addPlaylistSource</h5>
+<p>Adds a content source to a playlist. Requires <code>Playlists_Edit</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="k">mutation</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">addPlaylistSource</span><span class="p">(</span><span class="n">input</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">playlistId</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;playlist-id&quot;</span>
+<span class="w">    </span><span class="n">fileId</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;media-file-id&quot;</span>
+<span class="w">    </span><span class="n">interval</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span>
+<span class="w">  </span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">success</span>
+<span class="w">    </span><span class="n">playlist</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">id</span>
+<span class="w">      </span><span class="n">name</span>
+<span class="w">      </span><span class="n">sources</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="n">sequence</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">error</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h5 id="updateplaylistsource">updatePlaylistSource</h5>
+<p>Updates a source within a playlist. Requires <code>Playlists_Edit</code>.</p>
+<h5 id="removeplaylistsource">removePlaylistSource</h5>
+<p>Removes a source from a playlist. Requires <code>Playlists_Edit</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="k">mutation</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">removePlaylistSource</span><span class="p">(</span>
+<span class="w">    </span><span class="n">playlistId</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;playlist-id&quot;</span>
+<span class="w">    </span><span class="n">sourceId</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;source-id&quot;</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">success</span>
+<span class="w">    </span><span class="n">error</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h5 id="reorderplaylistsources">reorderPlaylistSources</h5>
+<p>Reorders sources within a playlist. Requires <code>Playlists_Edit</code>.</p>
+<hr />
+<h3 id="filtering-sorting">Filtering &amp; Sorting</h3>
+<p>All list queries support advanced filtering via <code>where</code> and sorting via <code>order</code> arguments using Hot Chocolate-style filter inputs.</p>
+<h5 id="filtering">Filtering</h5>
+<p>Use field-specific operators to build filter expressions:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="n">device</span><span class="p">(</span><span class="n">where</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">contains</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Lobby&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="n">isOnline</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">eq</span><span class="p">:</span><span class="w"> </span><span class="nb">true</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">id</span>
+<span class="w">    </span><span class="n">name</span>
+<span class="w">    </span><span class="n">isOnline</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Common filter operators:</p>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>eq</code></td>
+<td>Equal to</td>
+</tr>
+<tr>
+<td><code>neq</code></td>
+<td>Not equal to</td>
+</tr>
+<tr>
+<td><code>contains</code></td>
+<td>Contains substring</td>
+</tr>
+<tr>
+<td><code>startsWith</code></td>
+<td>Starts with</td>
+</tr>
+<tr>
+<td><code>endsWith</code></td>
+<td>Ends with</td>
+</tr>
+<tr>
+<td><code>gt</code> / <code>gte</code></td>
+<td>Greater than / greater or equal</td>
+</tr>
+<tr>
+<td><code>lt</code> / <code>lte</code></td>
+<td>Less than / less or equal</td>
+</tr>
+<tr>
+<td><code>in</code> / <code>nin</code></td>
+<td>In / not in list</td>
+</tr>
+</tbody>
+</table>
+<h5 id="sorting">Sorting</h5>
+<p>Use the <code>order</code> argument to sort results:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="n">media</span><span class="p">(</span><span class="n">order</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="n">uploadedOn</span><span class="p">:</span><span class="w"> </span><span class="no">DESC</span><span class="w"> </span><span class="p">}])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">id</span>
+<span class="w">    </span><span class="n">name</span>
+<span class="w">    </span><span class="n">uploadedOn</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h3 id="enums">Enums</h3>
+<table>
+<thead>
+<tr>
+<th>Enum</th>
+<th>Values</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AdHawkIntervalType</code></td>
+<td><code>MINUTE</code>, <code>HOUR</code>, <code>DAY</code>, <code>WEEK</code>, <code>MONTH</code></td>
+<td>Time aggregation interval</td>
+</tr>
+<tr>
+<td><code>AdHawkGender</code></td>
+<td><code>MALE</code>, <code>FEMALE</code>, <code>UNKNOWN</code></td>
+<td>Detected visitor gender</td>
+</tr>
+<tr>
+<td><code>AdHawkAgeRange</code></td>
+<td><code>UNDER18</code>, <code>AGE18TO24</code>, <code>AGE25TO34</code>, <code>AGE35TO44</code>, <code>AGE45TO54</code>, <code>AGE55TO64</code>, <code>AGE65TO74</code>, <code>AGEOVER74</code></td>
+<td>Age group classification</td>
+</tr>
+<tr>
+<td><code>ColumnType</code></td>
+<td>Various</td>
+<td>Data table column type</td>
+</tr>
+<tr>
+<td><code>SortEnumType</code></td>
+<td><code>ASC</code>, <code>DESC</code></td>
+<td>Sort direction</td>
+</tr>
+<tr>
+<td><code>PlaylistType</code></td>
+<td>Various</td>
+<td>Content collection type</td>
+</tr>
+<tr>
+<td><code>SourceType</code></td>
+<td>Various</td>
+<td>Content source category</td>
+</tr>
+<tr>
+<td><code>ScheduleType</code></td>
+<td>Various</td>
+<td>Schedule classification</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="authorization-policies">Authorization Policies</h3>
+<p>Access to queries and mutations is controlled by role-based policies:</p>
+<table>
+<thead>
+<tr>
+<th>Policy</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Devices_View</code> / <code>Devices_Edit</code> / <code>Devices_Delete</code></td>
+<td>Device management</td>
+</tr>
+<tr>
+<td><code>Files_View</code> / <code>Files_Edit</code> / <code>Files_Delete</code></td>
+<td>Media asset management</td>
+</tr>
+<tr>
+<td><code>Playlists_View</code> / <code>Playlists_Edit</code> / <code>Playlists_Delete</code></td>
+<td>Playlist operations</td>
+</tr>
+<tr>
+<td><code>Templates_View</code> / <code>Templates_Edit</code> / <code>Templates_Delete</code></td>
+<td>Template operations</td>
+</tr>
+<tr>
+<td><code>Schedules_View</code> / <code>Schedules_Edit</code> / <code>Schedules_Delete</code></td>
+<td>Schedule operations</td>
+</tr>
+<tr>
+<td><code>Alerts_View</code></td>
+<td>Alert access</td>
+</tr>
+<tr>
+<td><code>DataTables_View</code> / <code>DataTables_Edit</code> / <code>DataTables_Delete</code></td>
+<td>Data table operations</td>
+</tr>
+<tr>
+<td><code>AdHawk_View</code></td>
+<td>Analytics data access</td>
+</tr>
+<tr>
+<td><code>Account_ManageUsers_View</code></td>
+<td>User management</td>
+</tr>
+<tr>
+<td><code>AuditEventsOwnerOnly</code></td>
+<td>Audit log access (account owners only)</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Use the <code>permissions</code> query to programmatically check which operations are available for your API key or user account.</p>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.cd18aaf1.min.js"></script>
+      
+    
+  </body>
+</html>

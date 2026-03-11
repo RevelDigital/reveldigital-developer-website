@@ -6,6 +6,10 @@
 
 Programmatic access to your Revel Digital account information including media, devices, playlists, reports, etc.
 
+###[GraphQL API](/graphql)###
+
+A flexible, strongly-typed GraphQL interface for querying and mutating your Revel Digital account data. Request exactly the fields you need in a single request.
+
 ###[Gadgets](/gadgets)###
 
 Create dynamic template components such as the weather or a calendar. Gadgets can be used directly in a playlist, or embedded in a more complicated template layout.
