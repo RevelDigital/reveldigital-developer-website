@@ -1,1 +1,9 @@
+# MkDocs build output — deployed via GitHub Actions, not committed
+/docs/
+/site/
 
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/

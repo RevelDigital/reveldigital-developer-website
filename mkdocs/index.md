@@ -25,3 +25,7 @@ Runtime scripting of your Windows based digital signage.
 ###[Player API for Android](/android)###
 
 Runtime scripting of your Android based digital signage.
+
+###[AI Developer Tools](/ai-tools)###
+
+Build gadgets and manage your Revel Digital account using AI assistants via the Revel Digital Claude Skill and the Revel Digital MCP Server.
